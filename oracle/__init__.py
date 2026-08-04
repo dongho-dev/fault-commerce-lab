@@ -1,0 +1,1 @@
+"""Independent PostgreSQL state oracle."""
