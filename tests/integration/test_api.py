@@ -135,6 +135,11 @@ def test_unexpected_exception_rolls_back_inventory(
 
 
 def test_health_docs_and_metrics(client: TestClient) -> None:
+    homepage = client.get("/")
+    assert homepage.status_code == 200
+    assert "Fault Commerce" in homepage.text
+    assert client.get("/static/styles.css").status_code == 200
+    assert client.get("/static/app.js").status_code == 200
     assert client.get("/health/live").status_code == 200
     assert client.get("/health/ready").status_code == 200
     assert client.get("/docs").status_code == 200

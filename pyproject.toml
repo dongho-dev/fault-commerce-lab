@@ -28,6 +28,16 @@ dev = [
 [tool.setuptools.packages.find]
 include = ["app*", "oracle*", "scripts*", "tools*"]
 
+[tool.setuptools.package-data]
+app = [
+  "frontend/*.css",
+  "frontend/*.html",
+  "frontend/*.js",
+  "frontend/*.svg",
+  "frontend/assets/*.jpg",
+  "frontend/assets/*.md",
+]
+
 [tool.pytest.ini_options]
 addopts = "-ra --strict-markers"
 testpaths = ["tests"]

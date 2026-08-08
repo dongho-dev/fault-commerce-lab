@@ -1,4 +1,11 @@
-# Fault Commerce Lab L1
+# Fault Commerce Lab
+
+![Python 3.12](https://img.shields.io/badge/Python-3.12-18231f?style=flat-square)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.116-18231f?style=flat-square)
+![PostgreSQL 16](https://img.shields.io/badge/PostgreSQL-16-18231f?style=flat-square)
+![Baseline](https://img.shields.io/badge/baseline-L1_verified-d7df72?style=flat-square)
+
+<img src="docs/storefront-preview.jpg" alt="Fault Commerce Lab interactive storefront preview">
 
 Fault Commerce Lab L1 is a deliberately healthy, executable commerce core used as the
 reference point for later reliability and incident-investigation exercises. It implements only
@@ -26,6 +33,7 @@ used in development, tests, or runtime.
 
 ```text
 app/                 FastAPI, models, schemas, repositories, services, observability
+app/frontend/        Responsive storefront, live API lab, and bundled visual assets
 alembic/             Versioned PostgreSQL schema migrations
 tests/unit/          Pure calculation, validation, error, and utility tests
 tests/integration/   PostgreSQL API tests and real-Uvicorn concurrency/restart tests
@@ -65,6 +73,36 @@ docker compose up -d --build
 The API is available at `http://localhost:8000`, with interactive documentation at
 `http://localhost:8000/docs`. The application waits for PostgreSQL health, applies
 `alembic upgrade head`, and only then starts Uvicorn.
+
+## Interactive storefront
+
+Open [http://localhost:8000](http://localhost:8000) after Compose reports the app healthy.
+The root page is a responsive Korean/English storefront and reliability-lab interface served
+directly by FastAPI. It adds no new commerce-domain endpoint and exercises the verified L1 API:
+
+- create one of three styled demo products against the real PostgreSQL database;
+- create a custom product and its one-to-one inventory atomically;
+- look up the current inventory for any product ID;
+- place a confirmed order and observe shipping, total, and request ID;
+- watch live/readiness state and open Prometheus metrics or OpenAPI documentation.
+
+The interface uses semantic HTML, keyboard-visible focus states, reduced-motion support, a
+mobile navigation layout, and only bundled assets. Product photos are not fetched at runtime.
+
+### Visual direction and credits
+
+The design is original, with reference cues taken from:
+
+- [Aesop](https://www.aesop.com/) for editorial hierarchy and considered product narratives;
+- [Apple Accessories](https://www.apple.com/shop/accessories/all) for clear merchandising and
+  concise service reassurance;
+- [Teenage Engineering](https://teenage.engineering/store) for bold object colour and modular
+  product presentation.
+
+The workspace photograph is “White wireless keyboard” by
+[Marc Mintel on Unsplash](https://unsplash.com/photos/white-wireless-keyboard-WdXsXrFVhis),
+used under the [Unsplash License](https://unsplash.com/license). Full asset attribution lives in
+`app/frontend/assets/PHOTO_CREDITS.md`.
 
 Stop containers while preserving the PostgreSQL volume:
 
