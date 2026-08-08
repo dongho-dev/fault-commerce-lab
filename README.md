@@ -86,6 +86,18 @@ directly by FastAPI. It adds no new commerce-domain endpoint and exercises the v
 - place a confirmed order and observe shipping, total, and request ID;
 - watch live/readiness state and open Prometheus metrics or OpenAPI documentation.
 
+### Admin control room
+
+Open [http://localhost:8000/admin](http://localhost:8000/admin) for the operations dashboard.
+It uses only the existing L1 endpoints and does not add a commerce-domain API. The dashboard:
+
+- reads liveness, readiness, and Prometheus counters;
+- creates one isolated probe product with configurable starting inventory;
+- fires up to 100 simultaneous order requests from the browser;
+- compares the expected 201/409 distribution with the observed responses;
+- evaluates the inventory equation and reports either 'INVARIANT HOLDS' or 'INCIDENT DETECTED';
+- can export the complete request ledger and verdict as JSON.
+
 The interface uses semantic HTML, keyboard-visible focus states, reduced-motion support, a
 mobile navigation layout, and only bundled assets. Product photos are not fetched at runtime.
 
