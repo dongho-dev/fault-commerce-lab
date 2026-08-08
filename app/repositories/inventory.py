@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from sqlalchemy import func, select, update
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.models.inventory import Inventory
@@ -31,24 +31,15 @@ class InventoryRepository:
         return self.session.scalar(select(Inventory).where(Inventory.product_id == product_id))
 
     def decrement_if_available(self, *, product_id: int, quantity: int) -> StockChange | None:
-        statement = (
-            update(Inventory)
-            .where(
-                Inventory.product_id == product_id,
-                Inventory.current_stock >= quantity,
-            )
-            .values(
-                current_stock=Inventory.current_stock - quantity,
-                updated_at=func.now(),
-            )
-            .returning(Inventory.initial_stock, Inventory.current_stock)
-        )
-        row = self.session.execute(statement).one_or_none()
-        if row is None:
+        inventory = self.get(product_id)
+        if inventory is None or inventory.current_stock < quantity:
             return None
-        current_stock = int(row.current_stock)
+
+        previous_stock = inventory.current_stock
+        inventory.current_stock = previous_stock - quantity
+        self.session.flush()
         return StockChange(
-            initial_stock=int(row.initial_stock),
-            previous_stock=current_stock + quantity,
-            current_stock=current_stock,
+            initial_stock=inventory.initial_stock,
+            previous_stock=previous_stock,
+            current_stock=inventory.current_stock,
         )
