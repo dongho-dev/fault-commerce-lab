@@ -57,6 +57,13 @@ def create_app() -> FastAPI:
             headers={"Cache-Control": "no-cache"},
         )
 
+    @application.get("/admin", include_in_schema=False, response_class=FileResponse)
+    async def control_room() -> FileResponse:
+        return FileResponse(
+            FRONTEND_DIR / "admin.html",
+            headers={"Cache-Control": "no-cache"},
+        )
+
     @application.exception_handler(BusinessError)
     async def handle_business_error(_request: Request, exc: BusinessError) -> JSONResponse:
         return error_response(code=exc.code, message=exc.message, status_code=exc.status_code)

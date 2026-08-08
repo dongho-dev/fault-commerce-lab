@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Fault Commerce Lab 운영 상태와 재고 동시성 불변조건을 검증하는 관리자 관찰 대시보드.">
+  <meta name="theme-color" content="#101815">
+  <title>Control Room · Fault Commerce Lab</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/admin.css">
+  <script src="/static/admin.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+  <div class="control-room">
+    <aside class="sidebar">
+      <a class="operator-brand" href="/" aria-label="Fault Commerce Lab 스토어로 이동">
+        <span class="brand-mark" aria-hidden="true"><span>F</span><span>C</span></span>
+        <span>
+          <strong>Control Room</strong>
+          <small>Commerce reliability</small>
+        </span>
+      </a>
+
+      <div class="environment-card">
+        <div>
+          <span class="environment-dot" data-environment-dot></span>
+          <span data-environment-label>연결 확인 중</span>
+        </div>
+        <strong>L1 / LOCAL</strong>
+        <small>Verified baseline observer</small>
+      </div>
+
+      <nav class="operator-nav" aria-label="관리자 메뉴">
+        <a class="is-active" href="#overview"><span>01</span>Overview</a>
+        <a href="#load-test"><span>02</span>Load test</a>
+        <a href="#evidence"><span>03</span>Evidence</a>
+      </nav>
+
+      <div class="sidebar-links">
+        <a href="/">Storefront <span aria-hidden="true">↗</span></a>
+        <a href="/docs" target="_blank" rel="noreferrer">API documentation <span aria-hidden="true">↗</span></a>
+        <a href="/metrics" target="_blank" rel="noreferrer">Raw metrics <span aria-hidden="true">↗</span></a>
+      </div>
+
+      <p class="sidebar-note">
+        Lab-only admin surface<br>
+        인증 기능은 L1 범위 밖입니다.
+      </p>
+    </aside>
+
+    <main class="workspace" id="main">
+      <header class="workspace-header">
+        <div>
+          <p>FAULT COMMERCE / OPERATIONS</p>
+          <span data-clock>--:--:-- KST</span>
+        </div>
+        <div class="system-pill" data-system-pill>
+          <span></span>
+          <strong data-system-status>Checking system</strong>
+        </div>
+      </header>
+
+      <section class="overview" id="overview">
+        <div class="overview-copy">
+          <p class="eyebrow">INVARIANT CONTROL DESK · SEOUL / 2026</p>
+          <h1>정상은<br><em>숫자로 증명합니다.</em></h1>
+          <p>
+            한 번의 제어된 부하로 상품 생성부터 동시 주문, 최종 재고까지 추적합니다.
+            응답 코드만 보지 않고 저장된 재고가 확정 주문 수량과 일치하는지 판정합니다.
+          </p>
+          <button class="primary-action" type="button" data-run-shortcut>
+            동시성 검증 시작 <span aria-hidden="true">↓</span>
+          </button>
+        </div>
+
+        <div class="overview-signal" aria-hidden="true">
+          <div class="signal-frame">
+            <span class="frame-label">LIVE SIGNAL / INVENTORY</span>
+            <div class="signal-number" data-signal-number>00</div>
+            <div class="signal-bars">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="signal-axis"><span>OBSERVE</span><span>PROVE</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="health-grid" aria-label="시스템 상태">
+        <article>
+          <div class="card-label"><span>A</span>Application</div>
+          <strong data-live-value>—</strong>
+          <small>/health/live</small>
+        </article>
+        <article>
+          <div class="card-label"><span>D</span>Database</div>
+          <strong data-ready-value>—</strong>
+          <small>/health/ready</small>
+        </article>
+        <article>
+          <div class="card-label"><span>O</span>Order attempts</div>
+          <strong data-attempt-value>—</strong>
+          <small>Process lifetime</small>
+        </article>
+        <article>
+          <div class="card-label"><span>R</span>Stock rejections</div>
+          <strong data-rejection-value>—</strong>
+          <small>Expected under load</small>
+        </article>
+      </section>
+
+      <section class="test-section" id="load-test">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">CONTROLLED EXPERIMENT</p>
+            <h2>재고 동시성 검증</h2>
+          </div>
+          <p>
+            전용 상품 하나를 만든 뒤 주문 요청을 동시에 전송합니다.
+            이 실험은 로컬 PostgreSQL에 상품과 주문 테스트 데이터를 남깁니다.
+          </p>
+        </div>
+
+        <div class="test-layout">
+          <article class="probe-panel">
+            <header>
+              <div>
+                <span class="panel-index">RUN / 01</span>
+                <h3>Configure probe</h3>
+              </div>
+              <span class="panel-state" data-panel-state>Ready</span>
+            </header>
+
+            <form id="probe-form">
+              <div class="field-grid">
+                <label>
+                  <span>초기 재고</span>
+                  <input name="stock" type="number" min="1" max="100" value="10" required>
+                </label>
+                <label>
+                  <span>동시 요청</span>
+                  <input name="requests" type="number" min="1" max="100" value="40" required>
+                </label>
+                <label>
+                  <span>주문 수량</span>
+                  <input name="quantity" type="number" min="1" max="100" value="1" required>
+                </label>
+                <label>
+                  <span>우편번호</span>
+                  <input name="postal_code" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" value="16841" required>
+                </label>
+              </div>
+
+              <div class="expectation">
+                <span>기대 결과</span>
+                <div>
+                  <strong data-expected-success>201 × 10</strong>
+                  <strong data-expected-rejection>409 × 30</strong>
+                  <strong data-expected-stock>재고 0</strong>
+                </div>
+              </div>
+
+              <button class="run-button" type="submit">
+                <span data-run-label>40개 요청 실행</span>
+                <span class="run-icon" aria-hidden="true">↗</span>
+              </button>
+            </form>
+          </article>
+
+          <aside class="verdict-panel" data-verdict-panel data-state="idle" aria-live="polite">
+            <div class="verdict-topline">
+              <span>ORACLE LENS</span>
+              <span data-verdict-code>AWAITING RUN</span>
+            </div>
+            <div class="verdict-mark" aria-hidden="true"><span>?</span></div>
+            <p class="verdict-kicker" data-verdict-kicker>No evidence yet</p>
+            <h3 data-verdict-title>검증을 실행해주세요.</h3>
+            <p data-verdict-message>
+              동일한 입력을 정상 기준과 incident 환경에서 실행하면 재고 정합성 차이를 바로 볼 수 있습니다.
+            </p>
+            <dl class="equation" data-equation>
+              <div><dt>Initial</dt><dd>—</dd></div>
+              <span>−</span>
+              <div><dt>Confirmed</dt><dd>—</dd></div>
+              <span>=</span>
+              <div><dt>Expected</dt><dd>—</dd></div>
+              <span>/</span>
+              <div><dt>Actual</dt><dd>—</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <section class="results-section" data-results hidden>
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">OBSERVED RESULTS</p>
+            <h2>실행 증거</h2>
+          </div>
+          <button class="text-action" type="button" data-export disabled>JSON 저장 <span aria-hidden="true">↓</span></button>
+        </div>
+
+        <div class="result-cards">
+          <article><span>201 Created</span><strong data-result-success>0</strong><i class="bar success" data-success-bar></i></article>
+          <article><span>409 Rejected</span><strong data-result-rejected>0</strong><i class="bar rejected" data-rejected-bar></i></article>
+          <article><span>Other / Error</span><strong data-result-error>0</strong><i class="bar error" data-error-bar></i></article>
+          <article><span>P95 latency</span><strong data-result-p95>0 ms</strong><small data-result-duration>Total 0 ms</small></article>
+        </div>
+
+        <article class="request-log">
+          <header>
+            <div>
+              <span class="panel-index">TRACE / HTTP</span>
+              <h3>Request ledger</h3>
+            </div>
+            <span data-request-count>0 requests</span>
+          </header>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">No.</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Latency</th>
+                  <th scope="col">Request ID</th>
+                </tr>
+              </thead>
+              <tbody data-request-rows></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section class="evidence-section" id="evidence">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">LIVE TELEMETRY</p>
+            <h2>운영 근거</h2>
+          </div>
+          <button class="text-action" type="button" data-refresh>지금 새로고침 <span aria-hidden="true">↻</span></button>
+        </div>
+
+        <div class="evidence-grid">
+          <article class="metric-ledger">
+            <header><span>Prometheus snapshot</span><small data-metric-time>Not collected</small></header>
+            <dl>
+              <div><dt>HTTP requests</dt><dd data-http-total>—</dd></div>
+              <div><dt>Order attempts</dt><dd data-attempt-detail>—</dd></div>
+              <div><dt>Orders confirmed</dt><dd data-confirmed-detail>—</dd></div>
+              <div><dt>Stock rejections</dt><dd data-rejection-detail>—</dd></div>
+            </dl>
+          </article>
+
+          <article class="operator-note">
+            <span>Operator note / 001</span>
+            <h3>헬스 체크는 정합성을 보장하지 않습니다.</h3>
+            <p>
+              애플리케이션과 DB가 모두 Ready여도 동시성 제어가 깨지면 잘못된 주문이 정상 응답으로 확정될 수 있습니다.
+              그래서 이 화면은 상태 점검과 불변조건 검증을 분리합니다.
+            </p>
+          </article>
+
+          <article class="operator-note accent">
+            <span>Invariant / stock</span>
+            <h3>initial − Σ confirmed = current</h3>
+            <p>
+              응답 분포와 최종 재고 중 하나라도 기대값과 다르면 incident로 판정합니다.
+              기존 독립 Oracle과 같은 핵심 방정식을 브라우저 관점에서 관찰합니다.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <footer class="workspace-footer">
+        <span>FAULT COMMERCE LAB · CONTROL ROOM</span>
+        <span>자동 새로고침 <strong>15s</strong></span>
+      </footer>
+    </main>
+  </div>
+
+  <div class="toast" data-toast role="status" aria-live="polite"></div>
+</body>
+</html>

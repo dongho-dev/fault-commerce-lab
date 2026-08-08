@@ -138,6 +138,11 @@ def test_health_docs_and_metrics(client: TestClient) -> None:
     homepage = client.get("/")
     assert homepage.status_code == 200
     assert "Fault Commerce" in homepage.text
+    admin = client.get("/admin")
+    assert admin.status_code == 200
+    assert "Control Room" in admin.text
+    assert client.get("/static/admin.css").status_code == 200
+    assert client.get("/static/admin.js").status_code == 200
     assert client.get("/static/styles.css").status_code == 200
     assert client.get("/static/app.js").status_code == 200
     assert client.get("/health/live").status_code == 200
