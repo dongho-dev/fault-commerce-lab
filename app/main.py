@@ -1,11 +1,13 @@
 import logging
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from anyio import to_thread
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.api.routes import router
@@ -14,6 +16,8 @@ from app.observability.context import get_request_id
 from app.observability.logging import configure_logging, event_logger
 from app.observability.middleware import RequestObservabilityMiddleware
 from app.services.errors import BusinessError
+
+FRONTEND_DIR = Path(__file__).resolve().parent / "frontend"
 
 
 def error_response(*, code: str, message: str, status_code: int) -> JSONResponse:
@@ -44,6 +48,14 @@ def create_app() -> FastAPI:
         lifespan=lifespan,
     )
     application.add_middleware(RequestObservabilityMiddleware)
+    application.mount("/static", StaticFiles(directory=FRONTEND_DIR), name="static")
+
+    @application.get("/", include_in_schema=False, response_class=FileResponse)
+    async def storefront() -> FileResponse:
+        return FileResponse(
+            FRONTEND_DIR / "index.html",
+            headers={"Cache-Control": "no-cache"},
+        )
 
     @application.exception_handler(BusinessError)
     async def handle_business_error(_request: Request, exc: BusinessError) -> JSONResponse:

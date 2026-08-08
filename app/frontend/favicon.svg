@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Fault Commerce</title>
+  <rect width="64" height="64" fill="#18231f"/>
+  <rect x="32" width="32" height="64" fill="#d7df72"/>
+  <path d="M13 16h15v6H20v7h7v6h-7v13h-7V16Z" fill="#f2eee6"/>
+  <path d="M51 25c-2-2-4-3-6-3-5 0-8 4-8 10s3 10 8 10c3 0 5-1 7-3v7c-2 2-5 3-8 3-9 0-15-7-15-17s6-17 15-17c3 0 6 1 8 3l-1 7Z" fill="#18231f"/>
+</svg>
