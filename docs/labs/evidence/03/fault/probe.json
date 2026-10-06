@@ -1,0 +1,525 @@
+{
+  "case": "03",
+  "expected": "fault",
+  "started_at": "2026-10-06T08:01:19.371262+00:00",
+  "healthy": false,
+  "symptom": true,
+  "checks": {
+    "leading_zero": false,
+    "ordinary_control": true,
+    "remote_control": true,
+    "below_remote_boundary": true,
+    "remote_boundary": true,
+    "maximum_prefix": true,
+    "all_zero": true,
+    "zero_before_remote_boundary": false,
+    "zero_before_ordinary_prefix": true,
+    "multiple_leading_zeroes": false,
+    "formatted_postal": false,
+    "two_items": true,
+    "three_items": true,
+    "three_remote_items": true,
+    "below_free_threshold": true,
+    "free_threshold": true,
+    "free_remote": true,
+    "free_with_packaging": true,
+    "browser_estimate_correct": true,
+    "postal_string_preserved": true,
+    "browser_confirmed_amount_matches_estimate": false,
+    "browser_history_matches_response": true
+  },
+  "observations": {
+    "shipping_matrix": [
+      {
+        "scenario": "leading_zero",
+        "postal_code": "06236",
+        "unit_price": 10000,
+        "quantity": 1,
+        "expected_shipping_fee": 3000,
+        "expected_total_amount": 13000,
+        "http_status": 201,
+        "request_id": "lab03-leading_zero",
+        "response": {
+          "id": 1,
+          "product_id": 1,
+          "quantity": 1,
+          "unit_price": 10000,
+          "postal_code": "06236",
+          "shipping_fee": 5500,
+          "total_amount": 15500,
+          "status": "CONFIRMED",
+          "created_at": "2026-10-06T08:01:19.859016Z"
+        }
+      },
+      {
+        "scenario": "ordinary_control",
+        "postal_code": "16841",
+        "unit_price": 10000,
+        "quantity": 1,
+        "expected_shipping_fee": 3000,
+        "expected_total_amount": 13000,
+        "http_status": 201,
+        "request_id": "lab03-ordinary_control",
+        "response": {
+          "id": 2,
+          "product_id": 1,
+          "quantity": 1,
+          "unit_price": 10000,
+          "postal_code": "16841",
+          "shipping_fee": 3000,
+          "total_amount": 13000,
+          "status": "CONFIRMED",
+          "created_at": "2026-10-06T08:01:19.876762Z"
+        }
+      },
+      {
+        "scenario": "remote_control",
+        "postal_code": "63309",
+        "unit_price": 10000,
+        "quantity": 1,
+        "expected_shipping_fee": 5500,
+        "expected_total_amount": 15500,
+        "http_status": 201,
+        "request_id": "lab03-remote_control",
+        "response": {
+          "id": 3,
+          "product_id": 1,
+          "quantity": 1,
+          "unit_price": 10000,
+          "postal_code": "63309",
+          "shipping_fee": 5500,
+          "total_amount": 15500,
+          "status": "CONFIRMED",
+          "created_at": "2026-10-06T08:01:19.887460Z"
+        }
+      },
+      {
+        "scenario": "below_remote_boundary",
+        "postal_code": "59999",
+        "unit_price": 10000,
+        "quantity": 1,
+        "expected_shipping_fee": 3000,
+        "expected_total_amount": 13000,
+        "http_status": 201,
+        "request_id": "lab03-below_remote_boundary",
+        "response": {
+          "id": 4,
+          "product_id": 1,
+          "quantity": 1,
+          "unit_price": 10000,
+          "postal_code": "59999",
+          "shipping_fee": 3000,
+          "total_amount": 13000,
+          "status": "CONFIRMED",
+          "created_at": "2026-10-06T08:01:19.895735Z"
+        }
+      },
+      {
+        "scenario": "remote_boundary",
+        "postal_code": "60000",
+        "unit_price": 10000,
+        "quantity": 1,
+        "expected_shipping_fee": 5500,
+        "expected_total_amount": 15500,
+        "http_status": 201,
+        "request_id": "lab03-remote_boundary",
+        "response": {
+          "id": 5,
+          "product_id": 1,
+          "quantity": 1,
+          "unit_price": 10000,
+          "postal_code": "60000",
+          "shipping_fee": 5500,
+          "total_amount": 15500,
+          "status": "CONFIRMED",
+          "created_at": "2026-10-06T08:01:19.904435Z"
+        }
+      },
+      {
+        "scenario": "maximum_prefix",
+        "postal_code": "99999",
+        "unit_price": 10000,
+        "quantity": 1,
+        "expected_shipping_fee": 5500,
+        "expected_total_amount": 15500,
+        "http_status": 201,
+        "request_id": "lab03-maximum_prefix",
+        "response": {
+          "id": 6,
+          "product_id": 1,
+          "quantity": 1,
+          "unit_price": 10000,
+          "postal_code": "99999",
+          "shipping_fee": 5500,
+          "total_amount": 15500,
+          "status": "CONFIRMED",
+          "created_at": "2026-10-06T08:01:19.962049Z"
+        }
+      },
+      {
+        "scenario": "all_zero",
+        "postal_code": "00000",
+        "unit_price": 10000,
+        "quantity": 1,
+        "expected_shipping_fee": 3000,
+        "expected_total_amount": 13000,
+        "http_status": 201,
+        "request_id": "lab03-all_zero",
+        "response": {
+          "id": 7,
+          "product_id": 1,
+          "quantity": 1,
+          "unit_price": 10000,
+          "postal_code": "00000",
+          "shipping_fee": 3000,
+          "total_amount": 13000,
+          "status": "CONFIRMED",
+          "created_at": "2026-10-06T08:01:19.974385Z"
+        }
+      },
+      {
+        "scenario": "zero_before_remote_boundary",
+        "postal_code": "06000",
+        "unit_price": 10000,
+        "quantity": 1,
+        "expected_shipping_fee": 3000,
+        "expected_total_amount": 13000,
+        "http_status": 201,
+        "request_id": "lab03-zero_before_remote_boundary",
+        "response": {
+          "id": 8,
+          "product_id": 1,
+          "quantity": 1,
+          "unit_price": 10000,
+          "postal_code": "06000",
+          "shipping_fee": 5500,
+          "total_amount": 15500,
+          "status": "CONFIRMED",
+          "created_at": "2026-10-06T08:01:19.984986Z"
+        }
+      },
+      {
+        "scenario": "zero_before_ordinary_prefix",
+        "postal_code": "05999",
+        "unit_price": 10000,
+        "quantity": 1,
+        "expected_shipping_fee": 3000,
+        "expected_total_amount": 13000,
+        "http_status": 201,
+        "request_id": "lab03-zero_before_ordinary_prefix",
+        "response": {
+          "id": 9,
+          "product_id": 1,
+          "quantity": 1,
+          "unit_price": 10000,
+          "postal_code": "05999",
+          "shipping_fee": 3000,
+          "total_amount": 13000,
+          "status": "CONFIRMED",
+          "created_at": "2026-10-06T08:01:19.994094Z"
+        }
+      },
+      {
+        "scenario": "multiple_leading_zeroes",
+        "postal_code": "00060",
+        "unit_price": 10000,
+        "quantity": 1,
+        "expected_shipping_fee": 3000,
+        "expected_total_amount": 13000,
+        "http_status": 201,
+        "request_id": "lab03-multiple_leading_zeroes",
+        "response": {
+          "id": 10,
+          "product_id": 1,
+          "quantity": 1,
+          "unit_price": 10000,
+          "postal_code": "00060",
+          "shipping_fee": 5500,
+          "total_amount": 15500,
+          "status": "CONFIRMED",
+          "created_at": "2026-10-06T08:01:20.002380Z"
+        }
+      },
+      {
+        "scenario": "formatted_postal",
+        "postal_code": "06-236",
+        "unit_price": 10000,
+        "quantity": 1,
+        "expected_shipping_fee": 3000,
+        "expected_total_amount": 13000,
+        "http_status": 201,
+        "request_id": "lab03-formatted_postal",
+        "response": {
+          "id": 11,
+          "product_id": 1,
+          "quantity": 1,
+          "unit_price": 10000,
+          "postal_code": "06-236",
+          "shipping_fee": 5500,
+          "total_amount": 15500,
+          "status": "CONFIRMED",
+          "created_at": "2026-10-06T08:01:20.055494Z"
+        }
+      },
+      {
+        "scenario": "two_items",
+        "postal_code": "16841",
+        "unit_price": 10000,
+        "quantity": 2,
+        "expected_shipping_fee": 3000,
+        "expected_total_amount": 23000,
+        "http_status": 201,
+        "request_id": "lab03-two_items",
+        "response": {
+          "id": 12,
+          "product_id": 1,
+          "quantity": 2,
+          "unit_price": 10000,
+          "postal_code": "16841",
+          "shipping_fee": 3000,
+          "total_amount": 23000,
+          "status": "CONFIRMED",
+          "created_at": "2026-10-06T08:01:20.066821Z"
+        }
+      },
+      {
+        "scenario": "three_items",
+        "postal_code": "16841",
+        "unit_price": 10000,
+        "quantity": 3,
+        "expected_shipping_fee": 3700,
+        "expected_total_amount": 33700,
+        "http_status": 201,
+        "request_id": "lab03-three_items",
+        "response": {
+          "id": 13,
+          "product_id": 1,
+          "quantity": 3,
+          "unit_price": 10000,
+          "postal_code": "16841",
+          "shipping_fee": 3700,
+          "total_amount": 33700,
+          "status": "CONFIRMED",
+          "created_at": "2026-10-06T08:01:20.079696Z"
+        }
+      },
+      {
+        "scenario": "three_remote_items",
+        "postal_code": "63309",
+        "unit_price": 10000,
+        "quantity": 3,
+        "expected_shipping_fee": 6200,
+        "expected_total_amount": 36200,
+        "http_status": 201,
+        "request_id": "lab03-three_remote_items",
+        "response": {
+          "id": 14,
+          "product_id": 1,
+          "quantity": 3,
+          "unit_price": 10000,
+          "postal_code": "63309",
+          "shipping_fee": 6200,
+          "total_amount": 36200,
+          "status": "CONFIRMED",
+          "created_at": "2026-10-06T08:01:20.091616Z"
+        }
+      },
+      {
+        "scenario": "below_free_threshold",
+        "postal_code": "16841",
+        "unit_price": 199999,
+        "quantity": 1,
+        "expected_shipping_fee": 3000,
+        "expected_total_amount": 202999,
+        "http_status": 201,
+        "request_id": "lab03-below_free_threshold",
+        "response": {
+          "id": 15,
+          "product_id": 2,
+          "quantity": 1,
+          "unit_price": 199999,
+          "postal_code": "16841",
+          "shipping_fee": 3000,
+          "total_amount": 202999,
+          "status": "CONFIRMED",
+          "created_at": "2026-10-06T08:01:20.102627Z"
+        }
+      },
+      {
+        "scenario": "free_threshold",
+        "postal_code": "16841",
+        "unit_price": 200000,
+        "quantity": 1,
+        "expected_shipping_fee": 0,
+        "expected_total_amount": 200000,
+        "http_status": 201,
+        "request_id": "lab03-free_threshold",
+        "response": {
+          "id": 16,
+          "product_id": 3,
+          "quantity": 1,
+          "unit_price": 200000,
+          "postal_code": "16841",
+          "shipping_fee": 0,
+          "total_amount": 200000,
+          "status": "CONFIRMED",
+          "created_at": "2026-10-06T08:01:20.160948Z"
+        }
+      },
+      {
+        "scenario": "free_remote",
+        "postal_code": "63309",
+        "unit_price": 200000,
+        "quantity": 1,
+        "expected_shipping_fee": 2500,
+        "expected_total_amount": 202500,
+        "http_status": 201,
+        "request_id": "lab03-free_remote",
+        "response": {
+          "id": 17,
+          "product_id": 3,
+          "quantity": 1,
+          "unit_price": 200000,
+          "postal_code": "63309",
+          "shipping_fee": 2500,
+          "total_amount": 202500,
+          "status": "CONFIRMED",
+          "created_at": "2026-10-06T08:01:20.168788Z"
+        }
+      },
+      {
+        "scenario": "free_with_packaging",
+        "postal_code": "16841",
+        "unit_price": 200000,
+        "quantity": 3,
+        "expected_shipping_fee": 700,
+        "expected_total_amount": 600700,
+        "http_status": 201,
+        "request_id": "lab03-free_with_packaging",
+        "response": {
+          "id": 18,
+          "product_id": 3,
+          "quantity": 3,
+          "unit_price": 200000,
+          "postal_code": "16841",
+          "shipping_fee": 700,
+          "total_amount": 600700,
+          "status": "CONFIRMED",
+          "created_at": "2026-10-06T08:01:20.189191Z"
+        }
+      }
+    ],
+    "browser": {
+      "before": {
+        "postal": "06236",
+        "summary": "상품금액\n10,000원\n배송비\n+3,000원\n총 결제금액\n13,000원",
+        "total": "13,000원",
+        "button": "13,000원 주문하기"
+      },
+      "http_status": 201,
+      "request_id": "lab03-browser",
+      "request": {
+        "product_id": 1,
+        "quantity": 1,
+        "postal_code": "06236"
+      },
+      "response": {
+        "id": 19,
+        "product_id": 1,
+        "quantity": 1,
+        "unit_price": 10000,
+        "postal_code": "06236",
+        "shipping_fee": 5500,
+        "total_amount": 15500,
+        "status": "CONFIRMED",
+        "created_at": "2026-10-06T08:01:22.353165Z"
+      },
+      "completion": "01 장바구니\n›\n02 주문/결제\n›\n03 주문완료\n주문이 완료되었습니다\n\n주문 1건 · 총 15,500원 · 배송지 우편번호 06236\n\n주문내역 보기\n쇼핑 계속하기\n접수된 주문\nLAB03-Price-10000\n주문번호 19 · 1개 · 10,000원\n15,500원\n배송비 5,500원",
+      "last_checkout": {
+        "id": 1791273682362,
+        "created_at": "2026-10-06T08:01:22.362Z",
+        "postal_code": "06236",
+        "orders": [
+          {
+            "id": 19,
+            "product_id": 1,
+            "quantity": 1,
+            "unit_price": 10000,
+            "postal_code": "06236",
+            "shipping_fee": 5500,
+            "total_amount": 15500,
+            "status": "CONFIRMED",
+            "created_at": "2026-10-06T08:01:22.353165Z",
+            "name": "LAB03-Price-10000",
+            "image_url": null,
+            "category": "digital"
+          }
+        ],
+        "failures": []
+      },
+      "history": [
+        {
+          "id": 1791273682362,
+          "created_at": "2026-10-06T08:01:22.362Z",
+          "postal_code": "06236",
+          "orders": [
+            {
+              "id": 19,
+              "product_id": 1,
+              "quantity": 1,
+              "unit_price": 10000,
+              "postal_code": "06236",
+              "shipping_fee": 5500,
+              "total_amount": 15500,
+              "status": "CONFIRMED",
+              "created_at": "2026-10-06T08:01:22.353165Z",
+              "name": "LAB03-Price-10000",
+              "image_url": null,
+              "category": "digital"
+            }
+          ],
+          "failures": []
+        }
+      ],
+      "stored_postal": "06236",
+      "history_page": "주문내역\n2026. 10. 6. 오전 8:01 주문\n주문확정\nLAB03-Price-10000\n주문번호 19 · 1개 · 10,000원\n15,500원\n배송비 5,500원\n이 브라우저에서 주문한 내역만 표시됩니다. 주문 자체는 서버 DB에 기록되어 있습니다."
+    },
+    "independent_expected_rule": "Postal prefixes 60 through 99 add 2500; merchandise below 200000 adds 3000; each item after two adds 700. Postal strings retain leading zeroes."
+  },
+  "oracle": {
+    "passed": true,
+    "products": [
+      {
+        "product_id": 1,
+        "initial_stock": 100,
+        "confirmed_quantity": 20,
+        "current_stock": 80,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 2,
+        "initial_stock": 100,
+        "confirmed_quantity": 1,
+        "current_stock": 99,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 3,
+        "initial_stock": 100,
+        "confirmed_quantity": 5,
+        "current_stock": 95,
+        "non_negative": true,
+        "stock_equation": true
+      }
+    ],
+    "orders": {
+      "checked": 19,
+      "invalid_order_ids": [],
+      "amounts_valid": true
+    }
+  },
+  "passed": true,
+  "finished_at": "2026-10-06T08:01:22.897482+00:00"
+}
