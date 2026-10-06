@@ -11,6 +11,7 @@ class ShippingQuoteService:
     def quote(self, *, postal_code: str, quantity: int, merchandise_amount: int) -> int:
         fee = 0 if merchandise_amount >= self.free_shipping_threshold else self.base_fee
         digits = "".join(character for character in postal_code if character.isdigit())
+        digits = str(int(digits)) if digits else digits
         if digits and int(digits[:2]) >= 60:
             fee += self.remote_area_fee
         if quantity > 2:
