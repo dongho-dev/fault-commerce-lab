@@ -52,7 +52,6 @@
     },
   ];
   const PAGE_SIZE = 20;
-  const FREE_SHIPPING = 200_000;
   const KEYS = { cart: "faultmart.cart.v1", orders: "faultmart.orders.v1", postal: "faultmart.postal" };
 
   const app = document.getElementById("app");
@@ -73,12 +72,40 @@
       ? Math.floor(((p.list_price - p.unit_price) / p.list_price) * 100)
       : 0;
 
-  function quoteShipping(postal, quantity, merchandise) {
-    let fee = merchandise >= FREE_SHIPPING ? 0 : 3_000;
-    const digits = String(postal || "").replace(/\D/g, "");
-    if (digits && Number(digits.slice(0, 2)) >= 60) fee += 2_500;
-    if (quantity > 2) fee += (quantity - 2) * 700;
-    return Math.max(fee, 0);
+  const validPostal = (value) => /^\d{5}$/.test(String(value || "").trim());
+
+  let activeQuoteRun = null;
+  let cartQuoteState = null;
+
+  function cancelQuoteRun() {
+    if (activeQuoteRun) activeQuoteRun.controller.abort();
+    activeQuoteRun = null;
+  }
+
+  function quoteError(error) {
+    if (error && error.name === "AbortError") return "배송비 계산이 취소되었습니다.";
+    return error && error.message ? error.message : "배송비를 확인하지 못했습니다.";
+  }
+
+  function quoteForLine(item, postal, signal) {
+    return api("/orders/quote", {
+      method: "POST",
+      signal,
+      body: JSON.stringify({ product_id: item.id, quantity: item.qty, postal_code: postal }),
+    }).then((quote) => {
+      if (
+        quote.product_id !== item.id ||
+        quote.quantity !== item.qty ||
+        quote.postal_code !== postal ||
+        !Number.isInteger(quote.unit_price) ||
+        !Number.isInteger(quote.merchandise_amount) ||
+        !Number.isInteger(quote.shipping_fee) ||
+        !Number.isInteger(quote.total_amount)
+      ) {
+        throw new Error("서버 배송비 응답이 현재 주문과 일치하지 않습니다.");
+      }
+      return quote;
+    });
   }
 
   function load(key, fallback) {
@@ -222,9 +249,7 @@
   }
 
   function shipLine(p) {
-    return p.unit_price >= FREE_SHIPPING
-      ? `<div class="ship-line free">${icon("truck")}무료배송</div>`
-      : `<div class="ship-line">${icon("truck")}배송비 3,000원</div>`;
+    return `<div class="ship-line">${icon("truck")}배송비는 주문 단계에서 확정</div>`;
   }
 
   function card(p, { rank } = {}) {
@@ -532,8 +557,8 @@
             <span class="pdp-sku">상품번호 ${p.id}</span>
             <div class="pdp-price">${priceBlock(p)}</div>
             <dl class="pdp-rows">
-              <div><dt>배송비</dt><dd>${p.unit_price >= FREE_SHIPPING ? `<span class="green">무료배송</span>` : `3,000원`}
-                <small>${p.unit_price >= FREE_SHIPPING ? "상품 금액 20만 원 이상" : "한 주문 상품 금액 20만 원 이상 무료배송"} · 우편번호 60~99 지역 +2,500원 · 3개부터 개당 +700원</small></dd></div>
+              <div><dt>배송비</dt><dd>주문 단계에서 확정
+                <small>상품 수량과 우편번호를 반영해 주문 단계에서 확인합니다.</small></dd></div>
               <div><dt>재고</dt><dd>${out ? "일시품절" : p.current_stock <= 5 ? `<span class="warn-text">품절임박 · ${p.current_stock}개 남음</span>` : `구매 가능 (${won.format(p.current_stock)}개)`}</dd></div>
               <div><dt>판매자</dt><dd>폴트마켓 직배송</dd></div>
             </dl>
@@ -686,9 +711,45 @@
     return "";
   }
 
-  function drawCart() {
-    const postal = load(KEYS.postal, "");
+  function cartQuoteKey(lines, postal) {
+    return `${postal}|${lines.map((item) => `${item.id}:${item.qty}`).join(",")}`;
+  }
+
+  function startCartQuotes(state, lines) {
+    if (state.started || !state.postal || !lines.length) return;
+    state.started = true;
+    state.loading = true;
+    const controller = new AbortController();
+    activeQuoteRun = { controller, state };
+    Promise.allSettled(lines.map((item) => quoteForLine(item, state.postal, controller.signal))).then((results) => {
+      if (
+        activeQuoteRun?.state !== state ||
+        controller.signal.aborted ||
+        state.token !== renderToken ||
+        cartQuoteState !== state
+      ) {
+        return;
+      }
+      state.quotes.clear();
+      state.errors.clear();
+      results.forEach((result, index) => {
+        const item = lines[index];
+        if (result.status === "fulfilled") state.quotes.set(item.id, result.value);
+        else state.errors.set(item.id, quoteError(result.reason));
+      });
+      state.loading = false;
+      state.done = true;
+      activeQuoteRun = null;
+      drawCart();
+    });
+  }
+
+  function drawCart({ retryQuotes = false } = {}) {
+    const postal = String(load(KEYS.postal, "") || "").trim();
+    const hasPostal = validPostal(postal);
     if (!cart.items.length) {
+      cancelQuoteRun();
+      cartQuoteState = null;
       app.innerHTML = `
         <div class="wrap"><h1 class="page-title">장바구니</h1>
           <div class="cart-box"><div class="empty"><strong>장바구니에 담은 상품이 없습니다</strong>
@@ -697,11 +758,34 @@
       return;
     }
     const selected = cart.items.filter((item) => item.selected && !lineIssue(item));
-    const merchandise = selected.reduce((sum, item) => sum + item.snap.unit_price * item.qty, 0);
-    const shipping = selected.reduce((sum, item) => sum + quoteShipping(postal, item.qty, item.snap.unit_price * item.qty), 0);
-    const listTotal = selected.reduce((sum, item) => sum + (item.snap.list_price || item.snap.unit_price) * item.qty, 0);
     const selectable = cart.items.filter((item) => !lineIssue(item));
     const allChecked = selectable.length > 0 && selectable.every((item) => item.selected);
+    const key = cartQuoteKey(selected, hasPostal ? postal : "");
+    if (
+      retryQuotes ||
+      !cartQuoteState ||
+      cartQuoteState.token !== renderToken ||
+      cartQuoteState.key !== key
+    ) {
+      cancelQuoteRun();
+      cartQuoteState = {
+        token: renderToken,
+        key,
+        postal: hasPostal ? postal : "",
+        quotes: new Map(),
+        errors: new Map(),
+        started: false,
+        loading: false,
+        done: false,
+      };
+    }
+    const state = cartQuoteState;
+    const quoted = hasPostal && selected.length > 0 && selected.every((item) => state.quotes.has(item.id));
+    const quoteMerchandise = quoted
+      ? selected.reduce((sum, item) => sum + state.quotes.get(item.id).merchandise_amount, 0)
+      : 0;
+    const quotedShipping = quoted ? selected.reduce((sum, item) => sum + state.quotes.get(item.id).shipping_fee, 0) : 0;
+    const quoteTotal = quoted ? selected.reduce((sum, item) => sum + state.quotes.get(item.id).total_amount, 0) : 0;
 
     app.innerHTML = `
       <div class="wrap">
@@ -716,13 +800,36 @@
             ${cart.items.map((item) => {
               const issue = lineIssue(item);
               const max = Math.max(1, Math.min(item.snap.current_stock, 99));
+              const quote = item.selected ? state.quotes.get(item.id) : null;
+              const quoteFailure = item.selected ? state.errors.get(item.id) : null;
+              const quoteEligible = item.selected && !issue;
+              const itemMeta = quote
+                ? `${won.format(quote.unit_price)}원 · 배송비 ${won.format(quote.shipping_fee)}원`
+                : quoteFailure
+                  ? "배송비 계산 실패"
+                  : quoteEligible && hasPostal
+                    ? "배송비 확인 중"
+                    : issue
+                      ? "주문할 수 없는 상품"
+                      : !item.selected
+                        ? "선택하지 않은 상품"
+                    : `${won.format(item.snap.unit_price)}원 · 배송비는 주문 단계에서 확정`;
+              const itemTotal = quote
+                ? `${won.format(quote.merchandise_amount)}원`
+                : quoteFailure
+                  ? "확인 실패"
+                  : quoteEligible && hasPostal
+                  ? "확인 중…"
+                  : issue || !item.selected
+                    ? "—"
+                  : `${won.format(item.snap.unit_price * item.qty)}원`;
               return `
               <div class="cart-line${item.snap.current_stock <= 0 ? " is-out" : ""}" data-line="${item.id}">
                 <label class="check"><input type="checkbox" data-check="${item.id}" ${item.selected && !issue ? "checked" : ""} ${item.snap.current_stock <= 0 ? "disabled" : ""} aria-label="${esc(item.snap.name)} 선택"></label>
                 <a class="cart-thumb" href="#/product/${item.id}">${thumb(item.snap)}</a>
                 <div class="cart-info">
                   <a href="#/product/${item.id}">${esc(item.snap.name)}</a>
-                  <div class="meta">${won.format(item.snap.unit_price)}원 · 배송비 ${won.format(quoteShipping(postal, item.qty, item.snap.unit_price * item.qty))}원</div>
+                  <div class="meta">${item.qty}개 · ${itemMeta}</div>
                   ${issue ? `<div class="meta warn">${esc(issue)}</div>` : ""}
                 </div>
                 <div class="qty qty-sm">
@@ -730,7 +837,7 @@
                   <input type="number" min="1" max="${max}" value="${item.qty}" aria-label="수량" data-line-qty>
                   <button type="button" data-line-step="1" aria-label="수량 늘리기" ${item.qty >= max ? "disabled" : ""}>+</button>
                 </div>
-                <div class="line-total">${won.format(item.snap.unit_price * item.qty)}원</div>
+                <div class="line-total">${itemTotal}</div>
                 <button class="line-remove" type="button" data-remove="${item.id}" aria-label="${esc(item.snap.name)} 삭제">${icon("close")}</button>
               </div>`;
             }).join("")}
@@ -738,25 +845,45 @@
           <aside class="summary" aria-label="결제 예정 금액">
             <h2>결제 예정 금액</h2>
             <dl>
-              <div><dt>상품 정가</dt><dd>${won.format(listTotal)}원</dd></div>
-              <div><dt>할인 금액</dt><dd style="color:var(--sale)">−${won.format(listTotal - merchandise)}원</dd></div>
-              <div><dt>배송비</dt><dd>+${won.format(shipping)}원</dd></div>
-              <div class="total"><dt>총 결제금액</dt><dd>${won.format(merchandise + shipping)}원</dd></div>
+              <div><dt>상품금액</dt><dd>${quoted ? `${won.format(quoteMerchandise)}원` : selected.length ? "주문 단계에서 확정" : "선택된 상품 없음"}</dd></div>
+              <div><dt>배송비</dt><dd>${quoted ? `+${won.format(quotedShipping)}원` : selected.length ? hasPostal ? state.errors.size ? "다시 계산해 주세요" : "확인 중…" : "주문 단계에서 확정" : "선택된 상품 없음"}</dd></div>
+              <div class="total"><dt>총 결제금액</dt><dd>${quoted ? `${won.format(quoteTotal)}원` : selected.length ? "주문 단계에서 확정" : "선택된 상품 없음"}</dd></div>
             </dl>
             <button class="btn btn-primary btn-block" type="button" data-go-checkout ${selected.length ? "" : "disabled"}>구매하기 (${selected.length})</button>
-            <p class="summary-note">상품마다 별도 주문으로 접수되어 배송비도 상품별로 계산됩니다.${postal ? "" : " 지역 추가 배송비는 주문 단계에서 우편번호로 확정됩니다."}</p>
+            <p class="summary-note">${hasPostal ? state.errors.size ? `배송비를 확인하지 못했습니다. <button class="link-btn" type="button" data-quote-retry>다시 확인</button>` : selected.length ? "배송비와 결제 금액을 확인해 주세요." : "선택된 상품이 없습니다." : "우편번호가 없어 배송비와 최종 결제금액은 주문 단계에서 확정됩니다."}</p>
           </aside>
         </div>
       </div>`;
+
+    const retry = app.querySelector("[data-quote-retry]");
+    if (retry) retry.addEventListener("click", () => drawCart({ retryQuotes: true }));
+    if (hasPostal && selected.length) startCartQuotes(state, selected);
   }
 
-  function renderCheckout() {
+  function normalizePostal(value) {
+    return String(value || "").replace(/\D/g, "").slice(0, 5);
+  }
+
+  function renderCheckout(token) {
     const lines = cart.items.filter((item) => item.selected && !lineIssue(item));
     if (!lines.length) {
       location.replace("#/cart");
       return;
     }
-    const postal = load(KEYS.postal, "");
+    cancelQuoteRun();
+    const postal = normalizePostal(load(KEYS.postal, ""));
+    const quoteContext = {
+      token,
+      generation: 0,
+      postal: "",
+      quotes: new Map(),
+      errors: new Map(),
+      loading: false,
+      done: false,
+      timer: null,
+      submitting: false,
+    };
+    const orderStates = {};
     app.innerHTML = `
       <div class="wrap">
         <h1 class="page-title">주문/결제</h1>
@@ -768,7 +895,7 @@
               <div class="field">
                 <label for="postal">우편번호</label>
                 <input id="postal" name="postal" inputmode="numeric" maxlength="5" placeholder="5자리 숫자" value="${esc(postal)}" autocomplete="postal-code" data-postal required>
-                <span class="field-hint">우편번호 앞 두 자리가 60~99이면 지역 추가 배송비 2,500원이 붙습니다.</span>
+                <span class="field-hint">상품 수량과 우편번호로 배송비와 최종 금액을 확인합니다.</span>
                 <span class="field-error" data-postal-error hidden>우편번호 5자리를 입력해 주세요.</span>
               </div>
               <div class="addr-presets" aria-label="예시 우편번호">
@@ -786,83 +913,203 @@
           <aside class="summary" aria-label="최종 결제 금액">
             <h2>최종 결제 금액</h2>
             <dl data-co-summary></dl>
-            <button class="btn btn-primary btn-block" type="submit" data-pay>주문하기</button>
-            <p class="summary-note">주문하기를 누르면 상품마다 <code>POST /orders</code>가 호출되고 실제 재고가 차감됩니다. 결제는 진행되지 않습니다.</p>
+            <button class="btn btn-primary btn-block" type="submit" data-pay disabled>금액 계산 후 주문하기</button>
+            <p class="summary-note" data-co-note></p>
           </aside>
         </form>
       </div>`;
 
     const input = app.querySelector("[data-postal]");
-    const drawLines = (states = {}) => {
+    const form = app.querySelector("[data-checkout-form]");
+
+    const quoteReady = (code) =>
+      validPostal(code) &&
+      quoteContext.postal === code &&
+      quoteContext.done &&
+      !quoteContext.loading &&
+      quoteContext.errors.size === 0 &&
+      lines.every((item) => quoteContext.quotes.has(item.id));
+
+    const drawCheckout = () => {
+      if (token !== renderToken || !form.isConnected) return;
       const code = input.value.trim();
-      app.querySelector("[data-co-lines]").innerHTML = lines.map((item) => {
-        const merch = item.snap.unit_price * item.qty;
-        const fee = quoteShipping(code, item.qty, merch);
-        const state = states[item.id];
+      const ready = quoteReady(code);
+      const loading = validPostal(code) && quoteContext.postal === code && quoteContext.loading;
+      const lineMarkup = lines.map((item) => {
+        const quote = quoteContext.quotes.get(item.id);
+        const quoteFailure = quoteContext.errors.get(item.id);
+        const state = orderStates[item.id];
+        const meta = quote ? `${item.qty}개 · ${won.format(quote.unit_price)}원` : `${item.qty}개 · 주문 금액 확인 중`;
+        const amount = quote
+            ? `${won.format(quote.total_amount)}원<small>상품금액 ${won.format(quote.merchandise_amount)}원 · 배송비 ${won.format(quote.shipping_fee)}원</small>`
+            : quoteFailure
+            ? `확인 실패<small>다시 확인해 주세요</small>`
+            : loading
+              ? `확인 중…<small>배송비 확인 중</small>`
+              : `—<small>우편번호 입력 후 확인</small>`;
+        const quoteStatus = quoteFailure
+          ? `<div class="state fail">${esc(quoteFailure)}</div>`
+          : loading && !quote
+            ? `<div class="state pending">배송비 확인 중…</div>`
+            : "";
         return `
           <div class="co-line">
             <div class="cart-thumb">${thumb(item.snap)}</div>
             <div>
               <div class="name">${esc(item.snap.name)}</div>
-              <div class="meta">${item.qty}개 · ${won.format(item.snap.unit_price)}원</div>
+              <div class="meta">${meta}</div>
+              ${quoteStatus}
               ${state ? `<div class="state ${state.kind}">${state.kind === "ok" ? icon("check") : ""}${esc(state.text)}</div>` : ""}
             </div>
-            <div class="amt">${won.format(merch + fee)}원<small>배송비 ${won.format(fee)}원 포함</small></div>
+            <div class="amt">${amount}</div>
           </div>`;
       }).join("");
-      const merchandise = lines.reduce((s, item) => s + item.snap.unit_price * item.qty, 0);
-      const shipping = lines.reduce((s, item) => s + quoteShipping(code, item.qty, item.snap.unit_price * item.qty), 0);
-      app.querySelector("[data-co-summary]").innerHTML = `
-        <div><dt>상품금액</dt><dd>${won.format(merchandise)}원</dd></div>
-        <div><dt>배송비</dt><dd>+${won.format(shipping)}원</dd></div>
-        <div class="total"><dt>총 결제금액</dt><dd>${won.format(merchandise + shipping)}원</dd></div>`;
-      app.querySelector("[data-pay]").textContent = `${won.format(merchandise + shipping)}원 주문하기`;
+      app.querySelector("[data-co-lines]").innerHTML = lineMarkup;
+
+      let summary;
+      let note;
+      if (ready) {
+        const merchandise = lines.reduce((sum, item) => sum + quoteContext.quotes.get(item.id).merchandise_amount, 0);
+        const shipping = lines.reduce((sum, item) => sum + quoteContext.quotes.get(item.id).shipping_fee, 0);
+        const total = lines.reduce((sum, item) => sum + quoteContext.quotes.get(item.id).total_amount, 0);
+        summary = `
+          <div><dt>상품금액</dt><dd>${won.format(merchandise)}원</dd></div>
+          <div><dt>배송비</dt><dd>+${won.format(shipping)}원</dd></div>
+          <div class="total"><dt>총 결제금액</dt><dd>${won.format(total)}원</dd></div>`;
+        note = "확인된 금액으로 상품별 주문을 진행합니다. 실제 결제는 진행되지 않습니다.";
+      } else {
+        summary = `
+          <div><dt>상품금액</dt><dd>—</dd></div>
+          <div><dt>배송비</dt><dd>—</dd></div>
+          <div class="total"><dt>총 결제금액</dt><dd>—</dd></div>`;
+        if (!validPostal(code)) note = "우편번호 5자리를 입력하면 주문 금액을 확인합니다.";
+        else if (quoteContext.errors.size) note = `배송비 계산에 실패했습니다. <button class="link-btn" type="button" data-quote-retry>다시 계산</button>`;
+        else if (loading) note = "주문 금액 확인 중입니다.";
+        else note = "주문 금액을 확인한 뒤 주문할 수 있습니다.";
+      }
+      app.querySelector("[data-co-summary]").innerHTML = summary;
+      const pay = app.querySelector("[data-pay]");
+      pay.disabled = !ready || quoteContext.submitting;
+      if (quoteContext.submitting) pay.textContent = "주문 접수 중…";
+      else if (ready) {
+        const total = lines.reduce((sum, item) => sum + quoteContext.quotes.get(item.id).total_amount, 0);
+        pay.textContent = `${won.format(total)}원 주문하기`;
+      } else pay.textContent = "금액 계산 후 주문하기";
+      app.querySelector("[data-co-note]").innerHTML = note;
     };
-    drawLines();
+
+    const invalidateQuotes = () => {
+      quoteContext.generation += 1;
+      quoteContext.postal = "";
+      quoteContext.quotes.clear();
+      quoteContext.errors.clear();
+      quoteContext.loading = false;
+      quoteContext.done = false;
+      if (quoteContext.timer) clearTimeout(quoteContext.timer);
+      quoteContext.timer = null;
+      if (activeQuoteRun?.context === quoteContext) cancelQuoteRun();
+    };
+
+    const startCheckoutQuotes = (code, generation) => {
+      if (token !== renderToken || generation !== quoteContext.generation || input.value.trim() !== code) return;
+      quoteContext.timer = null;
+      quoteContext.postal = code;
+      quoteContext.loading = true;
+      quoteContext.done = false;
+      const controller = new AbortController();
+      activeQuoteRun = { controller, context: quoteContext, generation };
+      Promise.allSettled(lines.map((item) => quoteForLine(item, code, controller.signal))).then((results) => {
+        if (
+          activeQuoteRun?.context !== quoteContext ||
+          activeQuoteRun.generation !== generation ||
+          controller.signal.aborted ||
+          token !== renderToken ||
+          input.value.trim() !== code
+        ) {
+          return;
+        }
+        quoteContext.quotes.clear();
+        quoteContext.errors.clear();
+        results.forEach((result, index) => {
+          const item = lines[index];
+          if (result.status === "fulfilled") quoteContext.quotes.set(item.id, result.value);
+          else quoteContext.errors.set(item.id, quoteError(result.reason));
+        });
+        quoteContext.loading = false;
+        quoteContext.done = true;
+        activeQuoteRun = null;
+        drawCheckout();
+      });
+    };
+
+    const scheduleQuotes = (code, immediate = false) => {
+      if (quoteContext.timer) clearTimeout(quoteContext.timer);
+      if (!validPostal(code)) {
+        drawCheckout();
+        return;
+      }
+      quoteContext.postal = code;
+      quoteContext.loading = true;
+      quoteContext.done = false;
+      const generation = quoteContext.generation;
+      quoteContext.timer = setTimeout(() => startCheckoutQuotes(code, generation), immediate ? 0 : 250);
+      drawCheckout();
+    };
 
     input.addEventListener("input", () => {
-      input.value = input.value.replace(/\D/g, "").slice(0, 5);
+      input.value = normalizePostal(input.value);
       app.querySelector("[data-postal-error]").hidden = true;
-      drawLines();
+      invalidateQuotes();
+      scheduleQuotes(input.value.trim());
     });
     app.querySelector(".addr-presets").addEventListener("click", (event) => {
       const preset = event.target.closest("[data-preset]");
       if (!preset) return;
       input.value = preset.dataset.preset;
       app.querySelector("[data-postal-error]").hidden = true;
-      drawLines();
+      invalidateQuotes();
+      scheduleQuotes(input.value.trim());
+    });
+    form.addEventListener("click", (event) => {
+      if (!event.target.closest("[data-quote-retry]")) return;
+      invalidateQuotes();
+      scheduleQuotes(input.value.trim(), true);
     });
 
-    app.querySelector("[data-checkout-form]").addEventListener("submit", async (event) => {
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
+      if (quoteContext.submitting) return;
       const code = input.value.trim();
-      if (!/^\d{5}$/.test(code)) {
+      if (!validPostal(code)) {
         app.querySelector("[data-postal-error]").hidden = false;
         input.focus();
         return;
       }
+      if (!quoteReady(code)) {
+        if (quoteContext.errors.size) scheduleQuotes(code, true);
+        return;
+      }
+      quoteContext.submitting = true;
       save(KEYS.postal, code);
-      const pay = app.querySelector("[data-pay]");
-      pay.disabled = true;
       input.disabled = true;
-      const states = {};
+      app.querySelectorAll("[data-preset]").forEach((button) => (button.disabled = true));
       const placed = [];
       const failed = [];
       for (const item of lines) {
-        states[item.id] = { kind: "pending", text: "주문 접수 중…" };
-        drawLines(states);
+        orderStates[item.id] = { kind: "pending", text: "주문 접수 중…" };
+        drawCheckout();
         try {
           const order = await api("/orders", {
             method: "POST",
             body: JSON.stringify({ product_id: item.id, quantity: item.qty, postal_code: code }),
           });
           placed.push({ ...order, name: item.snap.name, image_url: item.snap.image_url, category: item.snap.category });
-          states[item.id] = { kind: "ok", text: `주문번호 ${order.id} 접수 완료` };
+          orderStates[item.id] = { kind: "ok", text: `주문번호 ${order.id} 접수 완료` };
         } catch (error) {
           failed.push({ product_id: item.id, quantity: item.qty, name: item.snap.name, image_url: item.snap.image_url, code: error.code, message: error.message });
-          states[item.id] = { kind: "fail", text: error.code === "INSUFFICIENT_STOCK" ? "재고가 부족해 주문하지 못했습니다" : error.message };
+          orderStates[item.id] = { kind: "fail", text: error.code === "INSUFFICIENT_STOCK" ? "재고가 부족해 주문하지 못했습니다" : error.message };
         }
-        drawLines(states);
+        drawCheckout();
       }
 
       cart.remove(placed.map((order) => order.product_id));
@@ -877,8 +1124,11 @@
       } catch {
         /* ignore */
       }
-      location.hash = "#/complete";
+      if (token === renderToken && form.isConnected) location.hash = "#/complete";
     });
+
+    drawCheckout();
+    if (validPostal(postal)) scheduleQuotes(postal, true);
   }
 
   function orderLines(orders) {
@@ -954,6 +1204,8 @@
   // ---------- router ----------
   function route() {
     const token = ++renderToken;
+    cancelQuoteRun();
+    cartQuoteState = null;
     stopHero();
     closeCatPanel();
     const hash = location.hash.replace(/^#/, "") || "/";
@@ -985,7 +1237,7 @@
         renderCart(token);
         break;
       case "checkout":
-        renderCheckout();
+        renderCheckout(token);
         break;
       case "complete":
         renderComplete();

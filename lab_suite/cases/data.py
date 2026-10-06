@@ -152,6 +152,7 @@ def _checkout_browser(
             page.goto(f"{base_url.rstrip('/')}/#/product/{product['id']}", wait_until="networkidle")
             page.locator("[data-buy-now]").click()
             page.locator("[data-postal]").fill(postal)
+            page.locator("[data-pay]:enabled").wait_for(timeout=10_000)
             before = {
                 "postal": page.locator("[data-postal]").input_value(),
                 "summary": page.locator("[data-co-summary]").inner_text(),

@@ -155,6 +155,19 @@ Read the product with current inventory:
 curl http://localhost:8000/products/1
 ```
 
+Get the server's quote without creating an order or reserving inventory:
+
+```bash
+curl -X POST http://localhost:8000/orders/quote \
+  -H "Content-Type: application/json" \
+  -d '{"product_id":1,"quantity":1,"postal_code":"06236"}'
+```
+
+The response includes `product_id`, `quantity`, `postal_code`, the database `unit_price`,
+`merchandise_amount`, `shipping_fee`, and `total_amount`. The storefront displays these server
+amounts and waits for a successful quote for the current inputs before enabling order submission.
+The quote endpoint uses the existing order input validation and business error shape.
+
 Create a confirmed order:
 
 ```bash
@@ -182,6 +195,13 @@ insufficient inventory returns `INSUFFICIENT_STOCK` with HTTP 409.
 200,000 won has a 3,000 won base fee. Postal prefixes 60–99 add 2,500 won. Quantities above two
 add 700 won for each additional unit. Free-shipping orders can still carry regional or packaging
 surcharges, and the final fee cannot be negative.
+
+Postal codes remain strings, including leading zeroes: `06236` has prefix `06`, not `62`.
+Quotes and order creation share `OrderService._calculate_quote`; the browser does not implement
+shipping rules. Each product is submitted as a separate order, so cart totals sum server quotes
+per product. Without a complete postal code, shipping and the final total await address input.
+Quotes do not reserve stock or lock prices; identical inputs, product prices, and policy produce
+identical amounts. Previously stored order snapshots are not rewritten by this fix.
 
 ## Architecture and transaction boundaries
 
