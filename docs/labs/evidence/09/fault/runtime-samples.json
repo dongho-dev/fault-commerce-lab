@@ -1,0 +1,9 @@
+[
+  {
+    "timestamp": "2026-10-06T08:07:05.128134+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": "62.57MiB / 512MiB"
+  }
+]
