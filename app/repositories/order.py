@@ -1,3 +1,6 @@
+from collections import Counter
+
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.models.order import Order
@@ -29,3 +32,9 @@ class OrderRepository:
         self.session.add(order)
         self.session.flush()
         return order
+
+    def units_sold_by_product(self) -> Counter[int]:
+        sold: Counter[int] = Counter()
+        for order in self.session.scalars(select(Order)):
+            sold[order.product_id] += order.quantity
+        return sold
