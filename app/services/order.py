@@ -97,19 +97,16 @@ class OrderService:
                 resulting_current_stock=stock_change.current_stock,
             )
 
-            unit_price = product.unit_price
-
-        with self.session.begin():
             stage_started = time.perf_counter()
             total_amount = calculate_total_amount(
-                unit_price=unit_price,
+                unit_price=product.unit_price,
                 quantity=quantity,
                 shipping_fee=shipping_fee,
             )
             order = self.orders.create(
                 product_id=product_id,
                 quantity=quantity,
-                unit_price=unit_price,
+                unit_price=product.unit_price,
                 postal_code=postal_code,
                 shipping_fee=shipping_fee,
                 total_amount=total_amount,
