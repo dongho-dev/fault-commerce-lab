@@ -1,5 +1,19 @@
 # Fault Commerce Lab
 
+[**종류별 문제·개선 기록 카탈로그**](https://github.com/dongho-dev/fault-commerce-lab/blob/codex/cs-incident-labs/docs/labs/catalog.md)
+
+문제 유형별로 이슈, 진행 상태와 개선 기록을 살펴볼 수 있습니다.
+
+| 문제 유형 | 살펴볼 내용 |
+| --- | --- |
+| [성능과 응답시간](https://github.com/dongho-dev/fault-commerce-lab/blob/codex/cs-incident-labs/docs/labs/catalog.md#%EC%84%B1%EB%8A%A5%EA%B3%BC-%EC%9D%91%EB%8B%B5%EC%8B%9C%EA%B0%84) | 기다리는 시간과 이용 흐름의 지연 |
+| [접속과 화면 열림](https://github.com/dongho-dev/fault-commerce-lab/blob/codex/cs-incident-labs/docs/labs/catalog.md#%EC%A0%91%EC%86%8D%EA%B3%BC-%ED%99%94%EB%A9%B4-%EC%97%B4%EB%A6%BC) | 서비스 접속과 화면 열기 |
+| [상품 탐색과 화면 표시](https://github.com/dongho-dev/fault-commerce-lab/blob/codex/cs-incident-labs/docs/labs/catalog.md#%EC%83%81%ED%92%88-%ED%83%90%EC%83%89%EA%B3%BC-%ED%99%94%EB%A9%B4-%ED%91%9C%EC%8B%9C) | 상품 검색과 정보 표시 |
+| [주문 금액과 재고](https://github.com/dongho-dev/fault-commerce-lab/blob/codex/cs-incident-labs/docs/labs/catalog.md#%EC%A3%BC%EB%AC%B8-%EA%B8%88%EC%95%A1%EA%B3%BC-%EC%9E%AC%EA%B3%A0) | 주문 결과, 안내 금액과 남은 수량 |
+| [접근성](https://github.com/dongho-dev/fault-commerce-lab/blob/codex/cs-incident-labs/docs/labs/catalog.md#%EC%A0%91%EA%B7%BC%EC%84%B1) | 정보 구분과 조작 |
+
+---
+
 ![Python 3.12](https://img.shields.io/badge/Python-3.12-18231f?style=flat-square)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.116-18231f?style=flat-square)
 ![PostgreSQL 16](https://img.shields.io/badge/PostgreSQL-16-18231f?style=flat-square)
