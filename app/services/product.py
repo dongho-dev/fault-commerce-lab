@@ -115,6 +115,6 @@ class ProductService:
             items = [ProductSnapshot.of(product, inventory) for product, inventory in rows]
             if sort == "recommended":
                 # Best sellers first within the page; sold-out items stay at the end.
-                sold = self.orders.units_sold_by_product()
+                sold = self.orders.units_sold_by_product([item.id for item in items])
                 items.sort(key=lambda item: (item.current_stock <= 0, -sold[item.id]))
         return ProductPage(items=items, total=total, limit=limit, offset=offset)
