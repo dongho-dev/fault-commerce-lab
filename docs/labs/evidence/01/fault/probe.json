@@ -1,0 +1,1384 @@
+{
+  "case": "01",
+  "expected": "fault",
+  "started_at": "2026-10-06T07:57:59.090648+00:00",
+  "healthy": false,
+  "symptom": true,
+  "checks": {
+    "global_price_id_order": false,
+    "no_missing_or_duplicate": true,
+    "page_metadata": true,
+    "empty_terminal_page": true,
+    "page_size_independence": false,
+    "stable_price_ties": false,
+    "other_sort_and_filter_controls": true,
+    "browser_matches_api_pages": true,
+    "browser_global_order": false
+  },
+  "observations": {
+    "expected_price_id_order": [
+      [
+        1000,
+        41
+      ],
+      [
+        2000,
+        40
+      ],
+      [
+        3000,
+        39
+      ],
+      [
+        4000,
+        38
+      ],
+      [
+        5000,
+        37
+      ],
+      [
+        6000,
+        36
+      ],
+      [
+        7000,
+        35
+      ],
+      [
+        8000,
+        34
+      ],
+      [
+        9000,
+        33
+      ],
+      [
+        10000,
+        32
+      ],
+      [
+        11000,
+        31
+      ],
+      [
+        12000,
+        30
+      ],
+      [
+        13000,
+        29
+      ],
+      [
+        14000,
+        28
+      ],
+      [
+        15000,
+        27
+      ],
+      [
+        16000,
+        26
+      ],
+      [
+        17000,
+        25
+      ],
+      [
+        18000,
+        24
+      ],
+      [
+        19000,
+        23
+      ],
+      [
+        20000,
+        22
+      ],
+      [
+        21000,
+        21
+      ],
+      [
+        22000,
+        20
+      ],
+      [
+        23000,
+        19
+      ],
+      [
+        24000,
+        18
+      ],
+      [
+        25000,
+        17
+      ],
+      [
+        26000,
+        16
+      ],
+      [
+        27000,
+        15
+      ],
+      [
+        28000,
+        14
+      ],
+      [
+        29000,
+        13
+      ],
+      [
+        30000,
+        12
+      ],
+      [
+        31000,
+        11
+      ],
+      [
+        32000,
+        10
+      ],
+      [
+        33000,
+        9
+      ],
+      [
+        34000,
+        8
+      ],
+      [
+        35000,
+        7
+      ],
+      [
+        36000,
+        6
+      ],
+      [
+        37000,
+        5
+      ],
+      [
+        38000,
+        4
+      ],
+      [
+        39000,
+        3
+      ],
+      [
+        40000,
+        2
+      ],
+      [
+        41000,
+        1
+      ]
+    ],
+    "observed_price_id_order": [
+      [
+        22000,
+        20
+      ],
+      [
+        23000,
+        19
+      ],
+      [
+        24000,
+        18
+      ],
+      [
+        25000,
+        17
+      ],
+      [
+        26000,
+        16
+      ],
+      [
+        27000,
+        15
+      ],
+      [
+        28000,
+        14
+      ],
+      [
+        29000,
+        13
+      ],
+      [
+        30000,
+        12
+      ],
+      [
+        31000,
+        11
+      ],
+      [
+        32000,
+        10
+      ],
+      [
+        33000,
+        9
+      ],
+      [
+        34000,
+        8
+      ],
+      [
+        35000,
+        7
+      ],
+      [
+        36000,
+        6
+      ],
+      [
+        37000,
+        5
+      ],
+      [
+        38000,
+        4
+      ],
+      [
+        39000,
+        3
+      ],
+      [
+        40000,
+        2
+      ],
+      [
+        41000,
+        1
+      ],
+      [
+        2000,
+        40
+      ],
+      [
+        3000,
+        39
+      ],
+      [
+        4000,
+        38
+      ],
+      [
+        5000,
+        37
+      ],
+      [
+        6000,
+        36
+      ],
+      [
+        7000,
+        35
+      ],
+      [
+        8000,
+        34
+      ],
+      [
+        9000,
+        33
+      ],
+      [
+        10000,
+        32
+      ],
+      [
+        11000,
+        31
+      ],
+      [
+        12000,
+        30
+      ],
+      [
+        13000,
+        29
+      ],
+      [
+        14000,
+        28
+      ],
+      [
+        15000,
+        27
+      ],
+      [
+        16000,
+        26
+      ],
+      [
+        17000,
+        25
+      ],
+      [
+        18000,
+        24
+      ],
+      [
+        19000,
+        23
+      ],
+      [
+        20000,
+        22
+      ],
+      [
+        21000,
+        21
+      ],
+      [
+        1000,
+        41
+      ]
+    ],
+    "page_size_orders": {
+      "7": [
+        [
+          35000,
+          7
+        ],
+        [
+          36000,
+          6
+        ],
+        [
+          37000,
+          5
+        ],
+        [
+          38000,
+          4
+        ],
+        [
+          39000,
+          3
+        ],
+        [
+          40000,
+          2
+        ],
+        [
+          41000,
+          1
+        ],
+        [
+          28000,
+          14
+        ],
+        [
+          29000,
+          13
+        ],
+        [
+          30000,
+          12
+        ],
+        [
+          31000,
+          11
+        ],
+        [
+          32000,
+          10
+        ],
+        [
+          33000,
+          9
+        ],
+        [
+          34000,
+          8
+        ],
+        [
+          21000,
+          21
+        ],
+        [
+          22000,
+          20
+        ],
+        [
+          23000,
+          19
+        ],
+        [
+          24000,
+          18
+        ],
+        [
+          25000,
+          17
+        ],
+        [
+          26000,
+          16
+        ],
+        [
+          27000,
+          15
+        ],
+        [
+          14000,
+          28
+        ],
+        [
+          15000,
+          27
+        ],
+        [
+          16000,
+          26
+        ],
+        [
+          17000,
+          25
+        ],
+        [
+          18000,
+          24
+        ],
+        [
+          19000,
+          23
+        ],
+        [
+          20000,
+          22
+        ],
+        [
+          7000,
+          35
+        ],
+        [
+          8000,
+          34
+        ],
+        [
+          9000,
+          33
+        ],
+        [
+          10000,
+          32
+        ],
+        [
+          11000,
+          31
+        ],
+        [
+          12000,
+          30
+        ],
+        [
+          13000,
+          29
+        ],
+        [
+          1000,
+          41
+        ],
+        [
+          2000,
+          40
+        ],
+        [
+          3000,
+          39
+        ],
+        [
+          4000,
+          38
+        ],
+        [
+          5000,
+          37
+        ],
+        [
+          6000,
+          36
+        ]
+      ],
+      "13": [
+        [
+          29000,
+          13
+        ],
+        [
+          30000,
+          12
+        ],
+        [
+          31000,
+          11
+        ],
+        [
+          32000,
+          10
+        ],
+        [
+          33000,
+          9
+        ],
+        [
+          34000,
+          8
+        ],
+        [
+          35000,
+          7
+        ],
+        [
+          36000,
+          6
+        ],
+        [
+          37000,
+          5
+        ],
+        [
+          38000,
+          4
+        ],
+        [
+          39000,
+          3
+        ],
+        [
+          40000,
+          2
+        ],
+        [
+          41000,
+          1
+        ],
+        [
+          16000,
+          26
+        ],
+        [
+          17000,
+          25
+        ],
+        [
+          18000,
+          24
+        ],
+        [
+          19000,
+          23
+        ],
+        [
+          20000,
+          22
+        ],
+        [
+          21000,
+          21
+        ],
+        [
+          22000,
+          20
+        ],
+        [
+          23000,
+          19
+        ],
+        [
+          24000,
+          18
+        ],
+        [
+          25000,
+          17
+        ],
+        [
+          26000,
+          16
+        ],
+        [
+          27000,
+          15
+        ],
+        [
+          28000,
+          14
+        ],
+        [
+          3000,
+          39
+        ],
+        [
+          4000,
+          38
+        ],
+        [
+          5000,
+          37
+        ],
+        [
+          6000,
+          36
+        ],
+        [
+          7000,
+          35
+        ],
+        [
+          8000,
+          34
+        ],
+        [
+          9000,
+          33
+        ],
+        [
+          10000,
+          32
+        ],
+        [
+          11000,
+          31
+        ],
+        [
+          12000,
+          30
+        ],
+        [
+          13000,
+          29
+        ],
+        [
+          14000,
+          28
+        ],
+        [
+          15000,
+          27
+        ],
+        [
+          1000,
+          41
+        ],
+        [
+          2000,
+          40
+        ]
+      ],
+      "41": [
+        [
+          1000,
+          41
+        ],
+        [
+          2000,
+          40
+        ],
+        [
+          3000,
+          39
+        ],
+        [
+          4000,
+          38
+        ],
+        [
+          5000,
+          37
+        ],
+        [
+          6000,
+          36
+        ],
+        [
+          7000,
+          35
+        ],
+        [
+          8000,
+          34
+        ],
+        [
+          9000,
+          33
+        ],
+        [
+          10000,
+          32
+        ],
+        [
+          11000,
+          31
+        ],
+        [
+          12000,
+          30
+        ],
+        [
+          13000,
+          29
+        ],
+        [
+          14000,
+          28
+        ],
+        [
+          15000,
+          27
+        ],
+        [
+          16000,
+          26
+        ],
+        [
+          17000,
+          25
+        ],
+        [
+          18000,
+          24
+        ],
+        [
+          19000,
+          23
+        ],
+        [
+          20000,
+          22
+        ],
+        [
+          21000,
+          21
+        ],
+        [
+          22000,
+          20
+        ],
+        [
+          23000,
+          19
+        ],
+        [
+          24000,
+          18
+        ],
+        [
+          25000,
+          17
+        ],
+        [
+          26000,
+          16
+        ],
+        [
+          27000,
+          15
+        ],
+        [
+          28000,
+          14
+        ],
+        [
+          29000,
+          13
+        ],
+        [
+          30000,
+          12
+        ],
+        [
+          31000,
+          11
+        ],
+        [
+          32000,
+          10
+        ],
+        [
+          33000,
+          9
+        ],
+        [
+          34000,
+          8
+        ],
+        [
+          35000,
+          7
+        ],
+        [
+          36000,
+          6
+        ],
+        [
+          37000,
+          5
+        ],
+        [
+          38000,
+          4
+        ],
+        [
+          39000,
+          3
+        ],
+        [
+          40000,
+          2
+        ],
+        [
+          41000,
+          1
+        ]
+      ]
+    },
+    "expected_tie_ids": [
+      44,
+      46,
+      48,
+      43,
+      45,
+      47
+    ],
+    "tie_runs": [
+      [
+        44,
+        43,
+        46,
+        45,
+        48,
+        47
+      ],
+      [
+        44,
+        43,
+        46,
+        45,
+        48,
+        47
+      ]
+    ],
+    "browser_page_ids": [
+      [
+        20,
+        19,
+        18,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      [
+        40,
+        39,
+        38,
+        37,
+        36,
+        35,
+        34,
+        33,
+        32,
+        31,
+        30,
+        29,
+        28,
+        27,
+        26,
+        25,
+        24,
+        23,
+        22,
+        21
+      ],
+      [
+        41
+      ]
+    ],
+    "boundary_price_drop": true,
+    "control_orders": {
+      "recommended": [
+        49,
+        50
+      ],
+      "price_desc": [
+        50,
+        49
+      ],
+      "discount": [
+        50,
+        49
+      ],
+      "newest": [
+        51,
+        50
+      ]
+    },
+    "control_expected": {
+      "recommended": [
+        49,
+        50
+      ],
+      "price_desc": [
+        50,
+        49
+      ],
+      "discount": [
+        50,
+        49
+      ],
+      "newest": [
+        51,
+        50
+      ]
+    }
+  },
+  "oracle": {
+    "passed": true,
+    "products": [
+      {
+        "product_id": 1,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 2,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 3,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 4,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 5,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 6,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 7,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 8,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 9,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 10,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 11,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 12,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 13,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 14,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 15,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 16,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 17,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 18,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 19,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 20,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 21,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 22,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 23,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 24,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 25,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 26,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 27,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 28,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 29,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 30,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 31,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 32,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 33,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 34,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 35,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 36,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 37,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 38,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 39,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 40,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 41,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 42,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 43,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 44,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 45,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 46,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 47,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 48,
+        "initial_stock": 100,
+        "confirmed_quantity": 0,
+        "current_stock": 100,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 49,
+        "initial_stock": 5,
+        "confirmed_quantity": 0,
+        "current_stock": 5,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 50,
+        "initial_stock": 5,
+        "confirmed_quantity": 0,
+        "current_stock": 5,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 51,
+        "initial_stock": 0,
+        "confirmed_quantity": 0,
+        "current_stock": 0,
+        "non_negative": true,
+        "stock_equation": true
+      }
+    ],
+    "orders": {
+      "checked": 0,
+      "invalid_order_ids": [],
+      "amounts_valid": true
+    }
+  },
+  "passed": true,
+  "finished_at": "2026-10-06T07:58:03.648027+00:00"
+}
