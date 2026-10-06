@@ -461,7 +461,6 @@
         listProducts({ q, limit: 1 }),
         ...[...CATEGORIES, ETC].map((c) => listProducts({ q, category: c.slug, limit: 1 })),
       ]);
-      if (token !== renderToken) return;
       remember(result.items);
 
       const [all, ...perCategory] = counts;

@@ -1,0 +1,173 @@
+{
+  "case": "06",
+  "expected": "healthy",
+  "started_at": "2026-10-06T08:03:19.809313+00:00",
+  "healthy": true,
+  "symptom": false,
+  "checks": {
+    "single_node_sequential_freshness": true,
+    "both_nodes_warmed_at_five": true,
+    "orders_committed_once": true,
+    "shared_database_stock_is_four": true,
+    "both_nodes_read_committed_stock": true,
+    "public_round_robin_reads_consistent": true
+  },
+  "observations": {
+    "single_node_stock_traces": {
+      "a": [
+        5,
+        4,
+        3,
+        2
+      ],
+      "b": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    "directions": [
+      {
+        "writer": "a",
+        "reader": "b",
+        "product_id": 3,
+        "warm": {
+          "a": 5,
+          "b": 5
+        },
+        "after": {
+          "a": 4,
+          "b": 4
+        },
+        "database_views": {
+          "a": {
+            "total": 1,
+            "stocks": [
+              4
+            ],
+            "ids": [
+              3
+            ]
+          },
+          "b": {
+            "total": 1,
+            "stocks": [
+              4
+            ],
+            "ids": [
+              3
+            ]
+          }
+        },
+        "order_id": 7,
+        "order_status": "CONFIRMED",
+        "order_quantity": 1,
+        "public_reads": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "writer": "b",
+        "reader": "a",
+        "product_id": 4,
+        "warm": {
+          "a": 5,
+          "b": 5
+        },
+        "after": {
+          "a": 4,
+          "b": 4
+        },
+        "database_views": {
+          "a": {
+            "total": 1,
+            "stocks": [
+              4
+            ],
+            "ids": [
+              4
+            ]
+          },
+          "b": {
+            "total": 1,
+            "stocks": [
+              4
+            ],
+            "ids": [
+              4
+            ]
+          }
+        },
+        "order_id": 8,
+        "order_status": "CONFIRMED",
+        "order_quantity": 1,
+        "public_reads": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    ],
+    "cross_node_staleness_observed": false,
+    "public_read_oscillation_observed": false,
+    "cache_ttl_seconds": 120.0,
+    "scope": "product detail snapshots, two one-worker nodes, sequential committed writes"
+  },
+  "oracle": {
+    "passed": true,
+    "products": [
+      {
+        "product_id": 1,
+        "initial_stock": 5,
+        "confirmed_quantity": 3,
+        "current_stock": 2,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 2,
+        "initial_stock": 5,
+        "confirmed_quantity": 3,
+        "current_stock": 2,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 3,
+        "initial_stock": 5,
+        "confirmed_quantity": 1,
+        "current_stock": 4,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 4,
+        "initial_stock": 5,
+        "confirmed_quantity": 1,
+        "current_stock": 4,
+        "non_negative": true,
+        "stock_equation": true
+      }
+    ],
+    "orders": {
+      "checked": 8,
+      "invalid_order_ids": [],
+      "amounts_valid": true
+    }
+  },
+  "passed": true,
+  "finished_at": "2026-10-06T08:03:20.814510+00:00"
+}
