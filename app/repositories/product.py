@@ -60,20 +60,7 @@ class ProductRepository:
                 )
             )
 
-        total = self.session.scalar(
-            select(func.count()).select_from(Product).where(*conditions)
-        )
-        if sort == "price_asc":
-            statement = (
-                select(Product, Inventory)
-                .join(Inventory, Inventory.product_id == Product.id)
-                .where(*conditions)
-                .order_by(Product.id)
-                .limit(limit)
-                .offset(offset)
-            )
-            rows = self.session.execute(statement).tuples().all()
-            return sorted(rows, key=lambda row: (row[0].unit_price, row[0].id)), int(total or 0)
+        total = self.session.scalar(select(func.count()).select_from(Product).where(*conditions))
         statement = (
             select(Product, Inventory)
             .join(Inventory, Inventory.product_id == Product.id)
