@@ -1,8 +1,9 @@
 COMPOSE := docker compose
 STOCKS ?= 10
 BASE_URL ?= http://localhost:8000
+LOAD_ARGS ?=
 
-.PHONY: up down reset migrate test lint typecheck smoke concurrency verify timeline snapshot seed
+.PHONY: up down reset migrate test lint typecheck smoke concurrency verify timeline snapshot seed load
 
 up:
 	$(COMPOSE) up -d --build --wait --wait-timeout 180
@@ -15,6 +16,9 @@ reset:
 
 seed:
 	$(COMPOSE) exec -T app python -m scripts.seed_catalog
+
+load:
+	$(COMPOSE) --profile tools run --rm --build loadgen $(LOAD_ARGS)
 
 migrate:
 	$(COMPOSE) exec -T app alembic upgrade head

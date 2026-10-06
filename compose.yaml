@@ -16,10 +16,14 @@ services:
 
   app:
     build: .
+    # Fixed "small server" size so capacity measurements are reproducible.
+    cpus: ${APP_CPUS:-1.0}
+    mem_limit: ${APP_MEMORY:-512m}
     environment:
       DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-commerce}:${POSTGRES_PASSWORD:-commerce}@db:5432/${POSTGRES_DB:-commerce}
       OBSERVABILITY_LEVEL: ${OBSERVABILITY_LEVEL:-basic}
       SEED_CATALOG: ${SEED_CATALOG:-true}
+      UVICORN_WORKERS: ${UVICORN_WORKERS:-1}
       LOG_FILE: /app/logs/app.jsonl
       DATABASE_POOL_SIZE: ${DATABASE_POOL_SIZE:-30}
       DATABASE_MAX_OVERFLOW: ${DATABASE_MAX_OVERFLOW:-30}
@@ -69,6 +73,16 @@ services:
       test-db:
         condition: service_healthy
     command: ["sh", "-c", "alembic upgrade head && pytest -q"]
+
+  loadgen:
+    build: .
+    profiles: ["tools"]
+    depends_on:
+      app:
+        condition: service_healthy
+    volumes:
+      - ./artifacts:/app/artifacts
+    entrypoint: ["python", "-m", "scripts.load_test", "--base-url", "http://app:8000"]
 
 volumes:
   postgres-data:

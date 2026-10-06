@@ -248,6 +248,20 @@ fatal. The two-product performance result is `PASS`, `GLOBAL_LOCK_SUSPECTED`, or
 when environmental noise prevents a sound classification. Its complete evidence is saved to
 `artifacts/baseline-validation-latest.json`.
 
+## Load test and capacity baseline
+
+The app container is pinned to 1 CPU and 512MB (`APP_CPUS`, `APP_MEMORY`) with one Uvicorn worker
+(`UVICORN_WORKERS`) so capacity numbers are reproducible. `scripts/load_test.py` runs stepped
+virtual users from a separate `loadgen` container and reports throughput, p50/p95/p99, errors, and
+an SLO verdict per stage:
+
+```bash
+make load LOAD_ARGS="--stages 10,20,40 --stage-seconds 30 --label repro"
+```
+
+The SLO, load model, and measured capacity of `l1-baseline-v2` are recorded in
+`docs/capacity-baseline.md`.
+
 ## Independent Oracle
 
 The Oracle imports no application package or service and connects directly to PostgreSQL.
