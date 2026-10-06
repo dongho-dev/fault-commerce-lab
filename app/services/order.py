@@ -15,6 +15,7 @@ from app.repositories.order import OrderRepository
 from app.repositories.product import ProductRepository
 from app.services.errors import InsufficientStockError, ProductNotFoundError
 from app.services.shipping import ShippingQuoteService, calculate_total_amount
+from lab_suite.cache_adapter import invalidate_after_order
 
 
 @dataclass(frozen=True)
@@ -38,6 +39,7 @@ class OrderService:
         self.orders = OrderRepository(session)
         self.shipping = shipping or ShippingQuoteService()
 
+    @invalidate_after_order
     def create(self, *, product_id: int, quantity: int, postal_code: str) -> OrderSnapshot:
         ORDER_ATTEMPTS.inc()
         transaction_started = time.perf_counter()

@@ -8,6 +8,7 @@ from app.models.product import Product
 from app.repositories.inventory import InventoryRepository
 from app.repositories.product import ProductRepository
 from app.services.errors import ProductNotFoundError
+from lab_suite.cache_adapter import cached_snapshot
 
 
 @dataclass(frozen=True)
@@ -83,6 +84,7 @@ class ProductService:
             )
         return ProductSnapshot.of(product, inventory)
 
+    @cached_snapshot
     def get(self, product_id: int) -> ProductSnapshot:
         with self.session.begin():
             product = self.products.get(product_id)

@@ -1,0 +1,101 @@
+{
+  "case": "09",
+  "expected": "fault",
+  "started_at": "2026-10-06T08:07:04.327736+00:00",
+  "healthy": false,
+  "symptom": true,
+  "checks": {
+    "readiness_endpoint_ready": true,
+    "catalog_api_returns_created_products": true,
+    "static_shell_visible": true,
+    "fresh_browser_requested_app_script": true,
+    "script_available": false,
+    "script_missing": true,
+    "fresh_browser_home_shows_products": false,
+    "fresh_browser_main_is_empty": true,
+    "no_browser_page_errors": true
+  },
+  "observations": {
+    "fixtures": [
+      {
+        "id": 1,
+        "name": "새 접속 검증 머그",
+        "unit_price": 12000,
+        "initial_stock": 8,
+        "current_stock": 8,
+        "created_at": "2026-10-06T08:07:06.007622Z",
+        "category": "home",
+        "brand": "",
+        "description": "",
+        "list_price": 16000,
+        "image_url": null
+      },
+      {
+        "id": 2,
+        "name": "새 접속 검증 키보드",
+        "unit_price": 12000,
+        "initial_stock": 8,
+        "current_stock": 8,
+        "created_at": "2026-10-06T08:07:06.023810Z",
+        "category": "digital",
+        "brand": "",
+        "description": "",
+        "list_price": 16000,
+        "image_url": null
+      }
+    ],
+    "ready_status": 200,
+    "catalog_status": 200,
+    "static_app_script_status": 404,
+    "browser_script_responses": [
+      {
+        "url": "http://app:8000/static/app.js",
+        "status": 404
+      }
+    ],
+    "visible_product_names": [],
+    "static_shell": {
+      "logo_visible": true,
+      "search_visible": true,
+      "footer_visible": true
+    },
+    "main_html_length": 0,
+    "browser_context": "Fresh nonpersistent Chromium context with no prior cache or storage",
+    "image_build_verification": "The orchestrator must record successful image build and omitted app.js filesystem evidence",
+    "preexisting_tab_across_deployment": {
+      "verified": false,
+      "reason": "A single phase cannot prove an existing tab survives deployment; requires the same tab across baseline-to-fault replacement"
+    },
+    "browser_page_errors": [],
+    "browser_version": "140.0.7339.16",
+    "fixture_creation_method": "POST /products with GET readback; no direct DB writes"
+  },
+  "oracle": {
+    "passed": true,
+    "products": [
+      {
+        "product_id": 1,
+        "initial_stock": 8,
+        "confirmed_quantity": 0,
+        "current_stock": 8,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 2,
+        "initial_stock": 8,
+        "confirmed_quantity": 0,
+        "current_stock": 8,
+        "non_negative": true,
+        "stock_equation": true
+      }
+    ],
+    "orders": {
+      "checked": 0,
+      "invalid_order_ids": [],
+      "amounts_valid": true
+    }
+  },
+  "passed": true,
+  "finished_at": "2026-10-06T08:07:07.005544+00:00"
+}
