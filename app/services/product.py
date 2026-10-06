@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from app.models.inventory import Inventory
 from app.models.product import Product
 from app.repositories.inventory import InventoryRepository
+from app.repositories.order import OrderRepository
 from app.repositories.product import ProductRepository
 from app.services.errors import ProductNotFoundError
 
@@ -54,6 +55,7 @@ class ProductService:
         self.session = session
         self.products = ProductRepository(session)
         self.inventories = InventoryRepository(session)
+        self.orders = OrderRepository(session)
 
     def create(
         self,
@@ -111,4 +113,8 @@ class ProductService:
                 offset=offset,
             )
             items = [ProductSnapshot.of(product, inventory) for product, inventory in rows]
+            if sort == "recommended":
+                # Best sellers first within the page; sold-out items stay at the end.
+                sold = self.orders.units_sold_by_product([item.id for item in items])
+                items.sort(key=lambda item: (item.current_stock <= 0, -sold[item.id]))
         return ProductPage(items=items, total=total, limit=limit, offset=offset)

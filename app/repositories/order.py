@@ -1,3 +1,7 @@
+from collections import Counter
+from collections.abc import Collection
+
+from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from app.models.order import Order
@@ -29,3 +33,17 @@ class OrderRepository:
         self.session.add(order)
         self.session.flush()
         return order
+
+    def units_sold_by_product(self, product_ids: Collection[int]) -> Counter[int]:
+        """Sum ordered quantities in the database, only for the given products."""
+        sold: Counter[int] = Counter()
+        if not product_ids:
+            return sold
+        rows = self.session.execute(
+            select(Order.product_id, func.sum(Order.quantity))
+            .where(Order.product_id.in_(product_ids))
+            .group_by(Order.product_id)
+        )
+        for product_id, quantity in rows:
+            sold[product_id] = int(quantity)
+        return sold
