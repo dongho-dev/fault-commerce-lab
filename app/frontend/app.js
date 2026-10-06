@@ -558,7 +558,7 @@
           </nav>
           <section class="tab-body" id="tab-detail">
             <h3>상품 설명</h3>
-            <p class="desc-text">${esc(p.description || "등록된 상품 설명이 없습니다.")}</p>
+            <p class="desc-text">${p.description || "등록된 상품 설명이 없습니다."}</p>
             <table class="spec">
               <tr><th>상품명</th><td>${esc(p.name)}</td></tr>
               <tr><th>브랜드</th><td>${esc(p.brand || "-")}</td></tr>

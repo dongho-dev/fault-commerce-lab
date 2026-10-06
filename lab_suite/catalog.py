@@ -1,0 +1,26 @@
+from importlib import import_module
+
+BASELINE = "a3b8ef9e20366d85b5d74e13ef3bd988f98b6353"
+CASES = {
+    "01": ("data", "Global price ordering"),
+    "02": ("data", "Order atomicity"),
+    "03": ("data", "Postal code representation"),
+    "04": ("systems", "Cumulative resource exhaustion"),
+    "05": ("systems", "Incomplete response transmission"),
+    "06": ("systems", "Multi-instance inventory visibility"),
+    "07": ("browser", "Out-of-order search responses"),
+    "08": ("browser", "Product description trust boundary"),
+    "09": ("browser", "Deployment asset completeness"),
+    "10": ("browser", "Accessible product controls"),
+}
+
+
+def normalize(value: str) -> str:
+    case = str(int(value.removeprefix("case").removeprefix("cs-"))).zfill(2)
+    if case not in CASES:
+        raise ValueError(f"Unknown case: {value}")
+    return case
+
+
+def provider(case: str):
+    return import_module(f"lab_suite.cases.{CASES[normalize(case)][0]}")
