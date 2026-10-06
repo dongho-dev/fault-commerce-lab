@@ -1,0 +1,252 @@
+{
+  "case": "05",
+  "expected": "healthy",
+  "started_at": "2026-10-06T08:01:57.197687+00:00",
+  "healthy": true,
+  "symptom": false,
+  "checks": {
+    "small_json_preserved": true,
+    "payload_sizes_cross_8192_boundary": true,
+    "direct_large_json_intact": true,
+    "static_assets_preserved": true,
+    "large_json_preserved": true,
+    "post_through_proxy_succeeded": true
+  },
+  "observations": {
+    "direct_small": {
+      "status_code": 200,
+      "content_length": 1940,
+      "received_bytes": 1940,
+      "content_type": "application/json",
+      "body_sha256": "0f28b2ac82775d0c64f1f56385622194b93b5da1c7f5f2b47b83d522484086aa",
+      "json_valid": true,
+      "json_total": null,
+      "error_type": null,
+      "error_message": null
+    },
+    "proxy_small": {
+      "status_code": 200,
+      "content_length": 1940,
+      "received_bytes": 1940,
+      "content_type": "application/json",
+      "body_sha256": "0f28b2ac82775d0c64f1f56385622194b93b5da1c7f5f2b47b83d522484086aa",
+      "json_valid": true,
+      "json_total": null,
+      "error_type": null,
+      "error_message": null
+    },
+    "direct_large": {
+      "status_code": 200,
+      "content_length": 15572,
+      "received_bytes": 15572,
+      "content_type": "application/json",
+      "body_sha256": "823818d86fd11875e07baf34469b50cd76a66c20872167356c4260a06947ef66",
+      "json_valid": true,
+      "json_total": 8,
+      "error_type": null,
+      "error_message": null
+    },
+    "proxy_large": {
+      "status_code": 200,
+      "content_length": 15572,
+      "received_bytes": 15572,
+      "content_type": "application/json",
+      "body_sha256": "823818d86fd11875e07baf34469b50cd76a66c20872167356c4260a06947ef66",
+      "json_valid": true,
+      "json_total": 8,
+      "error_type": null,
+      "error_message": null
+    },
+    "direct_large_after": {
+      "status_code": 200,
+      "content_length": 15572,
+      "received_bytes": 15572,
+      "content_type": "application/json",
+      "body_sha256": "823818d86fd11875e07baf34469b50cd76a66c20872167356c4260a06947ef66",
+      "json_valid": true,
+      "json_total": 8,
+      "error_type": null,
+      "error_message": null
+    },
+    "static": {
+      "/": {
+        "direct": {
+          "status_code": 200,
+          "content_length": 8468,
+          "received_bytes": 8468,
+          "content_type": "text/html; charset=utf-8",
+          "body_sha256": "54cf4de6de01be8366f08cfeb02dad916e70899a580a69cd52613be7fc5c051f",
+          "json_valid": false,
+          "json_total": null,
+          "error_type": null,
+          "error_message": null
+        },
+        "proxy": {
+          "status_code": 200,
+          "content_length": 8468,
+          "received_bytes": 8468,
+          "content_type": "text/html; charset=utf-8",
+          "body_sha256": "54cf4de6de01be8366f08cfeb02dad916e70899a580a69cd52613be7fc5c051f",
+          "json_valid": false,
+          "json_total": null,
+          "error_type": null,
+          "error_message": null
+        },
+        "equal": true
+      },
+      "/static/styles.css": {
+        "direct": {
+          "status_code": 200,
+          "content_length": 32047,
+          "received_bytes": 32047,
+          "content_type": "text/css; charset=utf-8",
+          "body_sha256": "2bb740de61f767dd67d90bcec4ae9a67649fc0ec4730122dd4f551179140f403",
+          "json_valid": false,
+          "json_total": null,
+          "error_type": null,
+          "error_message": null
+        },
+        "proxy": {
+          "status_code": 200,
+          "content_length": 32047,
+          "received_bytes": 32047,
+          "content_type": "text/css; charset=utf-8",
+          "body_sha256": "2bb740de61f767dd67d90bcec4ae9a67649fc0ec4730122dd4f551179140f403",
+          "json_valid": false,
+          "json_total": null,
+          "error_type": null,
+          "error_message": null
+        },
+        "equal": true
+      },
+      "/static/app.js": {
+        "direct": {
+          "status_code": 200,
+          "content_length": 50715,
+          "received_bytes": 50715,
+          "content_type": "text/javascript; charset=utf-8",
+          "body_sha256": "83fd556bf49f233a71afe926466e3e284574e92990d42435fd2ba4d41cc87af6",
+          "json_valid": false,
+          "json_total": null,
+          "error_type": null,
+          "error_message": null
+        },
+        "proxy": {
+          "status_code": 200,
+          "content_length": 50715,
+          "received_bytes": 50715,
+          "content_type": "text/javascript; charset=utf-8",
+          "body_sha256": "83fd556bf49f233a71afe926466e3e284574e92990d42435fd2ba4d41cc87af6",
+          "json_valid": false,
+          "json_total": null,
+          "error_type": null,
+          "error_message": null
+        },
+        "equal": true
+      },
+      "/static/assets/products/blanket.jpg": {
+        "direct": {
+          "status_code": 200,
+          "content_length": 71231,
+          "received_bytes": 71231,
+          "content_type": "image/jpeg",
+          "body_sha256": "6106f7358028cf68eb2aa8903f725aaabe915e7e9b707babf01beccfb749a56d",
+          "json_valid": false,
+          "json_total": null,
+          "error_type": null,
+          "error_message": null
+        },
+        "proxy": {
+          "status_code": 200,
+          "content_length": 71231,
+          "received_bytes": 71231,
+          "content_type": "image/jpeg",
+          "body_sha256": "6106f7358028cf68eb2aa8903f725aaabe915e7e9b707babf01beccfb749a56d",
+          "json_valid": false,
+          "json_total": null,
+          "error_type": null,
+          "error_message": null
+        },
+        "equal": true
+      }
+    },
+    "fixture_products_created": 8,
+    "truncation_boundary_bytes": 8192
+  },
+  "oracle": {
+    "passed": true,
+    "products": [
+      {
+        "product_id": 1,
+        "initial_stock": 5,
+        "confirmed_quantity": 0,
+        "current_stock": 5,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 2,
+        "initial_stock": 5,
+        "confirmed_quantity": 0,
+        "current_stock": 5,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 3,
+        "initial_stock": 5,
+        "confirmed_quantity": 0,
+        "current_stock": 5,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 4,
+        "initial_stock": 5,
+        "confirmed_quantity": 0,
+        "current_stock": 5,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 5,
+        "initial_stock": 5,
+        "confirmed_quantity": 0,
+        "current_stock": 5,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 6,
+        "initial_stock": 5,
+        "confirmed_quantity": 0,
+        "current_stock": 5,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 7,
+        "initial_stock": 5,
+        "confirmed_quantity": 0,
+        "current_stock": 5,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 8,
+        "initial_stock": 5,
+        "confirmed_quantity": 0,
+        "current_stock": 5,
+        "non_negative": true,
+        "stock_equation": true
+      }
+    ],
+    "orders": {
+      "checked": 0,
+      "invalid_order_ids": [],
+      "amounts_valid": true
+    }
+  },
+  "passed": true,
+  "finished_at": "2026-10-06T08:01:57.984905+00:00"
+}

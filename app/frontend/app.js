@@ -245,7 +245,7 @@
             ${stockLine(p)}
           </div>
         </a>
-        ${out ? "" : `<button class="card-add" type="button" data-quick-add="${p.id}" aria-label="${esc(p.name)} 장바구니 담기">${icon("cart")}</button>`}
+        ${out ? "" : `<button class="card-add" type="button" data-quick-add="${p.id}" aria-label="장바구니 담기">${icon("cart")}</button>`}
       </article>`;
   }
 
