@@ -8,13 +8,14 @@ Vercel은 `app/main.py`의 FastAPI 앱을 실행한다. 쇼핑몰과 API는 같�
 
 | 변수 | 설정 |
 | --- | --- |
-| `DATABASE_URL` | 전용 PostgreSQL의 `postgresql+psycopg://...` 연결 URL. Vercel 환경 변수로만 저장 |
+| `DATABASE_URL` | 전용 PostgreSQL 연결 URL. Neon의 `postgresql://...` 주소도 그대로 사용 가능 |
 | `LOG_FILE` | `vercel.json`에서 `/tmp/fault-commerce.jsonl`로 설정 |
 | `DATABASE_POOL_SIZE` | `2` |
 | `DATABASE_MAX_OVERFLOW` | `3` |
 
 `DATABASE_URL`은 저장소나 로그에 기록하지 않는다. PostgreSQL 제공자가 요구하는 SSL
-설정을 유지한다. 서버리스 인스턴스마다 풀이 생성되므로 작은 연결 풀을 사용한다.
+설정을 유지한다. 앱은 일반 PostgreSQL URL을 설치된 psycopg 3 드라이버로 연결하며,
+URL에 인코딩된 비밀번호·SSL 옵션은 보존한다. 서버리스 인스턴스마다 풀이 생성되므로 작은 연결 풀을 사용한다.
 기존 고정 서버의 용량 측정 결과를 Vercel의 처리 용량으로 간주하지 않는다.
 
 ## DB 준비
