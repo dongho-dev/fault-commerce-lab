@@ -2,7 +2,7 @@ COMPOSE := docker compose
 STOCKS ?= 10
 BASE_URL ?= http://localhost:8000
 
-.PHONY: up down reset migrate test lint typecheck smoke concurrency verify timeline snapshot
+.PHONY: up down reset migrate test lint typecheck smoke concurrency verify timeline snapshot seed
 
 up:
 	$(COMPOSE) up -d --build --wait --wait-timeout 180
@@ -12,6 +12,9 @@ down:
 
 reset:
 	$(COMPOSE) exec -T app python oracle/reset.py --stocks $(STOCKS)
+
+seed:
+	$(COMPOSE) exec -T app python -m scripts.seed_catalog
 
 migrate:
 	$(COMPOSE) exec -T app alembic upgrade head

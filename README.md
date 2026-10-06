@@ -14,16 +14,21 @@ faults, artificial delay, in-memory persistence, or hidden recovery behavior.
 
 ## Scope and stack
 
-The business API contains exactly three endpoints:
+The business API contains four endpoints:
 
 - `POST /products`
+- `GET /products` (catalog search, category filter, sort, pagination)
 - `GET /products/{product_id}`
 - `POST /orders`
 
+Products carry optional storefront attributes (`category`, `brand`, `description`, `list_price`,
+`image_url`). They have database defaults, so the original `name`/`unit_price`/`initial_stock`
+payload and the Oracle's direct inserts keep working unchanged.
+
 Operational endpoints are `GET /health/live`, `GET /health/ready`, and `GET /metrics`.
 FastAPI also exposes `/docs` and `/openapi.json`; ReDoc is disabled. Payment, cancellation,
-refunds, coupons, points, shipment, users, authentication, reviews, search, and carts are outside
-the L1 scope.
+refunds, coupons, points, shipment, users, authentication, and reviews are outside the L1 scope.
+The storefront cart lives in the browser and checks out by calling `POST /orders` once per line.
 
 The implementation uses Python 3.12, FastAPI, PostgreSQL 16, SQLAlchemy 2, psycopg 3, Alembic,
 Pydantic Settings, Prometheus client, Docker Compose, pytest, httpx, Ruff, and mypy. SQLite is not
@@ -58,6 +63,7 @@ Copy `.env.example` to `.env` only when local overrides are needed. `.env` is ig
 | `LOG_FILE` | JSON Lines destination | `/app/logs/app.jsonl` |
 | `DATABASE_POOL_SIZE` | SQLAlchemy persistent connections | `30` |
 | `DATABASE_MAX_OVERFLOW` | SQLAlchemy overflow connections | `30` |
+| `SEED_CATALOG` | Insert the 24-product demo catalog on startup (skips existing names) | `true` |
 
 Use a non-default password outside this local lab. Secrets and full connection URLs are never
 written to application logs.
@@ -72,19 +78,30 @@ docker compose up -d --build
 
 The API is available at `http://localhost:8000`, with interactive documentation at
 `http://localhost:8000/docs`. The application waits for PostgreSQL health, applies
-`alembic upgrade head`, and only then starts Uvicorn.
+`alembic upgrade head`, inserts the demo catalog when `SEED_CATALOG=true`, and only then starts
+Uvicorn. `oracle/reset.py` truncates every table, so run `make seed` afterwards to restock the
+storefront catalog.
 
 ## Interactive storefront
 
 Open [http://localhost:8000](http://localhost:8000) after Compose reports the app healthy.
-The root page is a responsive Korean/English storefront and reliability-lab interface served
-directly by FastAPI. It adds no new commerce-domain endpoint and exercises the verified L1 API:
+The root page is 폴트마켓, a Korean marketplace-style storefront served directly by FastAPI and
+backed entirely by the real API and PostgreSQL inventory:
 
-- create one of three styled demo products against the real PostgreSQL database;
-- create a custom product and its one-to-one inventory atomically;
-- look up the current inventory for any product ID;
-- place a confirmed order and observe shipping, total, and request ID;
-- watch live/readiness state and open Prometheus metrics or OpenAPI documentation.
+- header with category menu, category-scoped search, and a live cart badge;
+- home page with a rotating promotion banner, category tiles, a discount ranking, and per-category
+  product rows;
+- search/category listing with category counts, five sort orders, and pagination;
+- product detail page with list price, discount, shipping rule, low-stock and sold-out states,
+  quantity selection, add to cart, and buy now;
+- browser-side cart with selection, quantity limits refreshed from current stock, and a price
+  summary that mirrors the server shipping rule;
+- checkout that takes a postal code, places one `POST /orders` per line, reports each line's
+  result (including `INSUFFICIENT_STOCK`), and keeps a per-browser order history.
+
+The layout takes reference cues from large Korean marketplaces (dense product grid, prominent
+search, discount-first price blocks) while using original branding. Product photos are bundled
+Unsplash images; the page never fetches assets from other hosts at runtime.
 
 ### Admin control room
 
@@ -99,21 +116,12 @@ It uses only the existing L1 endpoints and does not add a commerce-domain API. T
 - can export the complete request ledger and verdict as JSON.
 
 The interface uses semantic HTML, keyboard-visible focus states, reduced-motion support, a
-mobile navigation layout, and only bundled assets. Product photos are not fetched at runtime.
+mobile layout, and only bundled assets.
 
-### Visual direction and credits
+### Photo credits
 
-The design is original, with reference cues taken from:
-
-- [Aesop](https://www.aesop.com/) for editorial hierarchy and considered product narratives;
-- [Apple Accessories](https://www.apple.com/shop/accessories/all) for clear merchandising and
-  concise service reassurance;
-- [Teenage Engineering](https://teenage.engineering/store) for bold object colour and modular
-  product presentation.
-
-The workspace photograph is “White wireless keyboard” by
-[Marc Mintel on Unsplash](https://unsplash.com/photos/white-wireless-keyboard-WdXsXrFVhis),
-used under the [Unsplash License](https://unsplash.com/license). Full asset attribution lives in
+The banner workspace photograph and all 24 product photos are from Unsplash and used under the
+[Unsplash License](https://unsplash.com/license). Photographer attribution for every file lives in
 `app/frontend/assets/PHOTO_CREDITS.md`.
 
 Stop containers while preserving the PostgreSQL volume:
@@ -285,7 +293,7 @@ recommend fixes, or identify suspect code.
 
 The root Makefile provides `make up`, `make down`, `make reset`, `make migrate`, `make test`,
 `make lint`, `make typecheck`, `make smoke`, `make concurrency`, `make verify`, `make timeline`,
-and `make snapshot`. Override reset stock with `make reset STOCKS=13,18`.
+`make snapshot`, and `make seed`. Override reset stock with `make reset STOCKS=13,18`.
 
 ## Future incident branches
 
@@ -301,6 +309,6 @@ Oracle unless the exercise explicitly requires an Oracle change.
 ## Known L1 limitations
 
 L1 intentionally has no payment, cancellation, refund, coupon, point, shipment, user,
-authentication, review, search, or cart behavior. Each order contains exactly one product and the
+authentication, or review behavior, and no server-side cart. Each order contains exactly one product and the
 only status is `CONFIRMED`. The local Compose topology runs one API container, although the
 database-level concurrency strategy is designed to remain correct with multiple API instances.

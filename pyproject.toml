@@ -36,6 +36,7 @@ app = [
   "frontend/*.svg",
   "frontend/assets/*.jpg",
   "frontend/assets/*.md",
+  "frontend/assets/products/*.jpg",
 ]
 
 [tool.pytest.ini_options]
