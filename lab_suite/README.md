@@ -1,6 +1,6 @@
 # CS 장애 실습 실행
 
-[GitHub 실습 이슈 목록](../docs/labs/issues.md)
+[종류별 문제·개선 기록 카탈로그](../docs/labs/catalog.md) · [GitHub 실습 이슈 목록](../docs/labs/issues.md)
 
 문제 상황과 과제는 [실습 문제](../docs/cs-exercises.md), 실제 검증 기록과 미검증 범위는 [검증 기록](../docs/labs/verification.md)을 따른다.
 

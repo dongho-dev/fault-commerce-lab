@@ -1,5 +1,7 @@
 # Fault Commerce Lab
 
+[**종류별 문제·개선 기록 카탈로그**](docs/labs/catalog.md) — 문제 유형, 진행 상태와 검증·개선 기록을 빠르게 살펴볼 수 있습니다.
+
 ![Python 3.12](https://img.shields.io/badge/Python-3.12-18231f?style=flat-square)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.116-18231f?style=flat-square)
 ![PostgreSQL 16](https://img.shields.io/badge/PostgreSQL-16-18231f?style=flat-square)
