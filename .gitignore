@@ -11,3 +11,7 @@ logs/*
 !logs/.gitkeep
 artifacts/*
 !artifacts/.gitkeep
+
+.vercel/
+.vercel
+.env*

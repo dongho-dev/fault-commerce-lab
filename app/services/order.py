@@ -4,6 +4,7 @@ from datetime import datetime
 
 from sqlalchemy.orm import Session
 
+from app.models.product import Product
 from app.observability.logging import log_stage
 from app.observability.metrics import (
     INSUFFICIENT_STOCK_REJECTIONS,
@@ -15,6 +16,17 @@ from app.repositories.order import OrderRepository
 from app.repositories.product import ProductRepository
 from app.services.errors import InsufficientStockError, ProductNotFoundError
 from app.services.shipping import ShippingQuoteService, calculate_total_amount
+
+
+@dataclass(frozen=True)
+class OrderQuote:
+    product_id: int
+    quantity: int
+    unit_price: int
+    postal_code: str
+    merchandise_amount: int
+    shipping_fee: int
+    total_amount: int
 
 
 @dataclass(frozen=True)
@@ -37,6 +49,31 @@ class OrderService:
         self.inventories = InventoryRepository(session)
         self.orders = OrderRepository(session)
         self.shipping = shipping or ShippingQuoteService()
+
+    def quote(self, *, product_id: int, quantity: int, postal_code: str) -> OrderQuote:
+        product = self.products.get(product_id)
+        if product is None:
+            raise ProductNotFoundError
+        return self._calculate_quote(product=product, quantity=quantity, postal_code=postal_code)
+
+    def _calculate_quote(self, *, product: Product, quantity: int, postal_code: str) -> OrderQuote:
+        merchandise_amount = product.unit_price * quantity
+        shipping_fee = self.shipping.quote(
+            postal_code=postal_code,
+            quantity=quantity,
+            merchandise_amount=merchandise_amount,
+        )
+        return OrderQuote(
+            product_id=product.id,
+            quantity=quantity,
+            unit_price=product.unit_price,
+            postal_code=postal_code,
+            merchandise_amount=merchandise_amount,
+            shipping_fee=shipping_fee,
+            total_amount=calculate_total_amount(
+                unit_price=product.unit_price, quantity=quantity, shipping_fee=shipping_fee
+            ),
+        )
 
     def create(self, *, product_id: int, quantity: int, postal_code: str) -> OrderSnapshot:
         ORDER_ATTEMPTS.inc()
@@ -65,11 +102,8 @@ class OrderService:
             )
 
             stage_started = time.perf_counter()
-            merchandise_amount = product.unit_price * quantity
-            shipping_fee = self.shipping.quote(
-                postal_code=postal_code,
-                quantity=quantity,
-                merchandise_amount=merchandise_amount,
+            quote = self._calculate_quote(
+                product=product, quantity=quantity, postal_code=postal_code
             )
             log_stage(
                 stage="shipping_quote_completed",
@@ -98,18 +132,13 @@ class OrderService:
             )
 
             stage_started = time.perf_counter()
-            total_amount = calculate_total_amount(
-                unit_price=product.unit_price,
-                quantity=quantity,
-                shipping_fee=shipping_fee,
-            )
             order = self.orders.create(
                 product_id=product_id,
                 quantity=quantity,
-                unit_price=product.unit_price,
+                unit_price=quote.unit_price,
                 postal_code=postal_code,
-                shipping_fee=shipping_fee,
-                total_amount=total_amount,
+                shipping_fee=quote.shipping_fee,
+                total_amount=quote.total_amount,
             )
             log_stage(
                 stage="order_persisted",

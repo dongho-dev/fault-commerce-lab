@@ -1,328 +1,94 @@
 # Fault Commerce Lab
 
-![Python 3.12](https://img.shields.io/badge/Python-3.12-18231f?style=flat-square)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.116-18231f?style=flat-square)
-![PostgreSQL 16](https://img.shields.io/badge/PostgreSQL-16-18231f?style=flat-square)
-![Baseline](https://img.shields.io/badge/baseline-L1_verified-d7df72?style=flat-square)
+실제 PostgreSQL 재고와 주문을 사용하는 쇼핑몰 실습 프로젝트입니다.
+상품 탐색부터 서버 견적, 주문 접수, 재고 검증까지 한 흐름으로 확인하고 장애를 재현·분석합니다.
+실제 결제와 회원 인증은 구현하지 않습니다.
 
-<img src="docs/storefront-preview.jpg" alt="Fault Commerce Lab interactive storefront preview">
+![쇼핑몰 화면](docs/storefront-preview.jpg)
 
-Fault Commerce Lab L1 is a deliberately healthy, executable commerce core used as the
-reference point for later reliability and incident-investigation exercises. It implements only
-products, one-to-one inventory, and confirmed orders. The baseline itself contains no injected
-faults, artificial delay, in-memory persistence, or hidden recovery behavior.
+**Python 3.12 · FastAPI · PostgreSQL 16 · SQLAlchemy · Docker Compose**
 
-## Scope and stack
+## 빠른 시작
 
-The business API contains four endpoints:
+Docker Desktop에서 Linux 컨테이너를 실행할 수 있는 상태로 준비합니다.
 
-- `POST /products`
-- `GET /products` (catalog search, category filter, sort, pagination)
-- `GET /products/{product_id}`
-- `POST /orders`
-
-Products carry optional storefront attributes (`category`, `brand`, `description`, `list_price`,
-`image_url`). They have database defaults, so the original `name`/`unit_price`/`initial_stock`
-payload and the Oracle's direct inserts keep working unchanged.
-
-Operational endpoints are `GET /health/live`, `GET /health/ready`, and `GET /metrics`.
-FastAPI also exposes `/docs` and `/openapi.json`; ReDoc is disabled. Payment, cancellation,
-refunds, coupons, points, shipment, users, authentication, and reviews are outside the L1 scope.
-The storefront cart lives in the browser and checks out by calling `POST /orders` once per line.
-
-The implementation uses Python 3.12, FastAPI, PostgreSQL 16, SQLAlchemy 2, psycopg 3, Alembic,
-Pydantic Settings, Prometheus client, Docker Compose, pytest, httpx, Ruff, and mypy. SQLite is not
-used in development, tests, or runtime.
-
-## Directory structure
-
-```text
-app/                 FastAPI, models, schemas, repositories, services, observability
-app/frontend/        Responsive storefront, live API lab, and bundled visual assets
-alembic/             Versioned PostgreSQL schema migrations
-tests/unit/          Pure calculation, validation, error, and utility tests
-tests/integration/   PostgreSQL API tests and real-Uvicorn concurrency/restart tests
-oracle/              Independent direct-PostgreSQL reset, invariant, and baseline judges
-scripts/             HTTP smoke and concurrency probes
-tools/               Direct DB snapshot and standalone timeline renderer
-logs/                 Host-mounted JSON Lines request logs
-artifacts/            Host-mounted generated validation and observation artifacts
+```sh
+docker compose up -d --build --wait
 ```
 
-## Configuration
+DB 준비, 스키마 마이그레이션, 데모 상품 24개 등록 후 쇼핑몰이 시작됩니다.
 
-Copy `.env.example` to `.env` only when local overrides are needed. `.env` is ignored by Git.
+| 화면 | 주소 |
+| --- | --- |
+| 쇼핑몰 | [localhost:8000](http://localhost:8000) |
+| 운영 관제실 | [localhost:8000/admin](http://localhost:8000/admin) |
+| API 문서 | [localhost:8000/docs](http://localhost:8000/docs) |
+| DB 연결 상태 | [localhost:8000/health/ready](http://localhost:8000/health/ready) |
 
-| Variable | Purpose | Container default |
+종료할 때는 `docker compose down`을 사용합니다. DB 볼륨은 보존됩니다.
+설정을 바꾸려면 [.env.example](.env.example)을 참고해 Git에서 제외되는 `.env`를 만듭니다.
+
+## 구현된 흐름
+
+- 검색·카테고리·정렬·페이지 이동으로 상품을 찾습니다.
+- 장바구니에서 상품과 수량을 고르고 우편번호를 입력합니다.
+- 서버가 DB 단가와 배송 규칙으로 견적을 계산합니다. 화면은 서버 반환 금액을 표시합니다.
+- 견적이 준비된 상품을 주문하면 재고 차감과 주문 저장이 하나의 트랜잭션으로 처리됩니다.
+- 완료 화면과 브라우저 주문내역에서 서버가 접수한 금액을 확인합니다.
+
+상품마다 별도 주문을 생성합니다. 장바구니와 주문내역 화면은 현재 브라우저의 저장소를
+사용하며, 서버의 전체 주문 조회 화면이나 회원별 주문내역은 아닙니다.
+
+## 주문 금액의 기준
+
+`POST /orders/quote`와 주문 생성은 **같은 서버 계산 함수**를 사용합니다.
+브라우저에는 배송비 계산식을 두지 않습니다. 견적 요청은 재고를 차감하거나 예약하지 않습니다.
+
+| 항목 | 계산 규칙 |
+| --- | --- |
+| 상품금액 | DB 상품 단가 × 수량 |
+| 기본 배송비 | 상품금액 20만 원 미만 3,000원, 이상 0원 |
+| 지역 추가비 | 우편번호 앞 두 자리 60~99이면 2,500원 |
+| 포장 추가비 | 수량 3개째부터 개당 700원 |
+| 총액 | 상품금액 + 배송비 |
+
+우편번호의 앞자리 `0`을 보존합니다. `06236`의 지역 접두어는 `06`입니다.
+20만 원 이상이어도 지역·포장 추가비는 남습니다. 이 규칙은 실습용 정책입니다.
+
+## API
+
+| 메서드 | 경로 | 기능 |
 | --- | --- | --- |
-| `POSTGRES_DB` | PostgreSQL database | `commerce` |
-| `POSTGRES_USER` | PostgreSQL user | `commerce` |
-| `POSTGRES_PASSWORD` | PostgreSQL password | `commerce` |
-| `DATABASE_URL` | SQLAlchemy/psycopg connection URL | composed from the values above |
-| `OBSERVABILITY_LEVEL` | `basic` or `detailed` JSON logging | `basic` |
-| `LOG_FILE` | JSON Lines destination | `/app/logs/app.jsonl` |
-| `DATABASE_POOL_SIZE` | SQLAlchemy persistent connections | `30` |
-| `DATABASE_MAX_OVERFLOW` | SQLAlchemy overflow connections | `30` |
-| `SEED_CATALOG` | Insert the 24-product demo catalog on startup (skips existing names) | `true` |
+| `POST` | `/products` | 상품과 초기 재고 생성 |
+| `GET` | `/products` | 검색·필터·정렬·페이지 조회 |
+| `GET` | `/products/{product_id}` | 상품과 현재 재고 조회 |
+| `POST` | `/orders/quote` | 서버 단가·상품금액·배송비·총액 견적 |
+| `POST` | `/orders` | 주문 접수와 재고 차감 |
 
-Use a non-default password outside this local lab. Secrets and full connection URLs are never
-written to application logs.
+견적과 주문의 입력은 `product_id`, `quantity`, `postal_code`입니다.
+운영 상태는 `/health/live`, `/health/ready`, `/metrics`에서 확인합니다.
 
-## Run with Docker
+## 검증과 실습 기준
 
-Start PostgreSQL, apply Alembic migrations, and start the API:
+변경한 동작과 인접 경로부터 검증합니다. 배송비·견적의 집중 검증 예시:
 
-```bash
-docker compose up -d --build
+```sh
+docker compose --profile test run --rm test sh -c "alembic upgrade head && pytest -q tests/unit/test_shipping.py tests/integration/test_order_quotes.py"
 ```
 
-The API is available at `http://localhost:8000`, with interactive documentation at
-`http://localhost:8000/docs`. The application waits for PostgreSQL health, applies
-`alembic upgrade head`, inserts the demo catalog when `SEED_CATALOG=true`, and only then starts
-Uvicorn. `oracle/reset.py` truncates every table, so run `make seed` afterwards to restock the
-storefront catalog.
-
-## Interactive storefront
-
-Open [http://localhost:8000](http://localhost:8000) after Compose reports the app healthy.
-The root page is 폴트마켓, a Korean marketplace-style storefront served directly by FastAPI and
-backed entirely by the real API and PostgreSQL inventory:
-
-- header with category menu, category-scoped search, and a live cart badge;
-- home page with a rotating promotion banner, category tiles, a discount ranking, and per-category
-  product rows;
-- search/category listing with category counts, five sort orders, and pagination;
-- product detail page with list price, discount, shipping rule, low-stock and sold-out states,
-  quantity selection, add to cart, and buy now;
-- browser-side cart with selection, quantity limits refreshed from current stock, and a price
-  summary that mirrors the server shipping rule;
-- checkout that takes a postal code, places one `POST /orders` per line, reports each line's
-  result (including `INSUFFICIENT_STOCK`), and keeps a per-browser order history.
-
-The layout takes reference cues from large Korean marketplaces (dense product grid, prominent
-search, discount-first price blocks) while using original branding. Product photos are bundled
-Unsplash images; the page never fetches assets from other hosts at runtime.
-
-### Admin control room
-
-Open [http://localhost:8000/admin](http://localhost:8000/admin) for the operations dashboard.
-It uses only the existing L1 endpoints and does not add a commerce-domain API. The dashboard:
-
-- reads liveness, readiness, and Prometheus counters;
-- creates one isolated probe product with configurable starting inventory;
-- fires up to 100 simultaneous order requests from the browser;
-- compares the expected 201/409 distribution with the observed responses;
-- evaluates the inventory equation and reports either 'INVARIANT HOLDS' or 'INCIDENT DETECTED';
-- can export the complete request ledger and verdict as JSON.
-
-The interface uses semantic HTML, keyboard-visible focus states, reduced-motion support, a
-mobile layout, and only bundled assets.
-
-### Photo credits
-
-The banner workspace photograph and all 24 product photos are from Unsplash and used under the
-[Unsplash License](https://unsplash.com/license). Photographer attribution for every file lives in
-`app/frontend/assets/PHOTO_CREDITS.md`.
-
-Stop containers while preserving the PostgreSQL volume:
-
-```bash
-docker compose down
-```
-
-Stop containers and permanently delete the local PostgreSQL volume:
-
-```bash
-docker compose down -v
-```
-
-The named `postgres-data` volume preserves data across container recreation. `logs/` and
-`artifacts/` are bind-mounted so generated evidence remains available on the host.
-
-## API examples
-
-Create a product and its inventory atomically:
-
-```bash
-curl -X POST http://localhost:8000/products \
-  -H "Content-Type: application/json" \
-  -d '{"name":"Limited Keyboard","unit_price":129000,"initial_stock":10}'
-```
-
-Read the product with current inventory:
-
-```bash
-curl http://localhost:8000/products/1
-```
-
-Create a confirmed order:
-
-```bash
-curl -X POST http://localhost:8000/orders \
-  -H "Content-Type: application/json" \
-  -d '{"product_id":1,"quantity":1,"postal_code":"16841"}'
-```
-
-Business errors use one shape and contain the same request ID returned in the response header:
-
-```json
-{
-  "code": "INSUFFICIENT_STOCK",
-  "message": "요청한 수량만큼의 재고가 없습니다.",
-  "request_id": "6b2294f66df7472c9532a2fac6279010"
-}
-```
-
-Invalid input returns HTTP 422, missing products return `PRODUCT_NOT_FOUND` with HTTP 404, and
-insufficient inventory returns `INSUFFICIENT_STOCK` with HTTP 409.
-
-## Shipping rule
-
-`ShippingQuoteService` is deterministic and performs no network calls. Merchandise below
-200,000 won has a 3,000 won base fee. Postal prefixes 60–99 add 2,500 won. Quantities above two
-add 700 won for each additional unit. Free-shipping orders can still carry regional or packaging
-surcharges, and the final fee cannot be negative.
-
-## Architecture and transaction boundaries
-
-Routers validate and translate HTTP data, services own transaction boundaries, and repositories
-contain SQLAlchemy persistence operations. A new SQLAlchemy Session is created and closed per
-request; no Session or Python lock is shared globally.
-
-Product and inventory creation occurs inside one service transaction. Order creation loads the
-product price, calculates shipping, performs a conditional PostgreSQL update equivalent to:
-
-```sql
-UPDATE inventories
-SET current_stock = current_stock - :quantity
-WHERE product_id = :product_id AND current_stock >= :quantity
-RETURNING current_stock;
-```
-
-The confirmed order is inserted before that same transaction commits. PostgreSQL serializes
-updates only on the affected inventory row and re-evaluates the stock predicate after a competing
-transaction releases it. This prevents negative inventory and over-selling across processes and
-application restarts without globally serializing unrelated products.
-
-The strategy is simple, multi-instance safe, and efficient for independent products. A single
-very popular product is intentionally serialized at its database row; this is the consistency
-cost of strict inventory allocation. No retry is needed for ordinary insufficient-stock outcomes.
-Database constraints independently enforce non-negative stock, positive quantities and prices,
-the confirmed-only L1 status, and the order amount equation. Product deletion is `RESTRICT`ed by
-both inventory and orders so historical orders cannot be orphaned.
-
-## Tests and verification
-
-The integration suite uses the separate PostgreSQL 16 `test-db` Compose service. It never falls
-back to SQLite. Most contract tests use FastAPI's test client with the real test database. Restart
-and concurrency tests launch a real Uvicorn subprocess and send actual TCP HTTP requests.
-
-Run individual gates:
-
-```bash
-make lint
-make typecheck
-make test
-make smoke
-make concurrency
-```
-
-Run the complete ordered gate (Ruff, mypy, pytest, build/start, smoke, and official baseline
-verification):
-
-```bash
-make verify
-```
-
-The standard concurrency probe resets to stock 10, releases 40 quantity-one requests through a
-barrier, requires exactly 10 HTTP 201 and 30 HTTP 409 responses, runs the independent Oracle, and
-writes `artifacts/concurrency-latest.json`.
-
-```bash
-python scripts/concurrency_probe.py --stock 10 --requests 40 --quantity 1
-```
-
-`oracle/verify_baseline.py` runs the basic API round, at least 20 single-product concurrency
-rounds, and at least five median-based two-product measurements. Correctness failures are always
-fatal. The two-product performance result is `PASS`, `GLOBAL_LOCK_SUSPECTED`, or `INCONCLUSIVE`
-when environmental noise prevents a sound classification. Its complete evidence is saved to
-`artifacts/baseline-validation-latest.json`.
-
-## Load test and capacity baseline
-
-The app container is pinned to 1 CPU and 512MB (`APP_CPUS`, `APP_MEMORY`) with one Uvicorn worker
-(`UVICORN_WORKERS`) so capacity numbers are reproducible. `scripts/load_test.py` runs stepped
-virtual users from a separate `loadgen` container and reports throughput, p50/p95/p99, errors, and
-an SLO verdict per stage:
-
-```bash
-make load LOAD_ARGS="--stages 10,20,40 --stage-seconds 30 --label repro"
-```
-
-The SLO, load model, and measured capacity of `l1-baseline-v2` are recorded in
-`docs/capacity-baseline.md`.
-
-## Independent Oracle
-
-The Oracle imports no application package or service and connects directly to PostgreSQL.
-
-```bash
-python oracle/reset.py --stocks 10
-python oracle/reset.py --stocks 13,18
-python oracle/check.py
-python oracle/check.py --json
-python oracle/verify_baseline.py --base-url http://localhost:8000
-```
-
-It checks non-negative current stock, `initial_stock - confirmed_quantity = current_stock`, and
-the amount equation for every order. It reports observations only and exits non-zero on any
-invariant violation.
-
-## Observability and tools
-
-Every request receives an `X-Request-ID`. A syntactically safe client value is propagated;
-otherwise a new ID is generated. The ID is shared by the response header, JSON error, and log.
-Basic JSON Lines logs contain method, normalized route, status, and duration. Enable observed
-processing-stage events with:
-
-```bash
-OBSERVABILITY_LEVEL=detailed docker compose up -d --build
-```
-
-Prometheus metrics at `/metrics` include request counts by method/normalized route/status,
-request-duration histograms, order attempts, confirmed orders, and insufficient-stock rejections.
-Concrete product IDs are never metric labels.
-
-Generate a self-contained, filterable request timeline and a direct PostgreSQL snapshot:
-
-```bash
-python tools/render_timeline.py --input logs/app.jsonl --output artifacts/timeline.html
-python tools/db_snapshot.py
-```
-
-The timeline displays only observed request and stage intervals. It does not infer causes,
-recommend fixes, or identify suspect code.
-
-## Make targets
-
-The root Makefile provides `make up`, `make down`, `make reset`, `make migrate`, `make test`,
-`make lint`, `make typecheck`, `make smoke`, `make concurrency`, `make verify`, `make timeline`,
-`make snapshot`, and `make seed`. Override reset stock with `make reset STOCKS=13,18`.
-
-## Future incident branches
-
-After this repository has the verified immutable tag, create an incident experiment from it:
-
-```bash
-git switch -c incident/db-001 l1-baseline-v1
-```
-
-Do not move or overwrite the baseline tag. The incident branch should preserve the independent
-Oracle unless the exercise explicitly requires an Oracle change.
-
-## Known L1 limitations
-
-L1 intentionally has no payment, cancellation, refund, coupon, point, shipment, user,
-authentication, or review behavior, and no server-side cart. Each order contains exactly one product and the
-only status is `CONFIRMED`. The local Compose topology runs one API container, although the
-database-level concurrency strategy is designed to remain correct with multiple API instances.
+통합 테스트는 별도 PostgreSQL을 사용합니다. 독립적인 `oracle/`은 재고·주문 금액의
+불변조건을 검사합니다. 정상 기준은 **`l1-baseline-v2`**이며, 태그를 이동하거나 덮어쓰지 않습니다.
+장애 실습 브랜치는 이 태그에서 시작합니다. `master`는 현재 개선 사항을 반영하는 기본 브랜치입니다.
+
+화면의 중복 클릭 차단과 서버 요청의 멱등성은 구분합니다.
+남은 [멱등성 이슈 #5](https://github.com/dongho-dev/fault-commerce-lab/issues/5)를 추적합니다.
+
+## 문서
+
+| 문서 | 내용 |
+| --- | --- |
+| [개발·운영 참고](docs/development.md) | 환경 변수, 테스트, 로그, 부하 도구, DB 검증 |
+| [Vercel 배포](docs/vercel-deployment.md) | 외부 PostgreSQL 연결과 배포·확인 절차 |
+| [배송비 수정 기록](docs/incidents/cs-03-resolution.md) | 원인, 검증 결과, 과거 주문 확인 기준 |
+| [용량 기준](docs/capacity-baseline.md) | 고정 서버 크기, SLO, 측정 결과 |
+| [사진 출처](app/frontend/assets/PHOTO_CREDITS.md) | 상품·배너 이미지 출처 |

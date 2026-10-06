@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 
 from app.database import get_session
 from app.observability.metrics import metrics_payload
-from app.schemas.order import OrderCreate, OrderResponse
+from app.schemas.order import OrderCreate, OrderQuoteResponse, OrderResponse
 from app.schemas.product import (
     ProductCreate,
     ProductListResponse,
@@ -64,6 +64,16 @@ def list_products(
 def get_product(product_id: int, session: SessionDependency) -> ProductResponse:
     result = ProductService(session).get(product_id)
     return ProductResponse.model_validate(result)
+
+
+@router.post("/orders/quote", response_model=OrderQuoteResponse)
+def quote_order(payload: OrderCreate, session: SessionDependency) -> OrderQuoteResponse:
+    result = OrderService(session).quote(
+        product_id=payload.product_id,
+        quantity=payload.quantity,
+        postal_code=payload.postal_code,
+    )
+    return OrderQuoteResponse.model_validate(result)
 
 
 @router.post("/orders", response_model=OrderResponse, status_code=status.HTTP_201_CREATED)

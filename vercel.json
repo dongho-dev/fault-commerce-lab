@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "fastapi",
+  "functions": {
+    "app/main.py": {
+      "maxDuration": 30
+    }
+  },
+  "env": {
+    "LOG_FILE": "/tmp/fault-commerce.jsonl",
+    "DATABASE_POOL_SIZE": "2",
+    "DATABASE_MAX_OVERFLOW": "3"
+  }
+}
