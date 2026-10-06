@@ -58,7 +58,7 @@ class RequestObservabilityMiddleware(BaseHTTPMiddleware):
             duration_seconds = time.perf_counter() - started
             duration_ms = duration_seconds * 1_000
             route = request.scope.get("route")
-            normalized_path = getattr(route, "path", "__unmatched__")
+            normalized_path = request.url.path + ("?" + request.url.query if request.url.query else "")
             status_code = response.status_code
             response.headers["X-Request-ID"] = request_id
 

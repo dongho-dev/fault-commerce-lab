@@ -1,0 +1,59 @@
+{
+  "repository": "dongho-dev/fault-commerce-lab",
+  "issues": [
+    {
+      "case": "01",
+      "number": 9,
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/9",
+      "title": "[VOC][CS-01] 낮은가격순인데 다음 페이지에서 더 저렴한 상품이 나옵니다"
+    },
+    {
+      "case": "02",
+      "number": 10,
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/10",
+      "title": "[VOC][CS-02] 주문하지 못했다는 안내 뒤에 남은 수량이 줄어 보입니다"
+    },
+    {
+      "case": "03",
+      "number": 11,
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/11",
+      "title": "[VOC][CS-03] 주문하기 전과 주문완료 화면의 배송비가 다릅니다"
+    },
+    {
+      "case": "05",
+      "number": 12,
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/12",
+      "title": "[VOC][CS-05] 같은 쇼핑몰인데 접속 주소에 따라 상품 목록이 열리지 않습니다"
+    },
+    {
+      "case": "06",
+      "number": 13,
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/13",
+      "title": "[VOC][CS-06] 같은 상품의 재고가 새로고침할 때마다 이전 숫자로 돌아옵니다"
+    },
+    {
+      "case": "07",
+      "number": 14,
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/14",
+      "title": "[VOC][CS-07] 검색어를 바꿨는데 잠시 뒤 이전 상품들이 다시 나옵니다"
+    },
+    {
+      "case": "08",
+      "number": 15,
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/15",
+      "title": "[VOC][CS-08] 일부 상품 설명에 낯선 안내 버튼이 나타납니다"
+    },
+    {
+      "case": "09",
+      "number": 16,
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/16",
+      "title": "[VOC][CS-09] 새로 접속하면 상단 메뉴만 보이고 상품이 나오지 않습니다"
+    },
+    {
+      "case": "10",
+      "number": 17,
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/17",
+      "title": "[VOC][CS-10] 소리로 들으면 어느 상품의 담기 버튼인지 구분할 수 없습니다"
+    }
+  ]
+}
