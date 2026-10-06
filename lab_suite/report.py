@@ -142,6 +142,9 @@ def generate(runs):
         "요청 로그 비활성 조건을 세 단계에 동일하게 적용한다. 이 결과는 운영 트래"
         "픽의 발생 시간이나 수용량 추정이 아니다.",
         "",
+        "중간 실행과 재현 조건의 한계는 [검증 보충 기록](validation-notes.md)에 남겼다.",
+        "검증에 사용한 이미지 식별자와 패키지 버전은 [환경 기록](runtime.json)에 있다.",
+        "",
         "## 증거",
         "",
         "[기계 판독 결과](verification.json)의 사례별 evidenc"
@@ -187,7 +190,9 @@ def generate(runs):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--runs", default="verification-v1,verification-04-noswap")
+    parser.add_argument(
+        "--runs", default="verification-v1,verification-04-noswap,verification-04-connections"
+    )
     args = parser.parse_args()
     generate(args.runs.split(","))
     return 0

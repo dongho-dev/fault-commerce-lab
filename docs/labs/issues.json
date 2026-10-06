@@ -20,6 +20,12 @@
       "title": "[VOC][CS-03] 주문하기 전과 주문완료 화면의 배송비가 다릅니다"
     },
     {
+      "case": "04",
+      "number": 18,
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/18",
+      "title": "[VOC][CS-04] 한동안 정상 이용하던 쇼핑몰이 하루 중 몇 차례 함께 열리지 않습니다"
+    },
+    {
       "case": "05",
       "number": 12,
       "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/12",

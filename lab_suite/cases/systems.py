@@ -139,7 +139,7 @@ async def _probe_metrics(urls: dict[str, str], evidence_dir: Path) -> dict:
     last_healthy_cycle_started = 0.0
     stop_monitor = asyncio.Event()
     with progress_path.open("w", encoding="utf-8") as progress:
-        limits = httpx.Limits(max_connections=concurrency, max_keepalive_connections=concurrency)
+        limits = httpx.Limits(max_connections=concurrency, max_keepalive_connections=0)
         monitor_limits = httpx.Limits(max_connections=2, max_keepalive_connections=2)
         async with (
             httpx.AsyncClient(
@@ -478,6 +478,7 @@ async def _probe_metrics(urls: dict[str, str], evidence_dir: Path) -> dict:
                     "operational_capacity_claim": False,
                     "requested_per_stage": request_count,
                     "concurrency": concurrency,
+                    "pressure_connection_reuse": False,
                     "stage_timeout_seconds": stage_timeout,
                     "request_timeout_seconds": request_timeout,
                     "query_characters": 100,
