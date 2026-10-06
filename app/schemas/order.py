@@ -21,6 +21,18 @@ class OrderCreate(BaseModel):
         return normalized
 
 
+class OrderQuoteResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    product_id: int
+    quantity: int
+    unit_price: int
+    postal_code: str
+    merchandise_amount: int
+    shipping_fee: int
+    total_amount: int
+
+
 class OrderResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
