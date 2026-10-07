@@ -1,0 +1,688 @@
+{
+  "case": "04",
+  "expected": "healthy",
+  "started_at": "2026-10-06T09:41:24.225240+00:00",
+  "healthy": true,
+  "symptom": false,
+  "checks": {
+    "same_query_control_completed": true,
+    "unique_queries_completed": true,
+    "bounded_metric_cardinality": true,
+    "no_container_restart": true,
+    "runtime_monitor_present": true,
+    "customer_queries_all_succeeded": true,
+    "customer_queries_recovered": true,
+    "all_started_pressure_requests_completed": true,
+    "customer_monitor_closed": true
+  },
+  "observations": {
+    "pressure_path": "/health/live",
+    "validation_method": "DB 작업을 제외하고 큰 유효 URL로 보유 메모리 누적을 가속한 합성 입력",
+    "padding_bytes": 48000,
+    "sample_padding_bytes": 0,
+    "accelerated_input": true,
+    "operational_capacity_claim": false,
+    "requested_per_stage": 12000,
+    "concurrency": 8,
+    "pressure_connection_reuse": false,
+    "stage_timeout_seconds": 1800.0,
+    "request_timeout_seconds": 5.0,
+    "query_characters": 100,
+    "fixture_product_id": 1,
+    "fixture_products_created": 1,
+    "initial_metrics": {
+      "request_series": 2,
+      "query_request_series": 0,
+      "process_resident_memory_bytes": 89763840.0,
+      "process_start_time_seconds": 1791279673.39
+    },
+    "after_control_metrics": {
+      "request_series": 6,
+      "query_request_series": 0,
+      "process_resident_memory_bytes": 103280640.0,
+      "process_start_time_seconds": 1791279673.39
+    },
+    "after_sample_metrics": {
+      "request_series": 6,
+      "query_request_series": 0,
+      "process_resident_memory_bytes": 103280640.0,
+      "process_start_time_seconds": 1791279673.39
+    },
+    "initial_runtime": {
+      "timestamp": "2026-10-06T09:41:22.692028+00:00",
+      "restart_count": 0,
+      "oom_killed": false,
+      "running": true,
+      "memory_usage": 77101793,
+      "memory_display": "73.53MiB / 512MiB"
+    },
+    "final_runtime": {
+      "timestamp": "2026-10-06T09:45:33.801840+00:00",
+      "restart_count": 0,
+      "oom_killed": false,
+      "running": true,
+      "memory_usage": 92778004,
+      "memory_display": "88.48MiB / 512MiB"
+    },
+    "control": {
+      "planned": 12000,
+      "attempted": 12000,
+      "completed": 12000,
+      "succeeded": 12000,
+      "errors": 0,
+      "bad_payloads": 0,
+      "first_errors": [],
+      "runtime_samples": [
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 1007,
+          "completed": 1000,
+          "succeeded": 1000,
+          "errors": 0,
+          "elapsed_seconds": 11.882,
+          "runtime": {
+            "timestamp": "2026-10-06T09:41:32.600736+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 73536634,
+            "memory_display": "70.13MiB / 512MiB"
+          },
+          "customer_attempted": 110,
+          "customer_errors": 0
+        },
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 2007,
+          "completed": 2000,
+          "succeeded": 2000,
+          "errors": 0,
+          "elapsed_seconds": 21.036,
+          "runtime": {
+            "timestamp": "2026-10-06T09:41:42.576321+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 75623301,
+            "memory_display": "72.12MiB / 512MiB"
+          },
+          "customer_attempted": 202,
+          "customer_errors": 0
+        },
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 3007,
+          "completed": 3000,
+          "succeeded": 3000,
+          "errors": 0,
+          "elapsed_seconds": 30.239,
+          "runtime": {
+            "timestamp": "2026-10-06T09:41:52.608660+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 77395394,
+            "memory_display": "73.81MiB / 512MiB"
+          },
+          "customer_attempted": 292,
+          "customer_errors": 0
+        },
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 5007,
+          "completed": 5000,
+          "succeeded": 5000,
+          "errors": 0,
+          "elapsed_seconds": 47.95,
+          "runtime": {
+            "timestamp": "2026-10-06T09:42:12.616084+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 78129397,
+            "memory_display": "74.51MiB / 512MiB"
+          },
+          "customer_attempted": 478,
+          "customer_errors": 0
+        },
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 6007,
+          "completed": 6000,
+          "succeeded": 6000,
+          "errors": 0,
+          "elapsed_seconds": 56.98,
+          "runtime": {
+            "timestamp": "2026-10-06T09:42:17.319319+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 77888225,
+            "memory_display": "74.28MiB / 512MiB"
+          },
+          "customer_attempted": 574,
+          "customer_errors": 0
+        },
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 7007,
+          "completed": 7000,
+          "succeeded": 7000,
+          "errors": 0,
+          "elapsed_seconds": 65.912,
+          "runtime": {
+            "timestamp": "2026-10-06T09:42:27.303235+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 78968258,
+            "memory_display": "75.31MiB / 512MiB"
+          },
+          "customer_attempted": 666,
+          "customer_errors": 0
+        },
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 8007,
+          "completed": 8000,
+          "succeeded": 8000,
+          "errors": 0,
+          "elapsed_seconds": 76.114,
+          "runtime": {
+            "timestamp": "2026-10-06T09:42:37.363330+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 77594624,
+            "memory_display": "74MiB / 512MiB"
+          },
+          "customer_attempted": 766,
+          "customer_errors": 0
+        },
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 9007,
+          "completed": 9000,
+          "succeeded": 9000,
+          "errors": 0,
+          "elapsed_seconds": 85.101,
+          "runtime": {
+            "timestamp": "2026-10-06T09:42:47.314387+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 79104573,
+            "memory_display": "75.44MiB / 512MiB"
+          },
+          "customer_attempted": 856,
+          "customer_errors": 0
+        },
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 10007,
+          "completed": 10000,
+          "succeeded": 10000,
+          "errors": 0,
+          "elapsed_seconds": 94.243,
+          "runtime": {
+            "timestamp": "2026-10-06T09:42:57.320680+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 80163635,
+            "memory_display": "76.45MiB / 512MiB"
+          },
+          "customer_attempted": 950,
+          "customer_errors": 0
+        },
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 11007,
+          "completed": 11000,
+          "succeeded": 11000,
+          "errors": 0,
+          "elapsed_seconds": 103.213,
+          "runtime": {
+            "timestamp": "2026-10-06T09:43:07.361264+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 80163635,
+            "memory_display": "76.45MiB / 512MiB"
+          },
+          "customer_attempted": 1044,
+          "customer_errors": 0
+        },
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 12000,
+          "completed": 12000,
+          "succeeded": 12000,
+          "errors": 0,
+          "elapsed_seconds": 112.037,
+          "runtime": {
+            "timestamp": "2026-10-06T09:43:12.631282+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 88080384,
+            "memory_display": "84MiB / 512MiB"
+          },
+          "customer_attempted": 1136,
+          "customer_errors": 0
+        },
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 12000,
+          "completed": 12000,
+          "succeeded": 12000,
+          "errors": 0,
+          "elapsed_seconds": 112.04,
+          "runtime": {
+            "timestamp": "2026-10-06T09:43:12.631282+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 88080384,
+            "memory_display": "84MiB / 512MiB"
+          },
+          "customer_attempted": 1136,
+          "customer_errors": 0
+        }
+      ],
+      "restart_observed": false,
+      "oom_killed_observed": false,
+      "peak_observed_memory_bytes": 91446312,
+      "deadline_reached": false,
+      "elapsed_seconds": 112.04,
+      "all_started_requests_completed": true
+    },
+    "unique_sample": {
+      "planned": 64,
+      "attempted": 64,
+      "completed": 64,
+      "succeeded": 64,
+      "errors": 0,
+      "bad_payloads": 0,
+      "first_errors": [],
+      "runtime_samples": [
+        {
+          "stage": "unique-query-sample",
+          "pressure_path": "/health/live",
+          "attempted": 64,
+          "completed": 64,
+          "succeeded": 64,
+          "errors": 0,
+          "elapsed_seconds": 0.335,
+          "runtime": {
+            "timestamp": "2026-10-06T09:43:17.340370+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 79314288,
+            "memory_display": "75.64MiB / 512MiB"
+          },
+          "customer_attempted": 1142,
+          "customer_errors": 0
+        }
+      ],
+      "restart_observed": false,
+      "oom_killed_observed": false,
+      "peak_observed_memory_bytes": 79314288,
+      "deadline_reached": false,
+      "elapsed_seconds": 0.335,
+      "all_started_requests_completed": true
+    },
+    "unique_stress": {
+      "planned": 11936,
+      "attempted": 11936,
+      "completed": 11936,
+      "succeeded": 11936,
+      "errors": 0,
+      "bad_payloads": 0,
+      "first_errors": [],
+      "runtime_samples": [
+        {
+          "stage": "unique-query-stress",
+          "pressure_path": "/health/live",
+          "attempted": 1007,
+          "completed": 1000,
+          "succeeded": 1000,
+          "errors": 0,
+          "elapsed_seconds": 9.2,
+          "runtime": {
+            "timestamp": "2026-10-06T09:43:22.641917+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 86402662,
+            "memory_display": "82.4MiB / 512MiB"
+          },
+          "customer_attempted": 1234,
+          "customer_errors": 0
+        },
+        {
+          "stage": "unique-query-stress",
+          "pressure_path": "/health/live",
+          "attempted": 2007,
+          "completed": 2000,
+          "succeeded": 2000,
+          "errors": 0,
+          "elapsed_seconds": 19.19,
+          "runtime": {
+            "timestamp": "2026-10-06T09:43:32.658498+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 90261422,
+            "memory_display": "86.08MiB / 512MiB"
+          },
+          "customer_attempted": 1330,
+          "customer_errors": 0
+        },
+        {
+          "stage": "unique-query-stress",
+          "pressure_path": "/health/live",
+          "attempted": 3007,
+          "completed": 3000,
+          "succeeded": 3000,
+          "errors": 0,
+          "elapsed_seconds": 30.121,
+          "runtime": {
+            "timestamp": "2026-10-06T09:43:47.397728+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 91037368,
+            "memory_display": "86.82MiB / 512MiB"
+          },
+          "customer_attempted": 1436,
+          "customer_errors": 0
+        },
+        {
+          "stage": "unique-query-stress",
+          "pressure_path": "/health/live",
+          "attempted": 4007,
+          "completed": 4000,
+          "succeeded": 4000,
+          "errors": 0,
+          "elapsed_seconds": 41.164,
+          "runtime": {
+            "timestamp": "2026-10-06T09:43:57.424566+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 92138373,
+            "memory_display": "87.87MiB / 512MiB"
+          },
+          "customer_attempted": 1540,
+          "customer_errors": 0
+        },
+        {
+          "stage": "unique-query-stress",
+          "pressure_path": "/health/live",
+          "attempted": 5007,
+          "completed": 5000,
+          "succeeded": 5000,
+          "errors": 0,
+          "elapsed_seconds": 53.059,
+          "runtime": {
+            "timestamp": "2026-10-06T09:44:07.555572+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 92106915,
+            "memory_display": "87.84MiB / 512MiB"
+          },
+          "customer_attempted": 1646,
+          "customer_errors": 0
+        },
+        {
+          "stage": "unique-query-stress",
+          "pressure_path": "/health/live",
+          "attempted": 6007,
+          "completed": 6000,
+          "succeeded": 6000,
+          "errors": 0,
+          "elapsed_seconds": 65.741,
+          "runtime": {
+            "timestamp": "2026-10-06T09:44:22.805756+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 91330969,
+            "memory_display": "87.1MiB / 512MiB"
+          },
+          "customer_attempted": 1762,
+          "customer_errors": 0
+        },
+        {
+          "stage": "unique-query-stress",
+          "pressure_path": "/health/live",
+          "attempted": 7007,
+          "completed": 7000,
+          "succeeded": 7000,
+          "errors": 0,
+          "elapsed_seconds": 77.647,
+          "runtime": {
+            "timestamp": "2026-10-06T09:44:32.768204+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 91320483,
+            "memory_display": "87.09MiB / 512MiB"
+          },
+          "customer_attempted": 1872,
+          "customer_errors": 0
+        },
+        {
+          "stage": "unique-query-stress",
+          "pressure_path": "/health/live",
+          "attempted": 8007,
+          "completed": 8000,
+          "succeeded": 8000,
+          "errors": 0,
+          "elapsed_seconds": 90.473,
+          "runtime": {
+            "timestamp": "2026-10-06T09:44:47.540756+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 100600381,
+            "memory_display": "95.94MiB / 512MiB"
+          },
+          "customer_attempted": 1986,
+          "customer_errors": 0
+        },
+        {
+          "stage": "unique-query-stress",
+          "pressure_path": "/health/live",
+          "attempted": 9007,
+          "completed": 9000,
+          "succeeded": 9000,
+          "errors": 0,
+          "elapsed_seconds": 102.755,
+          "runtime": {
+            "timestamp": "2026-10-06T09:44:57.495890+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 95472844,
+            "memory_display": "91.05MiB / 512MiB"
+          },
+          "customer_attempted": 2100,
+          "customer_errors": 0
+        },
+        {
+          "stage": "unique-query-stress",
+          "pressure_path": "/health/live",
+          "attempted": 10007,
+          "completed": 10000,
+          "succeeded": 10000,
+          "errors": 0,
+          "elapsed_seconds": 115.256,
+          "runtime": {
+            "timestamp": "2026-10-06T09:45:08.096345+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 106535321,
+            "memory_display": "101.6MiB / 512MiB"
+          },
+          "customer_attempted": 2210,
+          "customer_errors": 0
+        },
+        {
+          "stage": "unique-query-stress",
+          "pressure_path": "/health/live",
+          "attempted": 11007,
+          "completed": 11000,
+          "succeeded": 11000,
+          "errors": 0,
+          "elapsed_seconds": 125.835,
+          "runtime": {
+            "timestamp": "2026-10-06T09:45:18.525021+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 94350868,
+            "memory_display": "89.98MiB / 512MiB"
+          },
+          "customer_attempted": 2314,
+          "customer_errors": 0
+        },
+        {
+          "stage": "unique-query-stress",
+          "pressure_path": "/health/live",
+          "attempted": 11936,
+          "completed": 11936,
+          "succeeded": 11936,
+          "errors": 0,
+          "elapsed_seconds": 136.506,
+          "runtime": {
+            "timestamp": "2026-10-06T09:45:33.801840+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 92778004,
+            "memory_display": "88.48MiB / 512MiB"
+          },
+          "customer_attempted": 2410,
+          "customer_errors": 0
+        }
+      ],
+      "restart_observed": false,
+      "oom_killed_observed": false,
+      "peak_observed_memory_bytes": 106535321,
+      "deadline_reached": false,
+      "elapsed_seconds": 136.506,
+      "all_started_requests_completed": true
+    },
+    "unique_total_attempted": 12000,
+    "unique_total_completed": 12000,
+    "unique_total_succeeded": 12000,
+    "unique_total_errors": 0,
+    "customer_queries": {
+      "attempted": 2468,
+      "completed": 2468,
+      "succeeded": 2468,
+      "errors": 0,
+      "availability_errors": 0,
+      "bad_payloads": 0,
+      "first_errors": [],
+      "first_availability_errors": [],
+      "by_path": {
+        "/products?limit=1": {
+          "attempted": 1234,
+          "completed": 1234,
+          "succeeded": 1234,
+          "errors": 0,
+          "availability_errors": 0,
+          "bad_payloads": 0
+        },
+        "/products/1": {
+          "attempted": 1234,
+          "completed": 1234,
+          "succeeded": 1234,
+          "errors": 0,
+          "availability_errors": 0,
+          "bad_payloads": 0
+        }
+      },
+      "by_stage": {
+        "same-query-control": {
+          "attempted": 1138,
+          "completed": 1138,
+          "succeeded": 1138,
+          "errors": 0,
+          "availability_errors": 0,
+          "bad_payloads": 0
+        },
+        "unique-query-sample": {
+          "attempted": 4,
+          "completed": 4,
+          "succeeded": 4,
+          "errors": 0,
+          "availability_errors": 0,
+          "bad_payloads": 0
+        },
+        "unique-query-stress": {
+          "attempted": 1268,
+          "completed": 1268,
+          "succeeded": 1268,
+          "errors": 0,
+          "availability_errors": 0,
+          "bad_payloads": 0
+        },
+        "recovery": {
+          "attempted": 58,
+          "completed": 58,
+          "succeeded": 58,
+          "errors": 0,
+          "availability_errors": 0,
+          "bad_payloads": 0
+        }
+      },
+      "interval_seconds": 0.1
+    },
+    "customer_availability_failure_observed": false,
+    "customer_recovery_confirmed": true,
+    "recovery_wait_seconds": 3.556,
+    "leak_observed": false,
+    "restart_observed": false,
+    "oom_event_confirmation_required": true,
+    "large_metrics_scrape_avoided": true
+  },
+  "oracle": {
+    "passed": true,
+    "products": [
+      {
+        "product_id": 1,
+        "initial_stock": 5,
+        "confirmed_quantity": 0,
+        "current_stock": 5,
+        "non_negative": true,
+        "stock_equation": true
+      }
+    ],
+    "orders": {
+      "checked": 0,
+      "invalid_order_ids": [],
+      "amounts_valid": true
+    }
+  },
+  "passed": true,
+  "finished_at": "2026-10-06T09:45:37.939389+00:00"
+}
