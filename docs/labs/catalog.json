@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "repository": "dongho-dev/fault-commerce-lab",
+  "observed_at": "2026-10-07T11:16:55+09:00",
+  "classification": "customer_visible_problem_type",
+  "categories": [
+    {
+      "id": "performance",
+      "title": "성능과 응답시간",
+      "description": "기다리는 시간과 이용 흐름"
+    },
+    {
+      "id": "availability",
+      "title": "접속과 화면 열림",
+      "description": "서비스 접속과 상품 화면 열기"
+    },
+    {
+      "id": "discovery",
+      "title": "상품 탐색과 화면 표시",
+      "description": "상품 검색과 정보 표시"
+    },
+    {
+      "id": "orders",
+      "title": "주문 금액과 재고",
+      "description": "주문 결과, 안내 금액과 남은 수량"
+    },
+    {
+      "id": "accessibility",
+      "title": "접근성",
+      "description": "정보 구분과 조작"
+    }
+  ],
+  "entries": [
+    {
+      "issue_number": 5,
+      "title": "[VOC-2] 결제 버튼 재클릭 시 중복 주문 여부",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/5",
+      "category": "orders",
+      "case_id": null,
+      "issue_state": "open",
+      "preparation_verified": null,
+      "improvement": null
+    },
+    {
+      "issue_number": 24,
+      "title": "[VOC][CS-11] 재고가 넉넉한 상품인데 주문을 완료하지 못하는 고객이 있습니다",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/24",
+      "category": "orders",
+      "case_id": "11",
+      "issue_state": "open",
+      "preparation_verified": true,
+      "improvement": null
+    },
+    {
+      "issue_number": 25,
+      "title": "[VOC][CS-12] 한정 수량보다 많은 주문이 접수됩니다",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/25",
+      "category": "orders",
+      "case_id": "12",
+      "issue_state": "open",
+      "preparation_verified": true,
+      "improvement": null
+    },
+    {
+      "issue_number": 26,
+      "title": "[VOC][CS-13] 다시 방문하니 상품 화면을 열 수 없습니다",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/26",
+      "category": "availability",
+      "case_id": "13",
+      "issue_state": "open",
+      "preparation_verified": true,
+      "improvement": null
+    },
+    {
+      "issue_number": 27,
+      "title": "[VOC][CS-14] 같은 상품 화면이 어떤 때는 열리고 어떤 때는 실패합니다",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/27",
+      "category": "availability",
+      "case_id": "14",
+      "issue_state": "open",
+      "preparation_verified": true,
+      "improvement": null
+    },
+    {
+      "issue_number": 28,
+      "title": "[VOC][CS-15] 새로 들어온 상품이 목록에서 보이지 않습니다",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/28",
+      "category": "discovery",
+      "case_id": "15",
+      "issue_state": "open",
+      "preparation_verified": true,
+      "improvement": null
+    }
+  ]
+}
