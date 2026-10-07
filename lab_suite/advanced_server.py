@@ -11,7 +11,7 @@ from pathlib import Path
 
 
 def initialize_worker(engine):
-    pass
+    engine.dispose(close=False)
 
 
 def _worker(listener):
