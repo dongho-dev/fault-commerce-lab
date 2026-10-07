@@ -1,0 +1,78 @@
+{
+  "case": "08",
+  "expected": "healthy",
+  "started_at": "2026-10-06T08:05:48.367344+00:00",
+  "healthy": true,
+  "symptom": false,
+  "checks": {
+    "stored_description_matches_input": true,
+    "description_shown_as_literal_text": true,
+    "description_created_interactive_button": false,
+    "description_button_executes_local_text_change": false,
+    "description_probe_does_not_add_to_cart": true,
+    "existing_add_button_adds_only_expected_product": true,
+    "no_browser_page_errors": true
+  },
+  "observations": {
+    "fixture": {
+      "id": 1,
+      "name": "설명 버튼 검증 상품",
+      "unit_price": 12000,
+      "initial_stock": 8,
+      "current_stock": 8,
+      "created_at": "2026-10-06T08:05:49.899099Z",
+      "category": "etc",
+      "brand": "",
+      "description": "<button type=\"button\" onclick=\"this.textContent='LAB-PROBE'\">장바구니 확인</button>",
+      "list_price": 16000,
+      "image_url": null
+    },
+    "description_text_before_click": "<button type=\"button\" onclick=\"this.textContent='LAB-PROBE'\">장바구니 확인</button>",
+    "description_html_before_click": "&lt;button type=\"button\" onclick=\"this.textContent='LAB-PROBE'\"&gt;장바구니 확인&lt;/button&gt;",
+    "cart_before_probe": [],
+    "cart_after_probe": [],
+    "cart_after_existing_add_button": [
+      {
+        "id": 1,
+        "qty": 1,
+        "selected": true,
+        "snap": {
+          "name": "설명 버튼 검증 상품",
+          "brand": "",
+          "unit_price": 12000,
+          "list_price": 16000,
+          "image_url": null,
+          "category": "etc",
+          "current_stock": 8
+        }
+      }
+    ],
+    "visible_cart_products": [
+      "설명 버튼 검증 상품"
+    ],
+    "probe_effect": "Only changes the local synthetic button text; no external requests or cookie access",
+    "browser_page_errors": [],
+    "browser_version": "140.0.7339.16",
+    "fixture_creation_method": "POST /products with GET readback; no direct DB writes"
+  },
+  "oracle": {
+    "passed": true,
+    "products": [
+      {
+        "product_id": 1,
+        "initial_stock": 8,
+        "confirmed_quantity": 0,
+        "current_stock": 8,
+        "non_negative": true,
+        "stock_equation": true
+      }
+    ],
+    "orders": {
+      "checked": 0,
+      "invalid_order_ids": [],
+      "amounts_valid": true
+    }
+  },
+  "passed": true,
+  "finished_at": "2026-10-06T08:05:52.040633+00:00"
+}

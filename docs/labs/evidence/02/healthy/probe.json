@@ -1,0 +1,104 @@
+{
+  "case": "02",
+  "expected": "healthy",
+  "started_at": "2026-10-06T08:00:07.282460+00:00",
+  "healthy": true,
+  "symptom": false,
+  "checks": {
+    "controlled_save_failure": true,
+    "request_correlated": true,
+    "failed_order_stock_unchanged": true,
+    "failed_order_absent_from_browser_history": true,
+    "control_order_succeeds": true,
+    "postal_input_preserved": true
+  },
+  "observations": {
+    "failure_product_id": 1,
+    "control_product_id": 2,
+    "initial_stock": 2,
+    "stock_after_failed_order": 2,
+    "failure_request": {
+      "before": {
+        "postal": "16841",
+        "summary": "상품금액\n10,000원\n배송비\n+3,000원\n총 결제금액\n13,000원",
+        "total": "13,000원",
+        "button": "13,000원 주문하기"
+      },
+      "http_status": 500,
+      "request_id": "lab02-failure",
+      "request": {
+        "product_id": 1,
+        "quantity": 1,
+        "postal_code": "16841"
+      },
+      "response": {
+        "code": "INTERNAL_SERVER_ERROR",
+        "message": "서버 내부 오류가 발생했습니다.",
+        "request_id": "lab02-failure"
+      },
+      "completion": "01 장바구니\n›\n02 주문/결제\n›\n03 주문완료\n주문하지 못했습니다\n\n재고가 부족한 상품이 있어 주문이 접수되지 않았습니다.\n\n주문내역 보기\n쇼핑 계속하기\n주문하지 못한 상품\nLAB02-Fail-atomicity\n서버 내부 오류가 발생했습니다.\n1개\n주문하지 못한 상품은 장바구니에 그대로 남아 있습니다.",
+      "last_checkout": {
+        "id": 1791273609804,
+        "created_at": "2026-10-06T08:00:09.804Z",
+        "postal_code": "16841",
+        "orders": [],
+        "failures": [
+          {
+            "product_id": 1,
+            "quantity": 1,
+            "name": "LAB02-Fail-atomicity",
+            "image_url": null,
+            "code": "INTERNAL_SERVER_ERROR",
+            "message": "서버 내부 오류가 발생했습니다."
+          }
+        ]
+      },
+      "history": [],
+      "stored_postal": "16841",
+      "history_page": "주문내역\n주문한 내역이 없습니다\n첫 주문을 해 보세요.\n쇼핑하러 가기"
+    },
+    "control_http_status": 201,
+    "control_request_id": "lab02-control",
+    "control_order": {
+      "id": 1,
+      "product_id": 2,
+      "quantity": 1,
+      "unit_price": 10000,
+      "postal_code": "16841",
+      "shipping_fee": 3000,
+      "total_amount": 13000,
+      "status": "CONFIRMED",
+      "created_at": "2026-10-06T08:00:10.217309Z"
+    },
+    "control_stock": 1,
+    "database_order_presence": "Runner must verify order presence with read-only DB queries and Oracle"
+  },
+  "oracle": {
+    "passed": true,
+    "products": [
+      {
+        "product_id": 1,
+        "initial_stock": 2,
+        "confirmed_quantity": 0,
+        "current_stock": 2,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 2,
+        "initial_stock": 2,
+        "confirmed_quantity": 1,
+        "current_stock": 1,
+        "non_negative": true,
+        "stock_equation": true
+      }
+    ],
+    "orders": {
+      "checked": 1,
+      "invalid_order_ids": [],
+      "amounts_valid": true
+    }
+  },
+  "passed": true,
+  "finished_at": "2026-10-06T08:00:10.397369+00:00"
+}

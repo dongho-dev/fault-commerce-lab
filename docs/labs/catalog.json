@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "repository": "dongho-dev/fault-commerce-lab",
+  "observed_at": "2026-10-06T21:35:45+09:00",
+  "classification": "customer_visible_problem_type",
+  "categories": [
+    {
+      "id": "performance",
+      "title": "성능과 응답시간",
+      "description": "기다리는 시간이나 이용 흐름의 지연에 관한 문의"
+    },
+    {
+      "id": "availability",
+      "title": "접속과 화면 열림",
+      "description": "서비스에 들어가거나 화면을 여는 과정의 문의"
+    },
+    {
+      "id": "discovery",
+      "title": "상품 탐색과 화면 표시",
+      "description": "상품을 찾고 정보를 읽는 과정의 문의"
+    },
+    {
+      "id": "orders",
+      "title": "주문 금액과 재고",
+      "description": "주문 결과, 안내 금액, 남은 수량에 관한 문의"
+    },
+    {
+      "id": "accessibility",
+      "title": "접근성",
+      "description": "사용 방식에 따른 정보 구분과 조작에 관한 문의"
+    }
+  ],
+  "entries": [
+    {
+      "issue_number": 1,
+      "title": "[VOC] 쇼핑몰 이용 중 느려짐·멈춤 문의 증가",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/1",
+      "category": "performance",
+      "case_id": null,
+      "issue_state": "closed",
+      "closure_reason": "completed",
+      "issue_updated_at": "2026-10-06T06:18:58Z",
+      "improvement": {
+        "number": 2,
+        "url": "https://github.com/dongho-dev/fault-commerce-lab/pull/2",
+        "state": "merged",
+        "scope_note": "PR 본문에는 최초 화면 목표 일부 미달이 기록되어 있다."
+      },
+      "preparation_verified": null
+    },
+    {
+      "issue_number": 4,
+      "title": "[VOC-1] 주문 1건이 조회보다 느림",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/4",
+      "category": "performance",
+      "case_id": null,
+      "issue_state": "closed",
+      "closure_reason": "not_planned",
+      "issue_updated_at": "2026-10-06T08:51:09Z",
+      "improvement": null,
+      "preparation_verified": null
+    },
+    {
+      "issue_number": 6,
+      "title": "[VOC-3] 장바구니 여러 상품 주문 시 줄마다 느리게 표시",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/6",
+      "category": "performance",
+      "case_id": null,
+      "issue_state": "closed",
+      "closure_reason": "duplicate",
+      "issue_updated_at": "2026-10-06T09:12:08Z",
+      "improvement": null,
+      "preparation_verified": null
+    },
+    {
+      "issue_number": 8,
+      "title": "[VOC-5] 품절 안내 지연",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/8",
+      "category": "performance",
+      "case_id": null,
+      "issue_state": "closed",
+      "closure_reason": "duplicate",
+      "issue_updated_at": "2026-10-06T09:12:14Z",
+      "improvement": null,
+      "preparation_verified": null
+    },
+    {
+      "issue_number": 18,
+      "title": "[VOC][CS-04] 한동안 정상 이용하던 쇼핑몰이 하루 중 몇 차례 함께 열리지 않습니다",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/18",
+      "category": "availability",
+      "case_id": "04",
+      "issue_state": "open",
+      "closure_reason": null,
+      "issue_updated_at": "2026-10-06T09:46:57Z",
+      "improvement": null,
+      "preparation_verified": true
+    },
+    {
+      "issue_number": 12,
+      "title": "[VOC][CS-05] 같은 쇼핑몰인데 접속 주소에 따라 상품 목록이 열리지 않습니다",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/12",
+      "category": "availability",
+      "case_id": "05",
+      "issue_state": "closed",
+      "closure_reason": "not_planned",
+      "issue_updated_at": "2026-10-06T12:06:07Z",
+      "improvement": null,
+      "preparation_verified": true
+    },
+    {
+      "issue_number": 16,
+      "title": "[VOC][CS-09] 새로 접속하면 상단 메뉴만 보이고 상품이 나오지 않습니다",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/16",
+      "category": "availability",
+      "case_id": "09",
+      "issue_state": "open",
+      "closure_reason": null,
+      "issue_updated_at": "2026-10-06T09:19:15Z",
+      "improvement": null,
+      "preparation_verified": true
+    },
+    {
+      "issue_number": 9,
+      "title": "[VOC][CS-01] 낮은가격순인데 다음 페이지에서 더 저렴한 상품이 나옵니다",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/9",
+      "category": "discovery",
+      "case_id": "01",
+      "issue_state": "open",
+      "closure_reason": null,
+      "issue_updated_at": "2026-10-06T11:41:10Z",
+      "improvement": {
+        "number": 19,
+        "url": "https://github.com/dongho-dev/fault-commerce-lab/pull/19",
+        "state": "merged",
+        "scope_note": null
+      },
+      "preparation_verified": true
+    },
+    {
+      "issue_number": 14,
+      "title": "[VOC][CS-07] 검색어를 바꿨는데 잠시 뒤 이전 상품들이 다시 나옵니다",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/14",
+      "category": "discovery",
+      "case_id": "07",
+      "issue_state": "open",
+      "closure_reason": null,
+      "issue_updated_at": "2026-10-06T09:18:59Z",
+      "improvement": null,
+      "preparation_verified": true
+    },
+    {
+      "issue_number": 15,
+      "title": "[VOC][CS-08] 일부 상품 설명에 낯선 안내 버튼이 나타납니다",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/15",
+      "category": "discovery",
+      "case_id": "08",
+      "issue_state": "open",
+      "closure_reason": null,
+      "issue_updated_at": "2026-10-06T09:19:08Z",
+      "improvement": null,
+      "preparation_verified": true
+    },
+    {
+      "issue_number": 5,
+      "title": "[VOC-2] 결제 버튼 재클릭 시 중복 주문 여부",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/5",
+      "category": "orders",
+      "case_id": null,
+      "issue_state": "open",
+      "closure_reason": null,
+      "issue_updated_at": "2026-10-06T07:36:22Z",
+      "improvement": null,
+      "preparation_verified": null
+    },
+    {
+      "issue_number": 10,
+      "title": "[VOC][CS-02] 주문하지 못했다는 안내 뒤에 남은 수량이 줄어 보입니다",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/10",
+      "category": "orders",
+      "case_id": "02",
+      "issue_state": "open",
+      "closure_reason": null,
+      "issue_updated_at": "2026-10-06T09:18:30Z",
+      "improvement": {
+        "number": 20,
+        "url": "https://github.com/dongho-dev/fault-commerce-lab/pull/20",
+        "state": "merged",
+        "scope_note": null
+      },
+      "preparation_verified": true
+    },
+    {
+      "issue_number": 11,
+      "title": "[VOC][CS-03] 주문하기 전과 주문완료 화면의 배송비가 다릅니다",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/11",
+      "category": "orders",
+      "case_id": "03",
+      "issue_state": "open",
+      "closure_reason": null,
+      "issue_updated_at": "2026-10-06T09:18:37Z",
+      "improvement": {
+        "number": 21,
+        "url": "https://github.com/dongho-dev/fault-commerce-lab/pull/21",
+        "state": "open",
+        "scope_note": null
+      },
+      "preparation_verified": true
+    },
+    {
+      "issue_number": 13,
+      "title": "[VOC][CS-06] 같은 상품의 재고가 새로고침할 때마다 이전 숫자로 돌아옵니다",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/13",
+      "category": "orders",
+      "case_id": "06",
+      "issue_state": "open",
+      "closure_reason": null,
+      "issue_updated_at": "2026-10-06T09:18:51Z",
+      "improvement": null,
+      "preparation_verified": true
+    },
+    {
+      "issue_number": 17,
+      "title": "[VOC][CS-10] 소리로 들으면 어느 상품의 담기 버튼인지 구분할 수 없습니다",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/17",
+      "category": "accessibility",
+      "case_id": "10",
+      "issue_state": "open",
+      "closure_reason": null,
+      "issue_updated_at": "2026-10-06T09:19:25Z",
+      "improvement": null,
+      "preparation_verified": true
+    }
+  ]
+}

@@ -31,6 +31,9 @@ class InventoryRepository:
         return self.session.scalar(select(Inventory).where(Inventory.product_id == product_id))
 
     def decrement_if_available(self, *, product_id: int, quantity: int) -> StockChange | None:
+        inventory = self.get(product_id)
+        if inventory is None:
+            return None
         statement = (
             update(Inventory)
             .where(
@@ -38,7 +41,7 @@ class InventoryRepository:
                 Inventory.current_stock >= quantity,
             )
             .values(
-                current_stock=Inventory.current_stock - quantity,
+                current_stock=inventory.current_stock - quantity,
                 updated_at=func.now(),
             )
             .returning(Inventory.initial_stock, Inventory.current_stock)
