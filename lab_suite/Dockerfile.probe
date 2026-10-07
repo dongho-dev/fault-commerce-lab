@@ -1,0 +1,5 @@
+FROM fcl-cs-base:v2
+ENV PLAYWRIGHT_BROWSERS_PATH=/opt/playwright
+RUN pip install playwright==1.55.0 && python -m playwright install --with-deps --only-shell chromium && rm -rf /var/lib/apt/lists/*
+WORKDIR /workspace
+ENTRYPOINT ["python", "-m", "lab_suite.probe"]
