@@ -1,0 +1,466 @@
+[
+  {
+    "timestamp": "2026-10-06T09:31:40.382647+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 64781025,
+    "memory_display": "61.78MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:31:45.084987+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 70317506,
+    "memory_display": "67.06MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:31:49.793502+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 71586283,
+    "memory_display": "68.27MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:31:54.549042+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 73735864,
+    "memory_display": "70.32MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:31:59.249752+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 77143736,
+    "memory_display": "73.57MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:32:03.958859+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 78622228,
+    "memory_display": "74.98MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:32:08.681304+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 76808192,
+    "memory_display": "73.25MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:32:14.193279+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 76808192,
+    "memory_display": "73.25MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:32:18.886923+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 77825310,
+    "memory_display": "74.22MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:32:24.188754+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 80593551,
+    "memory_display": "76.86MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:32:28.904688+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 75392614,
+    "memory_display": "71.9MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:32:34.218909+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 75644272,
+    "memory_display": "72.14MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:32:38.997488+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 76755763,
+    "memory_display": "73.2MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:32:44.229167+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 78276198,
+    "memory_display": "74.65MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:32:48.969689+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 76336332,
+    "memory_display": "72.8MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:32:54.285774+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 76357304,
+    "memory_display": "72.82MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:32:59.053179+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 76315361,
+    "memory_display": "72.78MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:33:04.249523+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 76378275,
+    "memory_display": "72.84MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:33:09.044243+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 91446312,
+    "memory_display": "87.21MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:33:14.280654+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 75906416,
+    "memory_display": "72.39MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:33:18.987317+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 85742059,
+    "memory_display": "81.77MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:33:24.402952+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 86885007,
+    "memory_display": "82.86MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:33:29.206045+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 76619448,
+    "memory_display": "73.07MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:33:35.553954+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 77028392,
+    "memory_display": "73.46MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:33:41.284725+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 79576432,
+    "memory_display": "75.89MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:33:46.086140+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 79586918,
+    "memory_display": "75.9MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:33:50.793217+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 79849062,
+    "memory_display": "76.15MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:33:55.652854+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 79754690,
+    "memory_display": "76.06MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:34:00.488877+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 91016396,
+    "memory_display": "86.8MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:34:05.208928+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 97202995,
+    "memory_display": "92.7MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:34:09.958251+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 90628423,
+    "memory_display": "86.43MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:34:14.666102+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 90617937,
+    "memory_display": "86.42MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:34:19.397870+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 90659880,
+    "memory_display": "86.46MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:34:24.125192+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 90942996,
+    "memory_display": "86.73MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:34:28.849967+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 93627351,
+    "memory_display": "89.29MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:34:34.333976+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 94497669,
+    "memory_display": "90.12MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:34:39.016150+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 94497669,
+    "memory_display": "90.12MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:34:44.384500+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 94497669,
+    "memory_display": "90.12MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:34:49.094861+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 94508154,
+    "memory_display": "90.13MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:34:54.258669+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 94497669,
+    "memory_display": "90.12MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:34:58.980081+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 92127887,
+    "memory_display": "87.86MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:35:04.350216+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 92138373,
+    "memory_display": "87.87MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:35:09.084478+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 89233817,
+    "memory_display": "85.1MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:35:14.463010+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 89988792,
+    "memory_display": "85.82MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:35:19.238075+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 91970600,
+    "memory_display": "87.71MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:35:24.371161+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 91949629,
+    "memory_display": "87.69MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:35:29.116601+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 92064972,
+    "memory_display": "87.8MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:35:34.385248+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 91949629,
+    "memory_display": "87.69MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:35:39.167661+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 91960115,
+    "memory_display": "87.7MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:35:44.427656+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 91970600,
+    "memory_display": "87.71MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:35:49.165165+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 103578337,
+    "memory_display": "98.78MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:35:54.421549+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 107898470,
+    "memory_display": "102.9MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:35:59.170494+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 97307852,
+    "memory_display": "92.8MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:36:04.401575+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 103001620,
+    "memory_display": "98.23MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:36:09.199264+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 94382325,
+    "memory_display": "90.01MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:36:14.620710+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 94329896,
+    "memory_display": "89.96MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:36:19.388089+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 95063900,
+    "memory_display": "90.66MiB / 512MiB"
+  },
+  {
+    "timestamp": "2026-10-06T09:36:24.433927+00:00",
+    "restart_count": 0,
+    "oom_killed": false,
+    "running": true,
+    "memory_usage": 95305072,
+    "memory_display": "90.89MiB / 512MiB"
+  }
+]
