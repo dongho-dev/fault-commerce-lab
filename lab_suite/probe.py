@@ -31,7 +31,7 @@ def main() -> int:
         oracle = collect_report()
         report["oracle"] = oracle
         wanted_healthy = args.expect == "healthy"
-        wanted_oracle = not (case == "02" and not wanted_healthy)
+        wanted_oracle = not (case in {"02", "12"} and not wanted_healthy)
         report["passed"] = (
             report.get("healthy") is wanted_healthy
             and report.get("symptom") is not wanted_healthy

@@ -12,6 +12,11 @@ CASES = {
     "08": ("browser", "Product description trust boundary"),
     "09": ("browser", "Deployment asset completeness"),
     "10": ("browser", "Accessible product controls"),
+    "11": ("advanced_data", "Order completion"),
+    "12": ("advanced_data", "Limited sale order quantities"),
+    "13": ("advanced_systems", "Storefront availability"),
+    "14": ("advanced_systems", "Intermittent product browsing"),
+    "15": ("advanced_systems", "Catalogue browsing response time"),
 }
 
 

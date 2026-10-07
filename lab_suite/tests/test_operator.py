@@ -312,6 +312,10 @@ def test_tampered_active_record_cannot_target_other_environment(exercise, field)
         ("06", 18106),
         ("06", 19106),
         ("06", 20106),
+        ("12", 18112),
+        ("12", 20112),
+        ("13", 18113),
+        ("13", 19113),
     ],
 )
 @pytest.mark.parametrize("owner", ["shop1", "fcl-cs-01-fault"])
@@ -407,3 +411,21 @@ def test_teacher_checkout_requires_explicit_case(exercise, capsys):
     assert "supply --case NN" in capsys.readouterr().err
     assert exercise.docker.calls == []
     assert operator.main(["up", "--case", "1"]) == 0
+
+
+@pytest.mark.parametrize("lifecycle_passed", [True, False])
+def test_lifecycle_verdict_is_required_even_when_probe_passes(
+    exercise, monkeypatch, lifecycle_passed
+):
+    token = object()
+    monkeypatch.setattr(operator, "start_controller", lambda *args: token)
+    monkeypatch.setattr(
+        operator,
+        "finish_controller",
+        lambda value: {"passed": lifecycle_passed} if value is token else None,
+    )
+    code = operator.main(["check", "--expect", "healthy"])
+    result = exercise.result()
+    assert result["probe"]["passed"] is True
+    assert result["passed"] is lifecycle_passed
+    assert code == (0 if lifecycle_passed else 1)

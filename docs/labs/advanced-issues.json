@@ -1,0 +1,23 @@
+{
+  "repository": "dongho-dev/fault-commerce-lab",
+  "issues": [
+    {
+      "case": "11",
+      "number": 24,
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/24",
+      "title": "[VOC][CS-11] 재고가 넉넉한 상품인데 주문을 완료하지 못하는 고객이 있습니다"
+    },
+    {
+      "case": "12",
+      "number": 25,
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/25",
+      "title": "[VOC][CS-12] 한정 수량보다 많은 주문이 접수됩니다"
+    },
+    {
+      "case": "13",
+      "number": 26,
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/26",
+      "title": "[VOC][CS-13] 다시 방문하니 상품 화면을 열 수 없습니다"
+    }
+  ]
+}

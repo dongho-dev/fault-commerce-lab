@@ -10,13 +10,15 @@ from pathlib import Path
 from lab_suite.__main__ import (
     ARTIFACTS,
     ROOT,
+    application_paths,
     command,
     compose_definition,
     hashes,
     sampler,
     write_json,
 )
-from lab_suite.catalog import BASELINE, normalize
+from lab_suite.catalog import BASELINE, normalize, provider
+from lab_suite.controller import finish_controller, start_controller
 
 ROOT_LABEL = "io.fault-commerce.exercise.root"
 CASE_LABEL = "io.fault-commerce.exercise.case"
@@ -117,9 +119,9 @@ def assert_owned(case):
 
 def assert_ports_available(case):
     ports = [18100 + int(case)]
-    if case in ("05", "06"):
+    if case in ("05", "06", "13"):
         ports.append(19100 + int(case))
-    if case == "06":
+    if case in ("06", "12"):
         ports.append(20100 + int(case))
     for port in ports:
         identifiers = (
@@ -221,10 +223,11 @@ def check_current(case, expected, compose, evidence, image):
         "source": str(ROOT.resolve()),
         "evidence": str(evidence),
         "passed": False,
-        "application_sha256": hashes(ROOT, ["app", ".dockerignore", "lab_suite/network_proxy.py"]),
+        "application_sha256": hashes(ROOT, application_paths(case)),
     }
     stop = threading.Event()
     monitor = None
+    controller = None
     started = str(time.time())
     try:
         container = command([*compose, "ps", "-q", "app"], capture=True).decode().strip()
@@ -240,6 +243,7 @@ def check_current(case, expected, compose, evidence, image):
                 if time.monotonic() >= deadline:
                     raise RuntimeError("Case 04 runtime sampler did not produce its initial sample")
                 stop.wait(0.1)
+        controller = start_controller(provider(case), case, compose, evidence, command)
         completed = command(
             [*compose, "run", "--rm", "--no-deps", "probe", "--case", case, "--expect", expected],
             log=evidence / "probe.log",
@@ -247,6 +251,12 @@ def check_current(case, expected, compose, evidence, image):
             timeout=4000 if case == "04" else 300,
         )
         result.update(probe_report(evidence / "probe.json", case, expected, completed.returncode))
+        lifecycle = finish_controller(controller)
+        if lifecycle is not None:
+            result["controller"] = lifecycle
+            if not lifecycle.get("passed"):
+                result["passed"] = False
+                result["controller_error"] = lifecycle.get("error", "Lifecycle validation failed")
         if case == "04":
             events = command(
                 [
@@ -281,6 +291,11 @@ def check_current(case, expected, compose, evidence, image):
     except Exception as exc:
         result.update(passed=False, error=str(exc))
     finally:
+        lifecycle = finish_controller(controller)
+        if lifecycle is not None:
+            result["controller"] = lifecycle
+            if not lifecycle.get("passed"):
+                result["passed"] = False
         stop.set()
         if monitor:
             monitor.join(timeout=15)
@@ -301,7 +316,7 @@ def main(argv=None):
     subs = parser.add_subparsers(dest="command", required=True)
     for name in ("up", "check", "down"):
         sub = subs.add_parser(name)
-        sub.add_argument("--case", help="Case 01..10; defaults to lab_suite/active_case.json")
+        sub.add_argument("--case", help="Case 01..15; defaults to lab_suite/active_case.json")
         if name == "check":
             sub.add_argument("--expect", required=True, choices=("healthy", "fault"))
             sub.add_argument("--fresh", action="store_true", help="Recreate this exercise's DB")

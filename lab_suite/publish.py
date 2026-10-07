@@ -1,4 +1,5 @@
 import argparse
+import ast
 import hashlib
 import json
 import os
@@ -19,6 +20,31 @@ MAX_SOURCE_BYTES = 64 * 1024 * 1024
 
 class PublicationError(RuntimeError):
     pass
+
+
+
+def remove_authoring_keys(source):
+    removed = []
+    for path in (source / "lab_suite" / "cases").glob("advanced_*.py"):
+        safe = inside(source, path)
+        text = safe.read_text(encoding="utf-8-sig")
+        module = ast.parse(text)
+        spans = []
+        for node in module.body:
+            if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                if node.name == "replacements":
+                    start = min([node.lineno, *(d.lineno for d in node.decorator_list)])
+                    spans.append((start - 1, node.end_lineno))
+        if not spans:
+            continue
+        lines = text.splitlines(keepends=True)
+        for start, end in reversed(spans):
+            del lines[start:end]
+        result = "".join(lines)
+        ast.parse(result)
+        safe.write_text(result, encoding="utf-8")
+        removed.append(path.relative_to(source).as_posix())
+    return removed
 
 
 def inside(base, path):
@@ -292,6 +318,8 @@ def publish(
                 destination = source / "INCIDENT.md"
                 with destination.open("x", encoding="utf-8", newline="\n") as output:
                     output.write(incident_text(statement_path, case))
+            inspect_source(source)
+            row["authoring_keys_removed"] = remove_authoring_keys(source)
             row["source_inventory"] = inspect_source(source)
             metadata = json.loads((source / "lab_suite" / "active_case.json").read_text("utf-8"))
             if metadata != {"case": case, "baseline": baseline, "initial_state": "fault"}:

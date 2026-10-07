@@ -13,6 +13,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from lab_suite.catalog import BASELINE, CASES, normalize, provider
+from lab_suite.controller import finish_controller, start_controller
 
 ROOT = Path(__file__).resolve().parents[1]
 ARTIFACTS = ROOT / "artifacts" / "cs-labs"
@@ -65,7 +66,7 @@ def export_source(case, phase, destination):
         destination, ["oracle", "tests", "alembic", "app/api", "app/schemas", "app/models"]
     )
     changes = []
-    documents = ["docs/cs-exercises.md"]
+    documents = ["docs/cs-exercises.md", "docs/cs-advanced-exercises.md"]
     evidence_documents = ROOT / "docs" / "labs"
     if evidence_documents.exists():
         documents.extend(
@@ -102,10 +103,17 @@ def export_source(case, phase, destination):
     return {
         "modified_files": sorted(set(changes)),
         "protected_sha256": protected,
-        "application_sha256": hashes(
-            destination, ["app", ".dockerignore", "lab_suite/network_proxy.py"]
-        ),
+        "application_sha256": hashes(destination, application_paths(case)),
     }
+
+
+def application_paths(case):
+    paths = ["app", ".dockerignore", "lab_suite/network_proxy.py"]
+    if case == "13":
+        paths.append("lab_suite/advanced_proxy.py")
+    if case == "14":
+        paths.append("lab_suite/advanced_server.py")
+    return paths
 
 
 def compose_definition(case, source, evidence, image):
@@ -163,7 +171,7 @@ def compose_definition(case, source, evidence, image):
         },
         "app": app,
     }
-    if case == "06":
+    if case in {"06", "12"}:
         secondary = dict(app)
         secondary.pop("build")
         secondary["environment"] = {**env, "LAB_MIGRATE": "0"}
@@ -224,7 +232,13 @@ def compose_definition(case, source, evidence, image):
             {"type": "bind", "source": evidence.as_posix(), "target": "/evidence"},
         ],
     }
-    return {"services": services}
+    definition = {"services": services}
+    configure = getattr(provider(case), "configure_compose", None)
+    if configure is not None:
+        definition = configure(case, definition, source, evidence)
+        if not isinstance(definition, dict) or "services" not in definition:
+            raise ValueError(f"Case {case} returned an invalid Compose definition")
+    return definition
 
 
 def memory_bytes(value: str) -> int:
@@ -304,6 +318,7 @@ def run_phase(case, phase, run_dir, keep=False):
     }
     stop = threading.Event()
     monitor = None
+    controller = None
     container = ""
     try:
         print(f"START case={case} phase={phase}", flush=True)
@@ -320,12 +335,16 @@ def run_phase(case, phase, run_dir, keep=False):
         if not (evidence / "runtime.json").exists():
             raise RuntimeError("Runtime sampler did not provide an initial observation")
         expected = "fault" if phase == "fault" else "healthy"
+        controller = start_controller(provider(case), case, compose, evidence, command)
         command(
             [*compose, "run", "--rm", "--no-deps", "probe", "--case", case, "--expect", expected],
             log=evidence / "probe.log",
             check=False,
             timeout=4000 if case == "04" else 300,
         )
+        lifecycle = finish_controller(controller)
+        if lifecycle is not None:
+            result["controller"] = lifecycle
         report_path = evidence / "probe.json"
         if report_path.exists():
             report = json.loads(report_path.read_text(encoding="utf-8"))
@@ -333,6 +352,9 @@ def run_phase(case, phase, run_dir, keep=False):
             result["passed"] = report.get("passed", False)
         else:
             result["error"] = "Probe did not produce evidence"
+        if lifecycle is not None and not lifecycle.get("passed"):
+            result["passed"] = False
+            result["controller_error"] = lifecycle.get("error", "Lifecycle validation failed")
         if container:
             events = command(
                 [
@@ -365,6 +387,11 @@ def run_phase(case, phase, run_dir, keep=False):
     except Exception as exc:
         result["error"] = str(exc)
     finally:
+        lifecycle = finish_controller(controller)
+        if lifecycle is not None:
+            result["controller"] = lifecycle
+            if not lifecycle.get("passed"):
+                result["passed"] = False
         stop.set()
         if monitor:
             monitor.join(timeout=15)

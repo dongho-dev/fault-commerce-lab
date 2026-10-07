@@ -19,6 +19,8 @@ def generate(runs):
     }
     rows = []
     for case, (_, title) in CASES.items():
+        if int(case) > 10:
+            continue
         chosen = None
         for run in reversed(runs):
             phase_paths = {

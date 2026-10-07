@@ -1,5 +1,7 @@
 # CS 장애 실습 실행
 
+[CS 심화 과정 문제](../docs/cs-advanced-exercises.md) · [심화 실습 준비 검증](../docs/labs/advanced-verification.md)
+
 [종류별 문제·개선 기록 카탈로그](../docs/labs/catalog.md) · [GitHub 실습 이슈 목록](../docs/labs/issues.md)
 
 문제 상황과 과제는 [실습 문제](../docs/cs-exercises.md), 실제 검증 기록과 미검증 범위는 [검증 기록](../docs/labs/verification.md)을 따른다.
@@ -16,6 +18,9 @@
 | 08 | 상품 설명을 표시한 뒤 생기는 화면 변화 |
 | 09 | 배포 뒤 열리지 않는 쇼핑몰 기능 |
 | 10 | 키보드와 보조 기술로 이용하는 상품 화면 |
+| 11 | 구매 가능한 상품의 주문 완료 문제 |
+| 12 | 한정 수량 상품의 주문 접수 문제 |
+| 13 | 다시 방문할 때의 상품 화면 문제 |
 
 ## 준비
 
@@ -26,7 +31,7 @@ docker build -f lab_suite/Dockerfile.base -t fcl-cs-base:v2 .
 docker build -f lab_suite/Dockerfile.probe -t fcl-cs-probe:v2 .
 ```
 
-정상 기준은 `l1-baseline-v2`다. `incident/cs-01`부터 `incident/cs-10`까지 각 브랜치는 이 기준에서 시작하며, 기준 태그를 이동하거나 덮어쓰지 않는다. Oracle, 관련 테스트, API 계약과 DB 불변조건은 보호한다. 기준 용량은 [용량 기준](../docs/capacity-baseline.md)을 따른다.
+정상 기준은 `l1-baseline-v2`다. 각 `incident/cs-NN` 실습 브랜치는 이 기준에서 시작하며, 기준 태그를 이동하거나 덮어쓰지 않는다. Oracle, 관련 테스트, API 계약과 DB 불변조건은 보호한다. 기준 용량은 [용량 기준](../docs/capacity-baseline.md)을 따른다.
 
 ## 학습자: 현재 체크아웃 실행과 검증
 
@@ -46,7 +51,7 @@ python -m lab_suite.operator down
 
 `check`의 종료 코드 0은 지정한 기대 상태를 통과했다는 뜻이다. `--expect fault`의 성공은 장애 재현, `--expect healthy`의 성공은 해당 정상 판정 통과를 뜻한다. 결과 JSON, 화면 캡처와 로그는 `artifacts/cs-labs/learner-NN/`의 실행별 폴더에 남는다. 사례 04의 장애 판정은 실제 Docker OOM 이벤트까지 요구하며, 반복 부하 때문에 다른 사례보다 오래 걸릴 수 있다.
 
-- 접속 포트는 `http://localhost:18101`부터 `http://localhost:18110`까지다. 사례 05는 프록시, 사례 06은 프록시와 두 앱 인스턴스를 자동으로 준비한다. 내부 진단용 호스트 포트로 19105, 19106, 20106도 사용한다.
+- 접속 포트는 사례 번호 NN에 맞는 `http://localhost:181NN`이다. 실행 도구가 사례별 구성을 자동으로 준비한다. 내부 진단용 호스트 포트로 19105, 19106, 20106, 20112, 19113도 사용한다.
 - 프로젝트 이름은 `fcl-exercise-NN`이다. 같은 사례의 teacher 검증과 포트를 공유하므로 동시에 실행할 수 없다. 충돌 시 명령은 소유 환경을 설명하고 중단하며 다른 프로젝트를 종료하지 않는다. 다른 체크아웃이 같은 프로젝트를 사용 중이면 그 체크아웃에서 먼저 종료한다.
 - 기본 `up`/`check`는 DB를 보존한다. probe가 fixture를 추가하므로 독립적인 재검증에는 위 예시처럼 `--fresh`를 사용한다. `--fresh`는 **이 실습 프로젝트만** 종료한 뒤 새 DB로 시작한다.
 - DB는 tmpfs에 있으며 `down`, `--fresh`, DB 컨테이너 재생성 시 실습 데이터가 사라진다. 필요한 증거를 먼저 남긴다. 특히 사례 02에서 새 DB의 정상 판정은 과거에 불일치가 생긴 데이터의 복구 성공을 뜻하지 않는다. 기존 데이터 복구는 별도로 검증해야 한다.
