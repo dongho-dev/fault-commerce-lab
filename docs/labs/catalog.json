@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "repository": "dongho-dev/fault-commerce-lab",
-  "observed_at": "2026-10-07T11:16:55+09:00",
+  "observed_at": "2026-10-07T14:39:00+09:00",
   "classification": "customer_visible_problem_type",
   "categories": [
     {
@@ -47,9 +47,9 @@
       "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/24",
       "category": "orders",
       "case_id": "11",
-      "issue_state": "open",
+      "issue_state": "closed",
       "preparation_verified": true,
-      "improvement": null
+      "improvement": "https://github.com/dongho-dev/fault-commerce-lab/pull/31"
     },
     {
       "issue_number": 25,
@@ -57,9 +57,9 @@
       "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/25",
       "category": "orders",
       "case_id": "12",
-      "issue_state": "open",
+      "issue_state": "closed",
       "preparation_verified": true,
-      "improvement": null
+      "improvement": "https://github.com/dongho-dev/fault-commerce-lab/pull/30"
     },
     {
       "issue_number": 26,
@@ -67,9 +67,9 @@
       "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/26",
       "category": "availability",
       "case_id": "13",
-      "issue_state": "open",
+      "issue_state": "closed",
       "preparation_verified": true,
-      "improvement": null
+      "improvement": "https://github.com/dongho-dev/fault-commerce-lab/pull/29"
     },
     {
       "issue_number": 27,
@@ -77,9 +77,9 @@
       "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/27",
       "category": "availability",
       "case_id": "14",
-      "issue_state": "open",
+      "issue_state": "closed",
       "preparation_verified": true,
-      "improvement": null
+      "improvement": "https://github.com/dongho-dev/fault-commerce-lab/pull/32"
     },
     {
       "issue_number": 28,
@@ -87,6 +87,66 @@
       "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/28",
       "category": "discovery",
       "case_id": "15",
+      "issue_state": "closed",
+      "preparation_verified": true,
+      "improvement": "https://github.com/dongho-dev/fault-commerce-lab/pull/33"
+    },
+    {
+      "issue_number": 36,
+      "title": "[VOC][CS-16] 완료된 주문이 나중에 확인한 상품 수량과 맞지 않습니다",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/36",
+      "category": "orders",
+      "case_id": "16",
+      "issue_state": "open",
+      "preparation_verified": true,
+      "improvement": null
+    },
+    {
+      "issue_number": 37,
+      "title": "[VOC][CS-17] 주문한 뒤 일부 상품 정보를 다시 열 수 없습니다",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/37",
+      "category": "availability",
+      "case_id": "17",
+      "issue_state": "open",
+      "preparation_verified": true,
+      "improvement": null
+    },
+    {
+      "issue_number": 38,
+      "title": "[VOC][CS-18] 점검 뒤 일부 주문이 완료되지 않아요",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/38",
+      "category": "orders",
+      "case_id": "18",
+      "issue_state": "open",
+      "preparation_verified": true,
+      "improvement": null
+    },
+    {
+      "issue_number": 39,
+      "title": "[VOC][CS-19] 주문이 한참 기다린 뒤 실패해요",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/39",
+      "category": "orders",
+      "case_id": "19",
+      "issue_state": "open",
+      "preparation_verified": true,
+      "improvement": null
+    },
+    {
+      "issue_number": 34,
+      "title": "[VOC][CS-20] 상품을 골랐는데 상세 화면에 다른 상품이 표시됩니다",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/34",
+      "category": "discovery",
+      "case_id": "20",
+      "issue_state": "open",
+      "preparation_verified": true,
+      "improvement": null
+    },
+    {
+      "issue_number": 35,
+      "title": "[VOC][CS-21] 주문 완료 화면의 수량과 금액이 결제 직전과 다릅니다",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/35",
+      "category": "orders",
+      "case_id": "21",
       "issue_state": "open",
       "preparation_verified": true,
       "improvement": null

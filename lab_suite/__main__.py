@@ -10,7 +10,7 @@ import tarfile
 import threading
 import time
 from datetime import UTC, datetime
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 
 from lab_suite.catalog import BASELINE, CASES, normalize, provider
 from lab_suite.controller import finish_controller, start_controller
@@ -115,7 +115,16 @@ def application_paths(case):
         paths.append("lab_suite/advanced_server.py")
     if case == "15":
         paths.append("lab_suite/cache_gateway.py")
-    return paths
+    runtime_paths = getattr(provider(case), "runtime_paths", None)
+    for name in runtime_paths(case) if runtime_paths is not None else []:
+        path = Path(name)
+        if (
+            path.anchor or PureWindowsPath(name).anchor
+            or ".." in path.parts or path.as_posix() in {"", "."}
+        ):
+            raise ValueError("Runtime fingerprints require repository-relative paths")
+        paths.append(path.as_posix())
+    return list(dict.fromkeys(paths))
 
 
 def compose_definition(case, source, evidence, image):

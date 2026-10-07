@@ -5,31 +5,83 @@
       "case": "11",
       "number": 24,
       "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/24",
-      "title": "[VOC][CS-11] 재고가 넉넉한 상품인데 주문을 완료하지 못하는 고객이 있습니다"
+      "title": "[VOC][CS-11] 재고가 넉넉한 상품인데 주문을 완료하지 못하는 고객이 있습니다",
+      "state": "closed",
+      "resolution_url": "https://github.com/dongho-dev/fault-commerce-lab/pull/31"
     },
     {
       "case": "12",
       "number": 25,
       "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/25",
-      "title": "[VOC][CS-12] 한정 수량보다 많은 주문이 접수됩니다"
+      "title": "[VOC][CS-12] 한정 수량보다 많은 주문이 접수됩니다",
+      "state": "closed",
+      "resolution_url": "https://github.com/dongho-dev/fault-commerce-lab/pull/30"
     },
     {
       "case": "13",
       "number": 26,
       "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/26",
-      "title": "[VOC][CS-13] 다시 방문하니 상품 화면을 열 수 없습니다"
+      "title": "[VOC][CS-13] 다시 방문하니 상품 화면을 열 수 없습니다",
+      "state": "closed",
+      "resolution_url": "https://github.com/dongho-dev/fault-commerce-lab/pull/29"
     },
     {
       "case": "14",
       "number": 27,
       "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/27",
-      "title": "[VOC][CS-14] 같은 상품 화면이 어떤 때는 열리고 어떤 때는 실패합니다"
+      "title": "[VOC][CS-14] 같은 상품 화면이 어떤 때는 열리고 어떤 때는 실패합니다",
+      "state": "closed",
+      "resolution_url": "https://github.com/dongho-dev/fault-commerce-lab/pull/32"
     },
     {
       "case": "15",
       "number": 28,
       "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/28",
-      "title": "[VOC][CS-15] 새로 들어온 상품이 목록에서 보이지 않습니다"
+      "title": "[VOC][CS-15] 새로 들어온 상품이 목록에서 보이지 않습니다",
+      "state": "closed",
+      "resolution_url": "https://github.com/dongho-dev/fault-commerce-lab/pull/33"
+    },
+    {
+      "case": "16",
+      "number": 36,
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/36",
+      "title": "[VOC][CS-16] 완료된 주문이 나중에 확인한 상품 수량과 맞지 않습니다",
+      "state": "open"
+    },
+    {
+      "case": "17",
+      "number": 37,
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/37",
+      "title": "[VOC][CS-17] 주문한 뒤 일부 상품 정보를 다시 열 수 없습니다",
+      "state": "open"
+    },
+    {
+      "case": "18",
+      "number": 38,
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/38",
+      "title": "[VOC][CS-18] 점검 뒤 일부 주문이 완료되지 않아요",
+      "state": "open"
+    },
+    {
+      "case": "19",
+      "number": 39,
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/39",
+      "title": "[VOC][CS-19] 주문이 한참 기다린 뒤 실패해요",
+      "state": "open"
+    },
+    {
+      "case": "20",
+      "number": 34,
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/34",
+      "title": "[VOC][CS-20] 상품을 골랐는데 상세 화면에 다른 상품이 표시됩니다",
+      "state": "open"
+    },
+    {
+      "case": "21",
+      "number": 35,
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/35",
+      "title": "[VOC][CS-21] 주문 완료 화면의 수량과 금액이 결제 직전과 다릅니다",
+      "state": "open"
     }
   ]
 }

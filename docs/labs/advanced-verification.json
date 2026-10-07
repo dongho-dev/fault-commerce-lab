@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-07T02:15:22.183734+00:00",
+  "recorded_at": "2026-10-07T05:33:37.784499+00:00",
   "baseline": "l1-baseline-v2",
   "cases": {
     "11": {
@@ -283,6 +283,204 @@
               "passed": true,
               "finished_at": "2026-10-07T02:14:10.410963+00:00",
               "image_id": "sha256:20633ef3d36db0f3a7f49a3a26bdd661a22bef015a95172722b22dfe4c1c54be"
+            }
+          }
+        }
+      ]
+    },
+    "20": {
+      "phases": {
+        "healthy": true,
+        "fault": true,
+        "restored": true
+      },
+      "baseline_protected": true,
+      "restored_source_identical": true,
+      "independent_complete_triplets": 1,
+      "scope": "Real HTTP and independent database checks; browser scope is not implied",
+      "repetitions": [
+        {
+          "run": "sealed-20-v1",
+          "phases": {
+            "healthy": {
+              "passed": true,
+              "finished_at": "2026-10-07T05:13:19.816579+00:00",
+              "image_id": "sha256:041df6ec813c6d862e0b2fd542f5e31a1e1dd165909bf68327903f4b33c33a92"
+            },
+            "fault": {
+              "passed": true,
+              "finished_at": "2026-10-07T05:13:53.570387+00:00",
+              "image_id": "sha256:8277cc125f5de8364944e7befdfeb376758f5a348f23dfc6ccd099b3aaad8f24"
+            },
+            "restored": {
+              "passed": true,
+              "finished_at": "2026-10-07T05:14:28.088355+00:00",
+              "image_id": "sha256:aad047af19f1ea2c4e9262cdfaf9e1a1d7746e540bccf4ef1f5c306155c6a902"
+            }
+          }
+        }
+      ]
+    },
+    "21": {
+      "phases": {
+        "healthy": true,
+        "fault": true,
+        "restored": true
+      },
+      "baseline_protected": true,
+      "restored_source_identical": true,
+      "independent_complete_triplets": 1,
+      "scope": "Real HTTP and independent database checks; browser scope is not implied",
+      "repetitions": [
+        {
+          "run": "sealed-21-v1",
+          "phases": {
+            "healthy": {
+              "passed": true,
+              "finished_at": "2026-10-07T05:13:21.669845+00:00",
+              "image_id": "sha256:5d9586ef5fc320260aac0b17262cf19b0d8f855d5b77b867f49f71021848597a"
+            },
+            "fault": {
+              "passed": true,
+              "finished_at": "2026-10-07T05:13:57.097994+00:00",
+              "image_id": "sha256:8748d9b6490dffcd20083cd00b4eb66b4a89e14f3003a6d605a63a63e4854d2e"
+            },
+            "restored": {
+              "passed": true,
+              "finished_at": "2026-10-07T05:14:35.088100+00:00",
+              "image_id": "sha256:693dcd4090db88d19e21fa9c0297557fa63b22f77da2cf6e3033d75031ba59c1"
+            }
+          }
+        }
+      ]
+    },
+    "16": {
+      "phases": {
+        "healthy": true,
+        "fault": true,
+        "restored": true
+      },
+      "baseline_protected": true,
+      "restored_source_identical": true,
+      "independent_complete_triplets": 1,
+      "scope": "Real HTTP and independent database checks; browser scope is not implied",
+      "repetitions": [
+        {
+          "run": "sealed-16-v2",
+          "phases": {
+            "healthy": {
+              "passed": true,
+              "finished_at": "2026-10-07T05:28:33.482694+00:00",
+              "image_id": "sha256:074e0155022b05d7f9f146cadcff6f6cb53f9f3f9a337a9f06758299a2fa1762"
+            },
+            "fault": {
+              "passed": true,
+              "finished_at": "2026-10-07T05:29:13.704560+00:00",
+              "image_id": "sha256:9416acca000f4725f3a97c9b60d52b434032e6563a39ef7a3341b8bbf902b3dc"
+            },
+            "restored": {
+              "passed": true,
+              "finished_at": "2026-10-07T05:29:52.335923+00:00",
+              "image_id": "sha256:ffc0a6f82bac8c3cbce8ad419665d1c220b5ecdc9dfc965551d4b1360d2c404a"
+            }
+          }
+        }
+      ]
+    },
+    "17": {
+      "phases": {
+        "healthy": true,
+        "fault": true,
+        "restored": true
+      },
+      "baseline_protected": true,
+      "restored_source_identical": true,
+      "independent_complete_triplets": 1,
+      "scope": "Real HTTP and independent database checks; browser scope is not implied",
+      "repetitions": [
+        {
+          "run": "sealed-17-v2",
+          "phases": {
+            "healthy": {
+              "passed": true,
+              "finished_at": "2026-10-07T05:28:15.130984+00:00",
+              "image_id": "sha256:ca5273959b92b7e842b0c26e2e59b5adf474e412e8df64d2e3fe3a7916727c79"
+            },
+            "fault": {
+              "passed": true,
+              "finished_at": "2026-10-07T05:28:50.022015+00:00",
+              "image_id": "sha256:1c13f7155efa69eb2071fd0f7af83a74facb1e78295d4239d39c302534516fd2"
+            },
+            "restored": {
+              "passed": true,
+              "finished_at": "2026-10-07T05:29:15.222484+00:00",
+              "image_id": "sha256:b04e32ec6b644d199f99b626acda41810bbfad338e4940ac6802ae7e85a151d8"
+            }
+          }
+        }
+      ]
+    },
+    "18": {
+      "phases": {
+        "healthy": true,
+        "fault": true,
+        "restored": true
+      },
+      "baseline_protected": true,
+      "restored_source_identical": true,
+      "independent_complete_triplets": 1,
+      "scope": "Real HTTP and independent database checks; browser scope is not implied",
+      "repetitions": [
+        {
+          "run": "sealed-18-v1",
+          "phases": {
+            "healthy": {
+              "passed": true,
+              "finished_at": "2026-10-07T05:31:31.732819+00:00",
+              "image_id": "sha256:446ea59a2e771e9aa33764910d96f8cd25ef7cc9be374a8ce60130d3d4011589"
+            },
+            "fault": {
+              "passed": true,
+              "finished_at": "2026-10-07T05:31:56.189778+00:00",
+              "image_id": "sha256:86ef735807bd0820005e64f509af0be2fdb48115f42ba19a8fb242ad763daaca"
+            },
+            "restored": {
+              "passed": true,
+              "finished_at": "2026-10-07T05:32:19.049316+00:00",
+              "image_id": "sha256:19e952b3b8fa97d7cced16a68cfce95e4bc55af0cc8df18508c85afd4ebfa4af"
+            }
+          }
+        }
+      ]
+    },
+    "19": {
+      "phases": {
+        "healthy": true,
+        "fault": true,
+        "restored": true
+      },
+      "baseline_protected": true,
+      "restored_source_identical": true,
+      "independent_complete_triplets": 1,
+      "scope": "Real HTTP and independent database checks; browser scope is not implied",
+      "repetitions": [
+        {
+          "run": "sealed-19-v1",
+          "phases": {
+            "healthy": {
+              "passed": true,
+              "finished_at": "2026-10-07T05:31:23.868033+00:00",
+              "image_id": "sha256:c5128c0a420cc6640f8632b754203f20fc055c8c830d0b7facd90858f2619972"
+            },
+            "fault": {
+              "passed": true,
+              "finished_at": "2026-10-07T05:31:53.159834+00:00",
+              "image_id": "sha256:bcabac075e96bd145700f1bcbeb14f8e1c4318da27ea9aaeb3df4fdb628c5e90"
+            },
+            "restored": {
+              "passed": true,
+              "finished_at": "2026-10-07T05:32:14.057502+00:00",
+              "image_id": "sha256:dec21180cc8b33efa84787831f9288f639ed4581d7018dd6744bd1662263902b"
             }
           }
         }

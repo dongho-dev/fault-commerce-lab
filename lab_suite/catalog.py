@@ -17,6 +17,12 @@ CASES = {
     "13": ("advanced_systems", "Storefront availability"),
     "14": ("advanced_systems", "Intermittent product browsing"),
     "15": ("advanced_cache", "New product visibility"),
+    "16": ("advanced_round2_a", "Customer report 16"),
+    "17": ("advanced_round2_a", "Customer report 17"),
+    "18": ("advanced_round2_b", "Customer report 18"),
+    "19": ("advanced_round2_b", "Customer report 19"),
+    "20": ("advanced_round2_c", "Customer report 20"),
+    "21": ("advanced_round2_c", "Customer report 21"),
 }
 
 

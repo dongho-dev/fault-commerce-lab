@@ -319,7 +319,7 @@ def main(argv=None):
     subs = parser.add_subparsers(dest="command", required=True)
     for name in ("up", "check", "down"):
         sub = subs.add_parser(name)
-        sub.add_argument("--case", help="Case 01..15; defaults to lab_suite/active_case.json")
+        sub.add_argument("--case", help="Case 01..21; defaults to lab_suite/active_case.json")
         if name == "check":
             sub.add_argument("--expect", required=True, choices=("healthy", "fault"))
             sub.add_argument("--fresh", action="store_true", help="Recreate this exercise's DB")

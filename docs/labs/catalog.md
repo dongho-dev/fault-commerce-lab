@@ -2,18 +2,18 @@
 
 정상 쇼핑몰을 기준으로 문제를 재현하고 조사·수정·검증하는 프로젝트다. 현재 공개된 문제를 고객에게 드러나는 유형으로 분류했다. 새 CS 심화 문제는 학습용 가상 VOC이며, 출제용 상황을 실제 고객 사고 대응 실적으로 표시하지 않는다.
 
-확인 시각: **2026-10-07 11:16 KST**. 상태는 확인 시점의 기록이며 실시간 갱신되지 않는다.
+확인 시각: **2026-10-07 14:39 KST**. 상태는 확인 시점의 기록이며 실시간 갱신되지 않는다.
 
-**현재 이슈 6건 · 게시된 심화 실습 5건 · 준비 검증 확인 5건**
+**현재 이슈 12건 · 게시된 심화 실습 11건 · 준비 검증 확인 11건**
 
 ## 종류로 찾아보기
 
 | 종류 | 이슈 수 | 다루는 문의 |
 | --- | ---: | --- |
 | [성능과 응답시간](#성능과-응답시간) | 0 | 기다리는 시간과 이용 흐름 |
-| [접속과 화면 열림](#접속과-화면-열림) | 2 | 서비스 접속과 상품 화면 열기 |
-| [상품 탐색과 화면 표시](#상품-탐색과-화면-표시) | 1 | 상품 검색과 정보 표시 |
-| [주문 금액과 재고](#주문-금액과-재고) | 3 | 주문 결과, 안내 금액과 남은 수량 |
+| [접속과 화면 열림](#접속과-화면-열림) | 3 | 서비스 접속과 상품 화면 열기 |
+| [상품 탐색과 화면 표시](#상품-탐색과-화면-표시) | 2 | 상품 검색과 정보 표시 |
+| [주문 금액과 재고](#주문-금액과-재고) | 7 | 주문 결과, 안내 금액과 남은 수량 |
 | [접근성](#접근성) | 0 | 정보 구분과 조작 |
 
 [열린 이슈 전체](https://github.com/dongho-dev/fault-commerce-lab/issues?q=is%3Aissue+is%3Aopen) · [심화 문제집](../cs-advanced-exercises.md) · [실행 안내](../../lab_suite/README.md)
@@ -35,8 +35,9 @@
 
 | 문제 | GitHub 상태 | 실습 준비 | 개선 기록 |
 | --- | --- | --- | --- |
-| [CS-13 · #26 다시 방문하니 상품 화면을 열 수 없습니다](https://github.com/dongho-dev/fault-commerce-lab/issues/26) | 열림 | 확인 | 해당 이슈에서 확인 |
-| [CS-14 · #27 같은 상품 화면이 어떤 때는 열리고 어떤 때는 실패합니다](https://github.com/dongho-dev/fault-commerce-lab/issues/27) | 열림 | 확인 | 해당 이슈에서 확인 |
+| [CS-13 · #26 다시 방문하니 상품 화면을 열 수 없습니다](https://github.com/dongho-dev/fault-commerce-lab/issues/26) | 닫힘 | 확인 | [해결 PR](https://github.com/dongho-dev/fault-commerce-lab/pull/29) |
+| [CS-14 · #27 같은 상품 화면이 어떤 때는 열리고 어떤 때는 실패합니다](https://github.com/dongho-dev/fault-commerce-lab/issues/27) | 닫힘 | 확인 | [해결 PR](https://github.com/dongho-dev/fault-commerce-lab/pull/32) |
+| [CS-17 · #37 주문한 뒤 일부 상품 정보를 다시 열 수 없습니다](https://github.com/dongho-dev/fault-commerce-lab/issues/37) | 열림 | 확인 | 해당 이슈에서 확인 |
 
 [종류 선택으로 돌아가기](#종류로-찾아보기)
 
@@ -44,7 +45,8 @@
 
 | 문제 | GitHub 상태 | 실습 준비 | 개선 기록 |
 | --- | --- | --- | --- |
-| [CS-15 · #28 새로 들어온 상품이 목록에서 보이지 않습니다](https://github.com/dongho-dev/fault-commerce-lab/issues/28) | 열림 | 확인 | 해당 이슈에서 확인 |
+| [CS-15 · #28 새로 들어온 상품이 목록에서 보이지 않습니다](https://github.com/dongho-dev/fault-commerce-lab/issues/28) | 닫힘 | 확인 | [해결 PR](https://github.com/dongho-dev/fault-commerce-lab/pull/33) |
+| [CS-20 · #34 상품을 골랐는데 상세 화면에 다른 상품이 표시됩니다](https://github.com/dongho-dev/fault-commerce-lab/issues/34) | 열림 | 확인 | 해당 이슈에서 확인 |
 
 [종류 선택으로 돌아가기](#종류로-찾아보기)
 
@@ -53,8 +55,12 @@
 | 문제 | GitHub 상태 | 실습 준비 | 개선 기록 |
 | --- | --- | --- | --- |
 | [#5 결제 버튼 재클릭 시 중복 주문 여부](https://github.com/dongho-dev/fault-commerce-lab/issues/5) | 열림 | 별도 기록 참조 | 해당 이슈에서 확인 |
-| [CS-11 · #24 재고가 넉넉한 상품인데 주문을 완료하지 못하는 고객이 있습니다](https://github.com/dongho-dev/fault-commerce-lab/issues/24) | 열림 | 확인 | 해당 이슈에서 확인 |
-| [CS-12 · #25 한정 수량보다 많은 주문이 접수됩니다](https://github.com/dongho-dev/fault-commerce-lab/issues/25) | 열림 | 확인 | 해당 이슈에서 확인 |
+| [CS-11 · #24 재고가 넉넉한 상품인데 주문을 완료하지 못하는 고객이 있습니다](https://github.com/dongho-dev/fault-commerce-lab/issues/24) | 닫힘 | 확인 | [해결 PR](https://github.com/dongho-dev/fault-commerce-lab/pull/31) |
+| [CS-12 · #25 한정 수량보다 많은 주문이 접수됩니다](https://github.com/dongho-dev/fault-commerce-lab/issues/25) | 닫힘 | 확인 | [해결 PR](https://github.com/dongho-dev/fault-commerce-lab/pull/30) |
+| [CS-16 · #36 완료된 주문이 나중에 확인한 상품 수량과 맞지 않습니다](https://github.com/dongho-dev/fault-commerce-lab/issues/36) | 열림 | 확인 | 해당 이슈에서 확인 |
+| [CS-18 · #38 점검 뒤 일부 주문이 완료되지 않아요](https://github.com/dongho-dev/fault-commerce-lab/issues/38) | 열림 | 확인 | 해당 이슈에서 확인 |
+| [CS-19 · #39 주문이 한참 기다린 뒤 실패해요](https://github.com/dongho-dev/fault-commerce-lab/issues/39) | 열림 | 확인 | 해당 이슈에서 확인 |
+| [CS-21 · #35 주문 완료 화면의 수량과 금액이 결제 직전과 다릅니다](https://github.com/dongho-dev/fault-commerce-lab/issues/35) | 열림 | 확인 | 해당 이슈에서 확인 |
 
 [종류 선택으로 돌아가기](#종류로-찾아보기)
 
