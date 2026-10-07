@@ -1,21 +1,22 @@
 import http.client
 import json
 import os
-import socket
-from functools import lru_cache
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlsplit
 
 HOP_HEADERS = frozenset(
-    {"connection", "keep-alive", "proxy-authenticate", "proxy-authorization",
-     "te", "trailer", "transfer-encoding", "upgrade"}
+    {
+        "connection",
+        "keep-alive",
+        "proxy-authenticate",
+        "proxy-authorization",
+        "te",
+        "trailer",
+        "transfer-encoding",
+        "upgrade",
+    }
 )
 TARGET = urlsplit(os.environ.get("UPSTREAM", "http://catalog-service:8000"))
-
-
-@lru_cache(maxsize=32)
-def resolve_host(host):
-    return socket.gethostbyname(host)
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -38,7 +39,7 @@ class Handler(BaseHTTPRequestHandler):
         response_started = False
         address = None
         try:
-            address = resolve_host(TARGET.hostname)
+            address = TARGET.hostname
             connection = http.client.HTTPConnection(address, TARGET.port or 80, timeout=1)
             length = int(self.headers.get("Content-Length", "0"))
             payload = self.rfile.read(length) if length else None
@@ -46,18 +47,19 @@ class Handler(BaseHTTPRequestHandler):
                 value.strip().lower() for value in self.headers.get("Connection", "").split(",")
             }
             headers = {
-                key: value for key, value in self.headers.items()
+                key: value
+                for key, value in self.headers.items()
                 if key.lower() not in HOP_HEADERS | tokens | {"host"}
             }
             headers["Host"] = TARGET.netloc
             headers["Connection"] = "close"
-            connection.request(self.command, TARGET.path.rstrip("/") + self.path,
-                               body=payload, headers=headers)
+            connection.request(
+                self.command, TARGET.path.rstrip("/") + self.path, body=payload, headers=headers
+            )
             response = connection.getresponse()
             body = response.read()
             response_tokens = {
-                value.strip().lower()
-                for value in response.getheader("Connection", "").split(",")
+                value.strip().lower() for value in response.getheader("Connection", "").split(",")
             }
             self.send_response_only(response.status, response.reason)
             for key, value in response.getheaders():
@@ -82,8 +84,12 @@ class Handler(BaseHTTPRequestHandler):
                     self.wfile.write(body)
                 except OSError:
                     pass
-            print(json.dumps({"event": "upstream_error", "address": address,
-                              "error": type(exc).__name__}), flush=True)
+            print(
+                json.dumps(
+                    {"event": "upstream_error", "address": address, "error": type(exc).__name__}
+                ),
+                flush=True,
+            )
         finally:
             self.close_connection = True
             if connection is not None:
