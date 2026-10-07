@@ -12,7 +12,7 @@ engine = create_engine(
     pool_pre_ping=True,
     pool_size=settings.database_pool_size,
     max_overflow=settings.database_max_overflow,
-    isolation_level="REPEATABLE READ",
+    isolation_level="READ COMMITTED",
 )
 SessionFactory = sessionmaker(bind=engine, class_=Session, expire_on_commit=False)
 

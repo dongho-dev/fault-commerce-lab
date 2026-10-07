@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "issue": 24,
+  "base_commit": "1b23d0ab9af11afd6ea72ea4759e604f67c9d021",
+  "scope": "New isolated PostgreSQL databases and synthetic API fixtures; no production data recovery or FIFO guarantee",
+  "isolation_comparison": {
+    "initial_stock": 10,
+    "concurrent_requests": 20,
+    "quantity_per_request": 1,
+    "repeatable_read": {
+      "http": {
+        "201": 9,
+        "500": 11
+      },
+      "remaining_stock": 1,
+      "db_failure_rollback_pairs": 11
+    },
+    "read_committed": {
+      "http": {
+        "201": 10,
+        "409": 10
+      },
+      "remaining_stock": 0,
+      "targeted_checks_passed": true
+    },
+    "strict_fifo_required": false,
+    "strict_fifo_observed": false
+  },
+  "failure": {
+    "sqlstate": "40001",
+    "driver_exception": "psycopg.errors.SerializationFailure",
+    "message": "could not serialize access due to concurrent update",
+    "application_exception": "sqlalchemy.exc.OperationalError",
+    "location": "app/repositories/inventory.py:46",
+    "http_status": 500,
+    "http_code": "INTERNAL_SERVER_ERROR",
+    "writer_and_failed_request_trace_utc": [
+      {
+        "timestamp": "2026-10-07T02:14:36.216260+00:00",
+        "level": "INFO",
+        "request_id": "cs11-detail-e1fc84f29b-concurrent-0-18",
+        "stage": "request_received",
+        "event": "received",
+        "method": "POST",
+        "path": "/orders"
+      },
+      {
+        "timestamp": "2026-10-07T02:14:36.270423+00:00",
+        "level": "INFO",
+        "request_id": "cs11-detail-e1fc84f29b-concurrent-0-1",
+        "stage": "request_received",
+        "event": "received",
+        "method": "POST",
+        "path": "/orders"
+      },
+      {
+        "timestamp": "2026-10-07T02:14:36.341732+00:00",
+        "level": "INFO",
+        "request_id": "cs11-detail-e1fc84f29b-concurrent-0-18",
+        "stage": "product_loaded",
+        "event": "completed",
+        "product_id": 2
+      },
+      {
+        "timestamp": "2026-10-07T02:14:36.344778+00:00",
+        "level": "INFO",
+        "request_id": "cs11-detail-e1fc84f29b-concurrent-0-1",
+        "stage": "product_loaded",
+        "event": "completed",
+        "product_id": 2
+      },
+      {
+        "timestamp": "2026-10-07T02:14:36.359188+00:00",
+        "level": "INFO",
+        "request_id": "cs11-detail-e1fc84f29b-concurrent-0-18",
+        "stage": "inventory_observed",
+        "event": "completed",
+        "product_id": 2,
+        "requested_quantity": 1,
+        "observed_current_stock": 2
+      },
+      {
+        "timestamp": "2026-10-07T02:14:36.362777+00:00",
+        "level": "INFO",
+        "request_id": "cs11-detail-e1fc84f29b-concurrent-0-1",
+        "stage": "inventory_observed",
+        "event": "completed",
+        "product_id": 2,
+        "requested_quantity": 1,
+        "observed_current_stock": 2
+      },
+      {
+        "timestamp": "2026-10-07T02:14:36.365194+00:00",
+        "level": "INFO",
+        "request_id": "cs11-detail-e1fc84f29b-concurrent-0-18",
+        "stage": "shipping_quote_completed",
+        "event": "completed",
+        "product_id": 2,
+        "requested_quantity": 1
+      },
+      {
+        "timestamp": "2026-10-07T02:14:36.368987+00:00",
+        "level": "INFO",
+        "request_id": "cs11-detail-e1fc84f29b-concurrent-0-1",
+        "stage": "shipping_quote_completed",
+        "event": "completed",
+        "product_id": 2,
+        "requested_quantity": 1
+      },
+      {
+        "timestamp": "2026-10-07T02:14:36.378178+00:00",
+        "level": "INFO",
+        "request_id": "cs11-detail-e1fc84f29b-concurrent-0-18",
+        "stage": "stock_updated",
+        "event": "completed",
+        "product_id": 2,
+        "requested_quantity": 1,
+        "observed_current_stock": 2,
+        "resulting_current_stock": 1
+      },
+      {
+        "timestamp": "2026-10-07T02:14:36.382544+00:00",
+        "level": "INFO",
+        "request_id": "cs11-detail-e1fc84f29b-concurrent-0-18",
+        "stage": "order_persisted",
+        "event": "completed",
+        "product_id": 2,
+        "order_id": 10,
+        "requested_quantity": 1
+      },
+      {
+        "timestamp": "2026-10-07T02:14:36.383653+00:00",
+        "level": "INFO",
+        "request_id": "cs11-detail-e1fc84f29b-concurrent-0-18",
+        "stage": "transaction_completed",
+        "event": "committed",
+        "product_id": 2,
+        "order_id": 10,
+        "requested_quantity": 1
+      },
+      {
+        "timestamp": "2026-10-07T02:14:36.407004+00:00",
+        "level": "INFO",
+        "request_id": "cs11-detail-e1fc84f29b-concurrent-0-18",
+        "stage": "response_sent",
+        "event": "completed",
+        "status_code": 201
+      },
+      {
+        "timestamp": "2026-10-07T02:14:36.407711+00:00",
+        "level": "INFO",
+        "request_id": "cs11-detail-e1fc84f29b-concurrent-0-18",
+        "method": "POST",
+        "path": "/orders",
+        "status_code": 201,
+        "event": "http_request_completed"
+      },
+      {
+        "timestamp": "2026-10-07T02:14:36.450266+00:00",
+        "level": "ERROR",
+        "event": "unhandled_server_error",
+        "request_id": "cs11-detail-e1fc84f29b-concurrent-0-1",
+        "method": "POST",
+        "path": "/orders",
+        "exception_type": "OperationalError"
+      },
+      {
+        "timestamp": "2026-10-07T02:14:36.452685+00:00",
+        "level": "INFO",
+        "request_id": "cs11-detail-e1fc84f29b-concurrent-0-1",
+        "stage": "response_sent",
+        "event": "completed",
+        "status_code": 500
+      },
+      {
+        "timestamp": "2026-10-07T02:14:36.452768+00:00",
+        "level": "INFO",
+        "request_id": "cs11-detail-e1fc84f29b-concurrent-0-1",
+        "method": "POST",
+        "path": "/orders",
+        "status_code": 500,
+        "event": "http_request_completed"
+      }
+    ]
+  },
+  "regression": {
+    "scheduling": "Barrier in shipping quote after each real transaction has read inventory and before conditional UPDATE",
+    "before": {
+      "failed": 3,
+      "failure_type": "Unexpected HTTP 500 from serialization failure"
+    },
+    "after": {
+      "passed": 30,
+      "failed": 0
+    },
+    "targets": [
+      "tests/integration/test_order_isolation.py",
+      "tests/integration/test_api.py",
+      "tests/integration/test_database_guarantees.py",
+      "tests/integration/test_catalog.py",
+      "tests/integration/test_live_http.py::test_exact_concurrent_success_and_rejection_counts",
+      "tests/integration/test_live_http.py::test_two_products_remain_independently_consistent"
+    ]
+  },
+  "official_cs11_check": {
+    "command": "python -m lab_suite.operator check --expect healthy --fresh",
+    "run": "20261007T035306.687268Z-check",
+    "finished_at": "2026-10-07T03:53:23.523142+00:00",
+    "image_id": "sha256:3a068a1947c9be74878b76e3fd7c6385a3de3525be67da9b9380b06bc03549c7",
+    "passed": true,
+    "checks": {
+      "response_contract_and_amounts": true,
+      "success_ids_equal_persisted_orders": true,
+      "nonnegative_stock": true,
+      "initial_stock_unchanged": true,
+      "stock_equation": true,
+      "api_views_match_database": true,
+      "serial_controls": true,
+      "uniform_allocation_counts": true,
+      "mixed_allocation_has_legal_order": true
+    },
+    "oracle": {
+      "passed": true,
+      "products": [
+        {
+          "product_id": 1,
+          "initial_stock": 5,
+          "confirmed_quantity": 5,
+          "current_stock": 0,
+          "non_negative": true,
+          "stock_equation": true
+        },
+        {
+          "product_id": 2,
+          "initial_stock": 120,
+          "confirmed_quantity": 80,
+          "current_stock": 40,
+          "non_negative": true,
+          "stock_equation": true
+        },
+        {
+          "product_id": 3,
+          "initial_stock": 5,
+          "confirmed_quantity": 5,
+          "current_stock": 0,
+          "non_negative": true,
+          "stock_equation": true
+        },
+        {
+          "product_id": 4,
+          "initial_stock": 5,
+          "confirmed_quantity": 5,
+          "current_stock": 0,
+          "non_negative": true,
+          "stock_equation": true
+        },
+        {
+          "product_id": 5,
+          "initial_stock": 10,
+          "confirmed_quantity": 10,
+          "current_stock": 0,
+          "non_negative": true,
+          "stock_equation": true
+        },
+        {
+          "product_id": 6,
+          "initial_stock": 12,
+          "confirmed_quantity": 12,
+          "current_stock": 0,
+          "non_negative": true,
+          "stock_equation": true
+        }
+      ],
+      "orders": {
+        "checked": 107,
+        "invalid_order_ids": [],
+        "amounts_valid": true
+      }
+    },
+    "order_request_count": 128,
+    "http": {
+      "201": 107,
+      "409": 21
+    },
+    "connection_errors": 0,
+    "groups": {
+      "serial-0": {
+        "201": 5,
+        "409": 3
+      },
+      "ample-0": {
+        "201": 8
+      },
+      "ample-1": {
+        "201": 8
+      },
+      "ample-2": {
+        "201": 8
+      },
+      "ample-3": {
+        "201": 8
+      },
+      "ample-4": {
+        "201": 8
+      },
+      "ample-5": {
+        "201": 8
+      },
+      "ample-6": {
+        "201": 8
+      },
+      "ample-7": {
+        "201": 8
+      },
+      "ample-8": {
+        "201": 8
+      },
+      "ample-9": {
+        "201": 8
+      },
+      "sellout-0": {
+        "201": 5,
+        "409": 7
+      },
+      "sellout-1": {
+        "201": 5,
+        "409": 7
+      },
+      "quantity-two": {
+        "201": 5,
+        "409": 3
+      },
+      "mixed": {
+        "201": 7,
+        "409": 1
+      }
+    },
+    "source_hashes": {
+      "app/database.py": "47ff59e88d87b568bd87b934ac738cb325781dee939578d050aba6821c49090b",
+      "app/services/order.py": "000b8176ea11e70536c9c5ab4af81641c81349b05c5ce107c1f01f301e63341d",
+      "app/repositories/inventory.py": "d4d8de59392250781be532857850fa4b662f444714886c107e42a1d27832d784",
+      "app/repositories/order.py": "775dce570d94acb967f2d19dc7e324e0e5547511585ac20358d0cf1b8162bdd7"
+    }
+  },
+  "raw_artifact_sha256": {
+    "result.json": "7af7facf81eb2c3e60831c6fa6b3369e0a5b1e73704bdd4cf7030bdad085bd81",
+    "case11-data-observations.json": "32118994de95dc332c809de8eef99c3266ca1e1f5d1e062696123469a6dafd5c",
+    "probe.json": "cbed09e40072cef5a75a36fdf05b722c65437ef4f1930b2a7d1e29db3fd9638a",
+    "containers.log": "bc37240674b78f9e11dbb8e5aab0f4be516020b104638fe2654ad17f619ca19a"
+  }
+}
