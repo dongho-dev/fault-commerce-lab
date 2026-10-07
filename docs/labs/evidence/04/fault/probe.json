@@ -1,0 +1,854 @@
+{
+  "case": "04",
+  "expected": "fault",
+  "started_at": "2026-10-06T09:36:44.672940+00:00",
+  "healthy": false,
+  "symptom": true,
+  "checks": {
+    "same_query_control_completed": true,
+    "unique_queries_completed": false,
+    "bounded_metric_cardinality": false,
+    "no_container_restart": false,
+    "runtime_monitor_present": true,
+    "customer_queries_all_succeeded": false,
+    "customer_queries_recovered": true,
+    "all_started_pressure_requests_completed": true,
+    "customer_monitor_closed": true
+  },
+  "observations": {
+    "pressure_path": "/health/live",
+    "validation_method": "DB 작업을 제외하고 큰 유효 URL로 보유 메모리 누적을 가속한 합성 입력",
+    "padding_bytes": 48000,
+    "sample_padding_bytes": 0,
+    "accelerated_input": true,
+    "operational_capacity_claim": false,
+    "requested_per_stage": 12000,
+    "concurrency": 8,
+    "pressure_connection_reuse": false,
+    "stage_timeout_seconds": 1800.0,
+    "request_timeout_seconds": 5.0,
+    "query_characters": 100,
+    "fixture_product_id": 1,
+    "fixture_products_created": 1,
+    "initial_metrics": {
+      "request_series": 2,
+      "query_request_series": 0,
+      "process_resident_memory_bytes": 89759744.0,
+      "process_start_time_seconds": 1791279394.8
+    },
+    "after_control_metrics": {
+      "request_series": 6,
+      "query_request_series": 1,
+      "process_resident_memory_bytes": 104517632.0,
+      "process_start_time_seconds": 1791279394.8
+    },
+    "after_sample_metrics": {
+      "request_series": 70,
+      "query_request_series": 65,
+      "process_resident_memory_bytes": 105529344.0,
+      "process_start_time_seconds": 1791279394.8
+    },
+    "initial_runtime": {
+      "timestamp": "2026-10-06T09:36:43.436773+00:00",
+      "restart_count": 0,
+      "oom_killed": false,
+      "running": true,
+      "memory_usage": 72760688,
+      "memory_display": "69.39MiB / 512MiB"
+    },
+    "final_runtime": {
+      "timestamp": "2026-10-06T09:41:03.613197+00:00",
+      "restart_count": 1,
+      "oom_killed": false,
+      "running": true,
+      "memory_usage": 84347453,
+      "memory_display": "80.44MiB / 512MiB"
+    },
+    "control": {
+      "planned": 12000,
+      "attempted": 12000,
+      "completed": 12000,
+      "succeeded": 12000,
+      "errors": 0,
+      "bad_payloads": 0,
+      "first_errors": [],
+      "runtime_samples": [
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 1007,
+          "completed": 1000,
+          "succeeded": 1000,
+          "errors": 0,
+          "elapsed_seconds": 12.076,
+          "runtime": {
+            "timestamp": "2026-10-06T09:36:53.499690+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 76462161,
+            "memory_display": "72.92MiB / 512MiB"
+          },
+          "customer_attempted": 108,
+          "customer_errors": 0
+        },
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 2007,
+          "completed": 2000,
+          "succeeded": 2000,
+          "errors": 0,
+          "elapsed_seconds": 23.786,
+          "runtime": {
+            "timestamp": "2026-10-06T09:37:08.170132+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 82659246,
+            "memory_display": "78.83MiB / 512MiB"
+          },
+          "customer_attempted": 216,
+          "customer_errors": 0
+        },
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 3007,
+          "completed": 3000,
+          "succeeded": 3000,
+          "errors": 0,
+          "elapsed_seconds": 36.184,
+          "runtime": {
+            "timestamp": "2026-10-06T09:37:18.202213+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 85668659,
+            "memory_display": "81.7MiB / 512MiB"
+          },
+          "customer_attempted": 328,
+          "customer_errors": 0
+        },
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 5007,
+          "completed": 5000,
+          "succeeded": 5000,
+          "errors": 0,
+          "elapsed_seconds": 60.272,
+          "runtime": {
+            "timestamp": "2026-10-06T09:37:43.493240+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 86192947,
+            "memory_display": "82.2MiB / 512MiB"
+          },
+          "customer_attempted": 544,
+          "customer_errors": 0
+        },
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 6007,
+          "completed": 6000,
+          "succeeded": 6000,
+          "errors": 0,
+          "elapsed_seconds": 73.671,
+          "runtime": {
+            "timestamp": "2026-10-06T09:37:58.258820+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 90471137,
+            "memory_display": "86.28MiB / 512MiB"
+          },
+          "customer_attempted": 664,
+          "customer_errors": 0
+        },
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 7007,
+          "completed": 7000,
+          "succeeded": 7000,
+          "errors": 0,
+          "elapsed_seconds": 84.824,
+          "runtime": {
+            "timestamp": "2026-10-06T09:38:08.208743+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 86203432,
+            "memory_display": "82.21MiB / 512MiB"
+          },
+          "customer_attempted": 768,
+          "customer_errors": 0
+        },
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 8007,
+          "completed": 8000,
+          "succeeded": 8000,
+          "errors": 0,
+          "elapsed_seconds": 97.329,
+          "runtime": {
+            "timestamp": "2026-10-06T09:38:18.234891+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 86203432,
+            "memory_display": "82.21MiB / 512MiB"
+          },
+          "customer_attempted": 876,
+          "customer_errors": 0
+        },
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 9007,
+          "completed": 9000,
+          "succeeded": 9000,
+          "errors": 0,
+          "elapsed_seconds": 109.23,
+          "runtime": {
+            "timestamp": "2026-10-06T09:38:33.499112+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 86308290,
+            "memory_display": "82.31MiB / 512MiB"
+          },
+          "customer_attempted": 984,
+          "customer_errors": 0
+        },
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 10007,
+          "completed": 10000,
+          "succeeded": 10000,
+          "errors": 0,
+          "elapsed_seconds": 122.535,
+          "runtime": {
+            "timestamp": "2026-10-06T09:38:43.526874+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 86203432,
+            "memory_display": "82.21MiB / 512MiB"
+          },
+          "customer_attempted": 1096,
+          "customer_errors": 0
+        },
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 11007,
+          "completed": 11000,
+          "succeeded": 11000,
+          "errors": 0,
+          "elapsed_seconds": 134.49,
+          "runtime": {
+            "timestamp": "2026-10-06T09:38:58.290182+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 86203432,
+            "memory_display": "82.21MiB / 512MiB"
+          },
+          "customer_attempted": 1204,
+          "customer_errors": 0
+        },
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 12000,
+          "completed": 12000,
+          "succeeded": 12000,
+          "errors": 0,
+          "elapsed_seconds": 147.178,
+          "runtime": {
+            "timestamp": "2026-10-06T09:39:08.347998+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 86591406,
+            "memory_display": "82.58MiB / 512MiB"
+          },
+          "customer_attempted": 1320,
+          "customer_errors": 0
+        },
+        {
+          "stage": "same-query-control",
+          "pressure_path": "/health/live",
+          "attempted": 12000,
+          "completed": 12000,
+          "succeeded": 12000,
+          "errors": 0,
+          "elapsed_seconds": 147.182,
+          "runtime": {
+            "timestamp": "2026-10-06T09:39:08.347998+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 86591406,
+            "memory_display": "82.58MiB / 512MiB"
+          },
+          "customer_attempted": 1320,
+          "customer_errors": 0
+        }
+      ],
+      "restart_observed": false,
+      "oom_killed_observed": false,
+      "peak_observed_memory_bytes": 90471137,
+      "deadline_reached": false,
+      "elapsed_seconds": 147.182,
+      "all_started_requests_completed": true
+    },
+    "unique_sample": {
+      "planned": 64,
+      "attempted": 64,
+      "completed": 64,
+      "succeeded": 64,
+      "errors": 0,
+      "bad_payloads": 0,
+      "first_errors": [],
+      "runtime_samples": [
+        {
+          "stage": "unique-query-sample",
+          "pressure_path": "/health/live",
+          "attempted": 64,
+          "completed": 64,
+          "succeeded": 64,
+          "errors": 0,
+          "elapsed_seconds": 0.485,
+          "runtime": {
+            "timestamp": "2026-10-06T09:39:08.347998+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 86591406,
+            "memory_display": "82.58MiB / 512MiB"
+          },
+          "customer_attempted": 1324,
+          "customer_errors": 0
+        }
+      ],
+      "restart_observed": false,
+      "oom_killed_observed": false,
+      "peak_observed_memory_bytes": 86591406,
+      "deadline_reached": false,
+      "elapsed_seconds": 0.485,
+      "all_started_requests_completed": true
+    },
+    "unique_stress": {
+      "planned": 11936,
+      "attempted": 8192,
+      "completed": 8192,
+      "succeeded": 8132,
+      "errors": 60,
+      "bad_payloads": 0,
+      "first_errors": [
+        {
+          "request": 8204,
+          "type": "RemoteProtocolError",
+          "message": "Server disconnected without sending a response.",
+          "observed_at_unix_seconds": 1791279655.986375
+        },
+        {
+          "request": 8202,
+          "type": "RemoteProtocolError",
+          "message": "Server disconnected without sending a response.",
+          "observed_at_unix_seconds": 1791279655.996333
+        },
+        {
+          "request": 8201,
+          "type": "RemoteProtocolError",
+          "message": "Server disconnected without sending a response.",
+          "observed_at_unix_seconds": 1791279656.000947
+        },
+        {
+          "request": 8203,
+          "type": "RemoteProtocolError",
+          "message": "Server disconnected without sending a response.",
+          "observed_at_unix_seconds": 1791279656.007494
+        },
+        {
+          "request": 8198,
+          "type": "RemoteProtocolError",
+          "message": "Server disconnected without sending a response.",
+          "observed_at_unix_seconds": 1791279656.015093
+        }
+      ],
+      "runtime_samples": [
+        {
+          "stage": "unique-query-stress",
+          "pressure_path": "/health/live",
+          "attempted": 1007,
+          "completed": 1000,
+          "succeeded": 1000,
+          "errors": 0,
+          "elapsed_seconds": 12.522,
+          "runtime": {
+            "timestamp": "2026-10-06T09:39:23.599064+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 139460608,
+            "memory_display": "133MiB / 512MiB"
+          },
+          "customer_attempted": 1436,
+          "customer_errors": 0
+        },
+        {
+          "stage": "unique-query-stress",
+          "pressure_path": "/health/live",
+          "attempted": 2007,
+          "completed": 2000,
+          "succeeded": 2000,
+          "errors": 0,
+          "elapsed_seconds": 25.617,
+          "runtime": {
+            "timestamp": "2026-10-06T09:39:38.383553+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 193147699,
+            "memory_display": "184.2MiB / 512MiB"
+          },
+          "customer_attempted": 1550,
+          "customer_errors": 0
+        },
+        {
+          "stage": "unique-query-stress",
+          "pressure_path": "/health/live",
+          "attempted": 3007,
+          "completed": 3000,
+          "succeeded": 3000,
+          "errors": 0,
+          "elapsed_seconds": 36.85,
+          "runtime": {
+            "timestamp": "2026-10-06T09:39:48.182786+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 240333619,
+            "memory_display": "229.2MiB / 512MiB"
+          },
+          "customer_attempted": 1650,
+          "customer_errors": 0
+        },
+        {
+          "stage": "unique-query-stress",
+          "pressure_path": "/health/live",
+          "attempted": 4007,
+          "completed": 4000,
+          "succeeded": 4000,
+          "errors": 0,
+          "elapsed_seconds": 49.062,
+          "runtime": {
+            "timestamp": "2026-10-06T09:39:58.290532+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 283744665,
+            "memory_display": "270.6MiB / 512MiB"
+          },
+          "customer_attempted": 1758,
+          "customer_errors": 0
+        },
+        {
+          "stage": "unique-query-stress",
+          "pressure_path": "/health/live",
+          "attempted": 5007,
+          "completed": 5000,
+          "succeeded": 5000,
+          "errors": 0,
+          "elapsed_seconds": 60.529,
+          "runtime": {
+            "timestamp": "2026-10-06T09:40:13.560065+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 355781836,
+            "memory_display": "339.3MiB / 512MiB"
+          },
+          "customer_attempted": 1862,
+          "customer_errors": 0
+        },
+        {
+          "stage": "unique-query-stress",
+          "pressure_path": "/health/live",
+          "attempted": 6007,
+          "completed": 6000,
+          "succeeded": 6000,
+          "errors": 0,
+          "elapsed_seconds": 73.151,
+          "runtime": {
+            "timestamp": "2026-10-06T09:40:23.550091+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 406847488,
+            "memory_display": "388MiB / 512MiB"
+          },
+          "customer_attempted": 1972,
+          "customer_errors": 0
+        },
+        {
+          "stage": "unique-query-stress",
+          "pressure_path": "/health/live",
+          "attempted": 7007,
+          "completed": 7000,
+          "succeeded": 7000,
+          "errors": 0,
+          "elapsed_seconds": 87.988,
+          "runtime": {
+            "timestamp": "2026-10-06T09:40:38.372559+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 450363392,
+            "memory_display": "429.5MiB / 512MiB"
+          },
+          "customer_attempted": 2088,
+          "customer_errors": 0
+        },
+        {
+          "stage": "unique-query-stress",
+          "pressure_path": "/health/live",
+          "attempted": 8007,
+          "completed": 8000,
+          "succeeded": 8000,
+          "errors": 0,
+          "elapsed_seconds": 100.819,
+          "runtime": {
+            "timestamp": "2026-10-06T09:40:53.594946+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 522505420,
+            "memory_display": "498.3MiB / 512MiB"
+          },
+          "customer_attempted": 2198,
+          "customer_errors": 0
+        },
+        {
+          "stage": "unique-query-stress",
+          "pressure_path": "/health/live",
+          "attempted": 8192,
+          "completed": 8192,
+          "succeeded": 8132,
+          "errors": 60,
+          "elapsed_seconds": 106.786,
+          "runtime": {
+            "timestamp": "2026-10-06T09:40:58.534204+00:00",
+            "restart_count": 1,
+            "oom_killed": true,
+            "running": true,
+            "memory_usage": 31195136,
+            "memory_display": "29.75MiB / 512MiB"
+          },
+          "customer_attempted": 2260,
+          "customer_errors": 50
+        }
+      ],
+      "restart_observed": true,
+      "oom_killed_observed": true,
+      "peak_observed_memory_bytes": 522505420,
+      "deadline_reached": false,
+      "elapsed_seconds": 106.787,
+      "all_started_requests_completed": true
+    },
+    "unique_total_attempted": 8256,
+    "unique_total_completed": 8256,
+    "unique_total_succeeded": 8196,
+    "unique_total_errors": 60,
+    "customer_queries": {
+      "attempted": 2318,
+      "completed": 2318,
+      "succeeded": 2246,
+      "errors": 72,
+      "availability_errors": 72,
+      "bad_payloads": 0,
+      "first_errors": [
+        {
+          "path": "/products?limit=1",
+          "stage": "unique-query-stress",
+          "started_at_unix_seconds": 1791279655.731174,
+          "observed_at_unix_seconds": 1791279655.972297,
+          "elapsed_from_probe_seconds": 250.633,
+          "status_code": null,
+          "type": "RemoteProtocolError",
+          "message": "Server disconnected without sending a response.",
+          "availability_error": true,
+          "runtime": {
+            "timestamp": "2026-10-06T09:40:53.594946+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 522505420,
+            "memory_display": "498.3MiB / 512MiB"
+          }
+        },
+        {
+          "path": "/products/1",
+          "stage": "unique-query-stress",
+          "started_at_unix_seconds": 1791279655.732417,
+          "observed_at_unix_seconds": 1791279655.980315,
+          "elapsed_from_probe_seconds": 250.641,
+          "status_code": null,
+          "type": "RemoteProtocolError",
+          "message": "Server disconnected without sending a response.",
+          "availability_error": true,
+          "runtime": {
+            "timestamp": "2026-10-06T09:40:53.594946+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 522505420,
+            "memory_display": "498.3MiB / 512MiB"
+          }
+        },
+        {
+          "path": "/products/1",
+          "stage": "unique-query-stress",
+          "started_at_unix_seconds": 1791279656.189396,
+          "observed_at_unix_seconds": 1791279656.234687,
+          "elapsed_from_probe_seconds": 250.896,
+          "status_code": null,
+          "type": "ConnectError",
+          "message": "All connection attempts failed",
+          "availability_error": true,
+          "runtime": {
+            "timestamp": "2026-10-06T09:40:53.594946+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 522505420,
+            "memory_display": "498.3MiB / 512MiB"
+          }
+        },
+        {
+          "path": "/products?limit=1",
+          "stage": "unique-query-stress",
+          "started_at_unix_seconds": 1791279656.185167,
+          "observed_at_unix_seconds": 1791279656.238063,
+          "elapsed_from_probe_seconds": 250.899,
+          "status_code": null,
+          "type": "ConnectError",
+          "message": "All connection attempts failed",
+          "availability_error": true,
+          "runtime": {
+            "timestamp": "2026-10-06T09:40:53.594946+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 522505420,
+            "memory_display": "498.3MiB / 512MiB"
+          }
+        },
+        {
+          "path": "/products?limit=1",
+          "stage": "unique-query-stress",
+          "started_at_unix_seconds": 1791279656.378381,
+          "observed_at_unix_seconds": 1791279656.421625,
+          "elapsed_from_probe_seconds": 251.083,
+          "status_code": null,
+          "type": "ConnectError",
+          "message": "All connection attempts failed",
+          "availability_error": true,
+          "runtime": {
+            "timestamp": "2026-10-06T09:40:53.594946+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 522505420,
+            "memory_display": "498.3MiB / 512MiB"
+          }
+        }
+      ],
+      "first_availability_errors": [
+        {
+          "path": "/products?limit=1",
+          "stage": "unique-query-stress",
+          "started_at_unix_seconds": 1791279655.731174,
+          "observed_at_unix_seconds": 1791279655.972297,
+          "elapsed_from_probe_seconds": 250.633,
+          "status_code": null,
+          "type": "RemoteProtocolError",
+          "message": "Server disconnected without sending a response.",
+          "availability_error": true,
+          "runtime": {
+            "timestamp": "2026-10-06T09:40:53.594946+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 522505420,
+            "memory_display": "498.3MiB / 512MiB"
+          }
+        },
+        {
+          "path": "/products/1",
+          "stage": "unique-query-stress",
+          "started_at_unix_seconds": 1791279655.732417,
+          "observed_at_unix_seconds": 1791279655.980315,
+          "elapsed_from_probe_seconds": 250.641,
+          "status_code": null,
+          "type": "RemoteProtocolError",
+          "message": "Server disconnected without sending a response.",
+          "availability_error": true,
+          "runtime": {
+            "timestamp": "2026-10-06T09:40:53.594946+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 522505420,
+            "memory_display": "498.3MiB / 512MiB"
+          }
+        },
+        {
+          "path": "/products/1",
+          "stage": "unique-query-stress",
+          "started_at_unix_seconds": 1791279656.189396,
+          "observed_at_unix_seconds": 1791279656.234687,
+          "elapsed_from_probe_seconds": 250.896,
+          "status_code": null,
+          "type": "ConnectError",
+          "message": "All connection attempts failed",
+          "availability_error": true,
+          "runtime": {
+            "timestamp": "2026-10-06T09:40:53.594946+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 522505420,
+            "memory_display": "498.3MiB / 512MiB"
+          }
+        },
+        {
+          "path": "/products?limit=1",
+          "stage": "unique-query-stress",
+          "started_at_unix_seconds": 1791279656.185167,
+          "observed_at_unix_seconds": 1791279656.238063,
+          "elapsed_from_probe_seconds": 250.899,
+          "status_code": null,
+          "type": "ConnectError",
+          "message": "All connection attempts failed",
+          "availability_error": true,
+          "runtime": {
+            "timestamp": "2026-10-06T09:40:53.594946+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 522505420,
+            "memory_display": "498.3MiB / 512MiB"
+          }
+        },
+        {
+          "path": "/products?limit=1",
+          "stage": "unique-query-stress",
+          "started_at_unix_seconds": 1791279656.378381,
+          "observed_at_unix_seconds": 1791279656.421625,
+          "elapsed_from_probe_seconds": 251.083,
+          "status_code": null,
+          "type": "ConnectError",
+          "message": "All connection attempts failed",
+          "availability_error": true,
+          "runtime": {
+            "timestamp": "2026-10-06T09:40:53.594946+00:00",
+            "restart_count": 0,
+            "oom_killed": false,
+            "running": true,
+            "memory_usage": 522505420,
+            "memory_display": "498.3MiB / 512MiB"
+          }
+        }
+      ],
+      "by_path": {
+        "/products?limit=1": {
+          "attempted": 1159,
+          "completed": 1159,
+          "succeeded": 1123,
+          "errors": 36,
+          "availability_errors": 36,
+          "bad_payloads": 0
+        },
+        "/products/1": {
+          "attempted": 1159,
+          "completed": 1159,
+          "succeeded": 1123,
+          "errors": 36,
+          "availability_errors": 36,
+          "bad_payloads": 0
+        }
+      },
+      "by_stage": {
+        "same-query-control": {
+          "attempted": 1320,
+          "completed": 1320,
+          "succeeded": 1320,
+          "errors": 0,
+          "availability_errors": 0,
+          "bad_payloads": 0
+        },
+        "unique-query-sample": {
+          "attempted": 6,
+          "completed": 6,
+          "succeeded": 6,
+          "errors": 0,
+          "availability_errors": 0,
+          "bad_payloads": 0
+        },
+        "unique-query-stress": {
+          "attempted": 934,
+          "completed": 934,
+          "succeeded": 884,
+          "errors": 50,
+          "availability_errors": 50,
+          "bad_payloads": 0
+        },
+        "recovery": {
+          "attempted": 58,
+          "completed": 58,
+          "succeeded": 36,
+          "errors": 22,
+          "availability_errors": 22,
+          "bad_payloads": 0
+        }
+      },
+      "interval_seconds": 0.1
+    },
+    "customer_availability_failure_observed": true,
+    "customer_recovery_confirmed": true,
+    "recovery_wait_seconds": 3.592,
+    "leak_observed": true,
+    "restart_observed": true,
+    "oom_event_confirmation_required": true,
+    "large_metrics_scrape_avoided": true
+  },
+  "oracle": {
+    "passed": true,
+    "products": [
+      {
+        "product_id": 1,
+        "initial_stock": 5,
+        "confirmed_quantity": 0,
+        "current_stock": 5,
+        "non_negative": true,
+        "stock_equation": true
+      }
+    ],
+    "orders": {
+      "checked": 0,
+      "invalid_order_ids": [],
+      "amounts_valid": true
+    }
+  },
+  "passed": true,
+  "finished_at": "2026-10-06T09:41:04.059264+00:00"
+}
