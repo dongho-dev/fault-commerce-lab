@@ -146,7 +146,7 @@ class OriginPool:
             raise
 
     def release(self, channel, complete):
-        reusable = True
+        reusable = complete
         if reusable and not channel.reader.at_eof() and not channel.writer.is_closing():
             self.idle.append(channel)
         else:
