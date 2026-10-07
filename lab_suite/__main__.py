@@ -398,7 +398,9 @@ def run_phase(case, phase, run_dir, keep=False):
         command([*compose, "logs", "--no-color"], log=evidence / "containers.log", check=False)
         if not keep:
             command(
-                [*compose, "down", "--remove-orphans"], log=evidence / "cleanup.log", check=False
+                [*compose[:2], "--profile", "*", *compose[2:], "down", "--remove-orphans"],
+                log=evidence / "cleanup.log",
+                check=False,
             )
         result["finished_at"] = datetime.now(UTC).isoformat()
         write_json(work / "result.json", result)
@@ -479,6 +481,8 @@ def main():
         [
             "docker",
             "compose",
+            "--profile",
+            "*",
             "-p",
             record["project"],
             "-f",
