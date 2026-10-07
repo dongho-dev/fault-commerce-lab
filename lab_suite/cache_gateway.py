@@ -13,7 +13,7 @@ UPSTREAM = urlsplit(os.environ.get("UPSTREAM", "http://app:8000"))
 
 
 def representation_tag(request_target, representation):
-    validator_input = request_target.encode("utf-8")
+    validator_input = request_target.encode("utf-8") + b"\0" + representation
     return '"' + hashlib.sha256(validator_input).hexdigest() + '"'
 
 
