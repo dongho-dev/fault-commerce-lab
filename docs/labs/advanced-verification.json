@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-07T01:04:51.704539+00:00",
+  "recorded_at": "2026-10-07T02:15:22.183734+00:00",
   "baseline": "l1-baseline-v2",
   "cases": {
     "11": {
@@ -177,6 +177,112 @@
               "passed": true,
               "finished_at": "2026-10-07T01:18:33.879271+00:00",
               "image_id": "sha256:e952d20ebcf78eaa3705232087fca882bc65f8a9b638aefb246377cc9c0b91dc"
+            }
+          }
+        }
+      ]
+    },
+    "14": {
+      "phases": {
+        "healthy": true,
+        "fault": true,
+        "restored": true
+      },
+      "baseline_protected": true,
+      "restored_source_identical": true,
+      "independent_complete_triplets": 3,
+      "scope": "HTTP API and database; normal product screen in isolated Linux browser",
+      "repetitions": [
+        {
+          "repetition": 1,
+          "phases": {
+            "healthy": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:19:14.387416+00:00",
+              "image_id": "sha256:32670bed660cb076639914090f621dc659ec6540b195517f90f7406481dba263"
+            },
+            "fault": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:19:57.957523+00:00",
+              "image_id": "sha256:8470653ce62cf1971f518c3d4aefde94482043cc915f707c8252c839b8f111dc"
+            },
+            "restored": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:20:40.800501+00:00",
+              "image_id": "sha256:74a40c90522eee1b4f674ee0b9fae864b95bff30ca06941f7596cb1a4e2296de"
+            }
+          }
+        },
+        {
+          "repetition": 2,
+          "phases": {
+            "healthy": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:21:23.940904+00:00",
+              "image_id": "sha256:4496e54d6bd354756f1b4ddb659ec46041d5357c6241efaa620586cd21df64db"
+            },
+            "fault": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:22:02.101808+00:00",
+              "image_id": "sha256:cde8496ef5c47a3eb35f9a37491a98efab18ecec9a33f89e53101731dc61c10e"
+            },
+            "restored": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:22:45.899903+00:00",
+              "image_id": "sha256:f9fc18f224f9183bd555157468fc42916e54f0c2a7ab69246b4e2d7f9fd605f0"
+            }
+          }
+        },
+        {
+          "repetition": 3,
+          "phases": {
+            "healthy": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:23:26.966275+00:00",
+              "image_id": "sha256:4496e54d6bd354756f1b4ddb659ec46041d5357c6241efaa620586cd21df64db"
+            },
+            "fault": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:24:05.883870+00:00",
+              "image_id": "sha256:cde8496ef5c47a3eb35f9a37491a98efab18ecec9a33f89e53101731dc61c10e"
+            },
+            "restored": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:24:45.641757+00:00",
+              "image_id": "sha256:2ee91298137ac86c05b4025437b69ab07f5d780458806afdee653c5218ac5109"
+            }
+          }
+        }
+      ]
+    },
+    "15": {
+      "phases": {
+        "healthy": true,
+        "fault": true,
+        "restored": true
+      },
+      "baseline_protected": true,
+      "restored_source_identical": true,
+      "independent_complete_triplets": 1,
+      "scope": "HTTP API, database and isolated Linux browser; existing and new browser sessions",
+      "repetitions": [
+        {
+          "run": "qualification-visibility-v1",
+          "phases": {
+            "healthy": {
+              "passed": true,
+              "finished_at": "2026-10-07T02:12:51.268293+00:00",
+              "image_id": "sha256:a92d05ab8a17d8efc6fd8ca7455feb5fbf6548c5a2a1e7112952b8d411e5fd70"
+            },
+            "fault": {
+              "passed": true,
+              "finished_at": "2026-10-07T02:13:29.982561+00:00",
+              "image_id": "sha256:ac037f05e753c773108782f1e98eedd74d87758c826226d720d022ae0ff05479"
+            },
+            "restored": {
+              "passed": true,
+              "finished_at": "2026-10-07T02:14:10.410963+00:00",
+              "image_id": "sha256:20633ef3d36db0f3a7f49a3a26bdd661a22bef015a95172722b22dfe4c1c54be"
             }
           }
         }

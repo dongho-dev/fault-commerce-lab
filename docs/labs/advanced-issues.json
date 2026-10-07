@@ -18,6 +18,18 @@
       "number": 26,
       "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/26",
       "title": "[VOC][CS-13] 다시 방문하니 상품 화면을 열 수 없습니다"
+    },
+    {
+      "case": "14",
+      "number": 27,
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/27",
+      "title": "[VOC][CS-14] 같은 상품 화면이 어떤 때는 열리고 어떤 때는 실패합니다"
+    },
+    {
+      "case": "15",
+      "number": 28,
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/28",
+      "title": "[VOC][CS-15] 새로 들어온 상품이 목록에서 보이지 않습니다"
     }
   ]
 }

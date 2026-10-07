@@ -16,7 +16,7 @@ CASES = {
     "12": ("advanced_data", "Limited sale order quantities"),
     "13": ("advanced_systems", "Storefront availability"),
     "14": ("advanced_systems", "Intermittent product browsing"),
-    "15": ("advanced_systems", "Catalogue browsing response time"),
+    "15": ("advanced_cache", "New product visibility"),
 }
 
 

@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "repository": "dongho-dev/fault-commerce-lab",
-  "observed_at": "2026-10-07T10:27:44+09:00",
+  "observed_at": "2026-10-07T11:16:55+09:00",
   "classification": "customer_visible_problem_type",
   "categories": [
     {
@@ -67,6 +67,26 @@
       "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/26",
       "category": "availability",
       "case_id": "13",
+      "issue_state": "open",
+      "preparation_verified": true,
+      "improvement": null
+    },
+    {
+      "issue_number": 27,
+      "title": "[VOC][CS-14] 같은 상품 화면이 어떤 때는 열리고 어떤 때는 실패합니다",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/27",
+      "category": "availability",
+      "case_id": "14",
+      "issue_state": "open",
+      "preparation_verified": true,
+      "improvement": null
+    },
+    {
+      "issue_number": 28,
+      "title": "[VOC][CS-15] 새로 들어온 상품이 목록에서 보이지 않습니다",
+      "url": "https://github.com/dongho-dev/fault-commerce-lab/issues/28",
+      "category": "discovery",
+      "case_id": "15",
       "issue_state": "open",
       "preparation_verified": true,
       "improvement": null

@@ -113,6 +113,8 @@ def application_paths(case):
         paths.append("lab_suite/advanced_proxy.py")
     if case == "14":
         paths.append("lab_suite/advanced_server.py")
+    if case == "15":
+        paths.append("lab_suite/cache_gateway.py")
     return paths
 
 
@@ -398,7 +400,9 @@ def run_phase(case, phase, run_dir, keep=False):
         command([*compose, "logs", "--no-color"], log=evidence / "containers.log", check=False)
         if not keep:
             command(
-                [*compose, "down", "--remove-orphans"], log=evidence / "cleanup.log", check=False
+                [*compose[:2], "--profile", "*", *compose[2:], "down", "--remove-orphans"],
+                log=evidence / "cleanup.log",
+                check=False,
             )
         result["finished_at"] = datetime.now(UTC).isoformat()
         write_json(work / "result.json", result)
@@ -479,6 +483,8 @@ def main():
         [
             "docker",
             "compose",
+            "--profile",
+            "*",
             "-p",
             record["project"],
             "-f",

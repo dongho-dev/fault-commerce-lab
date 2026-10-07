@@ -198,7 +198,10 @@ def start_current(compose, evidence):
 
 
 def stop_current(compose, evidence):
-    command([*compose, "down", "--remove-orphans"], log=evidence / "cleanup.log")
+    command(
+        [*compose[:2], "--profile", "*", *compose[2:], "down", "--remove-orphans"],
+        log=evidence / "cleanup.log",
+    )
 
 
 def probe_report(path, case, expected, returncode):
