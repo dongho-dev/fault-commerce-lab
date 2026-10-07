@@ -1,0 +1,758 @@
+{
+  "passed": true,
+  "phases": [
+    {
+      "phase": "healthy_ready",
+      "run_id": "5c28a11e-d6dd-4e47-b1dc-3e18a33e8611",
+      "updated_at": "2026-10-06T08:21:47.054361+00:00",
+      "passed": true
+    },
+    {
+      "phase": "fault_checked",
+      "run_id": "5c28a11e-d6dd-4e47-b1dc-3e18a33e8611",
+      "updated_at": "2026-10-06T08:21:58.194551+00:00",
+      "passed": true
+    },
+    {
+      "phase": "finished",
+      "run_id": "5c28a11e-d6dd-4e47-b1dc-3e18a33e8611",
+      "updated_at": "2026-10-06T08:22:09.358897+00:00",
+      "passed": true
+    }
+  ],
+  "detail": {
+    "passed": true,
+    "run_id": "5c28a11e-d6dd-4e47-b1dc-3e18a33e8611",
+    "started_at": "2026-10-06T08:21:42.619889+00:00",
+    "checks": {
+      "healthy_api_ready": true,
+      "healthy_home_fixture_visible": true,
+      "healthy_search_works": true,
+      "healthy_search_keeps_document": true,
+      "healthy_script_loaded": true,
+      "fault_api_still_ready": true,
+      "fault_script_http_404": true,
+      "existing_tab_search_after_deployment_works": true,
+      "existing_tab_keeps_original_document": true,
+      "existing_tab_did_not_reload_script": true,
+      "new_context_script_404": true,
+      "new_context_shell_visible": true,
+      "new_context_main_empty": true,
+      "restored_api_ready": true,
+      "restored_new_context_home_visible": true,
+      "restored_new_context_search_works": true,
+      "restored_new_context_script_200": true,
+      "no_browser_page_errors": true
+    },
+    "observations": {
+      "base_url": "http://app:8000",
+      "status_events": [
+        {
+          "phase": "healthy_ready",
+          "run_id": "5c28a11e-d6dd-4e47-b1dc-3e18a33e8611",
+          "updated_at": "2026-10-06T08:21:47.054361+00:00",
+          "passed": true
+        },
+        {
+          "phase": "fault_checked",
+          "run_id": "5c28a11e-d6dd-4e47-b1dc-3e18a33e8611",
+          "updated_at": "2026-10-06T08:21:58.194551+00:00",
+          "passed": true
+        },
+        {
+          "phase": "finished",
+          "run_id": "5c28a11e-d6dd-4e47-b1dc-3e18a33e8611",
+          "updated_at": "2026-10-06T08:22:09.358897+00:00",
+          "passed": true
+        }
+      ],
+      "signals": [
+        {
+          "phase": "fault",
+          "received_at": "2026-10-06T08:21:55.825773+00:00",
+          "signal": {
+            "phase": "fault"
+          }
+        },
+        {
+          "phase": "restored",
+          "received_at": "2026-10-06T08:22:06.301141+00:00",
+          "signal": {
+            "phase": "restored"
+          }
+        }
+      ],
+      "responses": [
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/",
+          "status": 200,
+          "resource_type": "document",
+          "received_at": "2026-10-06T08:21:44.619212+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/static/styles.css",
+          "status": 200,
+          "resource_type": "stylesheet",
+          "received_at": "2026-10-06T08:21:44.630333+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/static/app.js",
+          "status": 200,
+          "resource_type": "script",
+          "received_at": "2026-10-06T08:21:44.633346+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/static/assets/hero-workspace.jpg",
+          "status": 200,
+          "resource_type": "image",
+          "received_at": "2026-10-06T08:21:44.983298+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/products?sort=discount&limit=10",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:45.014971+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/products?category=digital&limit=5",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:45.015712+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/products?category=beauty&limit=5",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:45.021979+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/products?category=kitchen&limit=5",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:45.022772+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/products?category=home&limit=5",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:45.024205+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/products?category=food&limit=5",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:45.026163+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/products?category=sports&limit=5",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:45.029139+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/static/assets/products/toner.jpg",
+          "status": 200,
+          "resource_type": "image",
+          "received_at": "2026-10-06T08:21:45.032603+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/static/assets/products/yogamat.jpg",
+          "status": 200,
+          "resource_type": "image",
+          "received_at": "2026-10-06T08:21:45.110340+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/static/assets/products/dripset.jpg",
+          "status": 200,
+          "resource_type": "image",
+          "received_at": "2026-10-06T08:21:45.111737+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/static/assets/products/blanket.jpg",
+          "status": 200,
+          "resource_type": "image",
+          "received_at": "2026-10-06T08:21:45.112504+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/static/assets/products/keyboard.jpg",
+          "status": 200,
+          "resource_type": "image",
+          "received_at": "2026-10-06T08:21:45.113409+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/static/assets/products/tangerine.jpg",
+          "status": 200,
+          "resource_type": "image",
+          "received_at": "2026-10-06T08:21:45.114346+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/products?q=LAB09&category=digital&sort=recommended&limit=20&offset=0",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:46.514271+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/products?q=LAB09&category=kitchen&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:46.719105+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/products?q=LAB09&category=digital&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:46.719766+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/products?q=LAB09&category=food&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:46.720466+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/products?q=LAB09&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:46.721296+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/products?q=LAB09&category=home&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:46.722328+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/products?q=LAB09&category=beauty&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:46.723052+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/products?q=LAB09&category=etc&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:46.724349+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "healthy",
+          "url": "http://app:8000/products?q=LAB09&category=sports&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:46.724927+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "fault",
+          "url": "http://app:8000/products?q=LAB09-Continuity&category=digital&sort=recommended&limit=20&offset=0",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:56.111949+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "fault",
+          "url": "http://app:8000/products?q=LAB09-Continuity&category=beauty&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:56.313163+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "fault",
+          "url": "http://app:8000/products?q=LAB09-Continuity&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:56.313996+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "fault",
+          "url": "http://app:8000/products?q=LAB09-Continuity&category=kitchen&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:56.315950+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "fault",
+          "url": "http://app:8000/products?q=LAB09-Continuity&category=home&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:56.317293+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "fault",
+          "url": "http://app:8000/products?q=LAB09-Continuity&category=food&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:56.319219+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "fault",
+          "url": "http://app:8000/products?q=LAB09-Continuity&category=digital&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:56.320410+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "fault",
+          "url": "http://app:8000/products?q=LAB09-Continuity&category=sports&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:56.322253+00:00"
+        },
+        {
+          "page": "existing",
+          "phase": "fault",
+          "url": "http://app:8000/products?q=LAB09-Continuity&category=etc&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:21:56.417159+00:00"
+        },
+        {
+          "page": "fault-new",
+          "phase": "fault",
+          "url": "http://app:8000/",
+          "status": 200,
+          "resource_type": "document",
+          "received_at": "2026-10-06T08:21:56.816652+00:00"
+        },
+        {
+          "page": "fault-new",
+          "phase": "fault",
+          "url": "http://app:8000/static/styles.css",
+          "status": 200,
+          "resource_type": "stylesheet",
+          "received_at": "2026-10-06T08:21:56.830280+00:00"
+        },
+        {
+          "page": "fault-new",
+          "phase": "fault",
+          "url": "http://app:8000/static/app.js",
+          "status": 404,
+          "resource_type": "script",
+          "received_at": "2026-10-06T08:21:56.834917+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/",
+          "status": 200,
+          "resource_type": "document",
+          "received_at": "2026-10-06T08:22:06.371533+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/static/styles.css",
+          "status": 200,
+          "resource_type": "stylesheet",
+          "received_at": "2026-10-06T08:22:06.419090+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/static/app.js",
+          "status": 200,
+          "resource_type": "script",
+          "received_at": "2026-10-06T08:22:06.422236+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/static/assets/hero-workspace.jpg",
+          "status": 200,
+          "resource_type": "image",
+          "received_at": "2026-10-06T08:22:06.618405+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/products?sort=discount&limit=10",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:22:06.626430+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/products?category=beauty&limit=5",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:22:06.629991+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/products?category=food&limit=5",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:22:06.630676+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/products?category=digital&limit=5",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:22:06.631379+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/products?category=home&limit=5",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:22:06.631940+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/products?category=kitchen&limit=5",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:22:06.632552+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/products?category=sports&limit=5",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:22:06.633209+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/static/assets/products/dripset.jpg",
+          "status": 200,
+          "resource_type": "image",
+          "received_at": "2026-10-06T08:22:06.640136+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/static/assets/products/keyboard.jpg",
+          "status": 200,
+          "resource_type": "image",
+          "received_at": "2026-10-06T08:22:06.644913+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/static/assets/products/blanket.jpg",
+          "status": 200,
+          "resource_type": "image",
+          "received_at": "2026-10-06T08:22:06.712245+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/static/assets/products/toner.jpg",
+          "status": 200,
+          "resource_type": "image",
+          "received_at": "2026-10-06T08:22:06.712894+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/static/assets/products/tangerine.jpg",
+          "status": 200,
+          "resource_type": "image",
+          "received_at": "2026-10-06T08:22:06.713591+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/static/assets/products/yogamat.jpg",
+          "status": 200,
+          "resource_type": "image",
+          "received_at": "2026-10-06T08:22:06.714796+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/products?q=LAB09-Continuity&category=home&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:22:08.817600+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/products?q=LAB09-Continuity&category=digital&sort=recommended&limit=20&offset=0",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:22:08.818818+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/products?q=LAB09-Continuity&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:22:08.925677+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/products?q=LAB09-Continuity&category=kitchen&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:22:08.926212+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/products?q=LAB09-Continuity&category=food&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:22:08.926874+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/products?q=LAB09-Continuity&category=digital&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:22:08.927423+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/products?q=LAB09-Continuity&category=sports&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:22:08.928104+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/products?q=LAB09-Continuity&category=beauty&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:22:08.928508+00:00"
+        },
+        {
+          "page": "restored-new",
+          "phase": "restored",
+          "url": "http://app:8000/products?q=LAB09-Continuity&category=etc&limit=1",
+          "status": 200,
+          "resource_type": "fetch",
+          "received_at": "2026-10-06T08:22:08.929096+00:00"
+        }
+      ],
+      "request_failures": [
+        {
+          "page": "fault-new",
+          "phase": "fault",
+          "url": "http://app:8000/static/app.js",
+          "failure": "net::ERR_ABORTED"
+        }
+      ],
+      "page_errors": [],
+      "fixture_method": "POST /products and GET readback in the isolated lab database",
+      "deployment_method": "The external orchestrator replaces the app container image at the same app alias; this probe never intercepts, fulfills, or substitutes browser responses",
+      "healthy_api": {
+        "url": "http://app:8000/health/ready",
+        "status": 200,
+        "body": {
+          "status": "ready"
+        },
+        "ready": true
+      },
+      "fixture": {
+        "id": 1,
+        "name": "LAB09-Continuity",
+        "unit_price": 12000,
+        "initial_stock": 8,
+        "current_stock": 8,
+        "created_at": "2026-10-06T08:21:43.407982Z",
+        "category": "digital",
+        "brand": "",
+        "description": "Synthetic product for deployment continuity verification",
+        "list_price": 16000,
+        "image_url": null
+      },
+      "healthy_home": {
+        "url": "http://app:8000/",
+        "time_origin": 1791274904562.9,
+        "visible_products": [
+          "LAB09-Continuity",
+          "LAB09-Continuity"
+        ],
+        "fixture_visible": true
+      },
+      "healthy_search": {
+        "previous_url": "http://app:8000/",
+        "url": "http://app:8000/#/search?q=LAB09&category=digital",
+        "query": "LAB09",
+        "time_origin": 1791274904562.9,
+        "request_url": "http://app:8000/products?q=LAB09&category=digital&sort=recommended&limit=20&offset=0",
+        "request_status": 200,
+        "response_product_ids": [
+          1
+        ],
+        "visible_products": [
+          "LAB09-Continuity"
+        ],
+        "search_input": "LAB09",
+        "title": "'LAB09'에 대한 검색결과1개",
+        "passed": true
+      },
+      "fault_api": {
+        "url": "http://app:8000/health/ready",
+        "status": 200,
+        "body": {
+          "status": "ready"
+        },
+        "ready": true
+      },
+      "fault_existing_search": {
+        "previous_url": "http://app:8000/#/search?q=LAB09&category=digital",
+        "url": "http://app:8000/#/search?q=LAB09-Continuity&category=digital",
+        "query": "LAB09-Continuity",
+        "time_origin": 1791274904562.9,
+        "request_url": "http://app:8000/products?q=LAB09-Continuity&category=digital&sort=recommended&limit=20&offset=0",
+        "request_status": 200,
+        "response_product_ids": [
+          1
+        ],
+        "visible_products": [
+          "LAB09-Continuity"
+        ],
+        "search_input": "LAB09-Continuity",
+        "title": "'LAB09-Continuity'에 대한 검색결과1개",
+        "passed": true
+      },
+      "fault_new_context": {
+        "url": "http://app:8000/",
+        "visible_products": [],
+        "main_html_length": 0,
+        "shell": {
+          "logo": true,
+          "search": true,
+          "footer": true
+        },
+        "script_responses": [
+          {
+            "page": "fault-new",
+            "phase": "fault",
+            "url": "http://app:8000/static/app.js",
+            "status": 404,
+            "resource_type": "script",
+            "received_at": "2026-10-06T08:21:56.834917+00:00"
+          }
+        ],
+        "independent_script_http_status": 404,
+        "fresh_context": true
+      },
+      "restored_api": {
+        "url": "http://app:8000/health/ready",
+        "status": 200,
+        "body": {
+          "status": "ready"
+        },
+        "ready": true
+      },
+      "restored_home": {
+        "url": "http://app:8000/",
+        "time_origin": 1791274926363.7,
+        "visible_products": [
+          "LAB09-Continuity",
+          "LAB09-Continuity"
+        ],
+        "fixture_visible": true
+      },
+      "restored_search": {
+        "previous_url": "http://app:8000/",
+        "url": "http://app:8000/#/search?q=LAB09-Continuity&category=digital",
+        "query": "LAB09-Continuity",
+        "time_origin": 1791274926363.7,
+        "request_url": "http://app:8000/products?q=LAB09-Continuity&category=digital&sort=recommended&limit=20&offset=0",
+        "request_status": 200,
+        "response_product_ids": [
+          1
+        ],
+        "visible_products": [
+          "LAB09-Continuity"
+        ],
+        "search_input": "LAB09-Continuity",
+        "title": "'LAB09-Continuity'에 대한 검색결과1개",
+        "passed": true
+      }
+    },
+    "browser_environment": {
+      "platform": "linux",
+      "docker_container": true,
+      "browser": "Playwright Chromium headless",
+      "host_desktop_input": false,
+      "pointer_lock": false,
+      "network_interception": false,
+      "chromium_version": "140.0.7339.16"
+    },
+    "screenshots": {
+      "healthy-home": "case09-continuity-healthy-home.png",
+      "healthy-search": "case09-continuity-healthy-search.png",
+      "fault-existing-tab": "case09-continuity-fault-existing-tab.png",
+      "fault-new-context": "case09-continuity-fault-new-context.png",
+      "restored-home": "case09-continuity-restored-home.png",
+      "restored-search": "case09-continuity-restored-search.png"
+    },
+    "finished_at": "2026-10-06T08:22:09.358881+00:00"
+  }
+}

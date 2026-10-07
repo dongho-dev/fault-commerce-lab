@@ -1,0 +1,351 @@
+{
+  "case": "10",
+  "expected": "healthy",
+  "started_at": "2026-10-06T08:07:40.917354+00:00",
+  "healthy": true,
+  "symptom": false,
+  "checks": {
+    "three_expected_product_buttons_in_accessibility_tree": true,
+    "button_names_include_corresponding_product": true,
+    "button_names_are_distinct": true,
+    "all_button_names_are_generic": false,
+    "keyboard_tab_reaches_selected_button": true,
+    "keyboard_enter_adds_only_selected_product": true,
+    "no_browser_page_errors": true
+  },
+  "observations": {
+    "fixtures": [
+      {
+        "id": 1,
+        "name": "파란 머그",
+        "unit_price": 12000,
+        "initial_stock": 8,
+        "current_stock": 8,
+        "created_at": "2026-10-06T08:07:42.272270Z",
+        "category": "etc",
+        "brand": "",
+        "description": "",
+        "list_price": 16000,
+        "image_url": null
+      },
+      {
+        "id": 2,
+        "name": "접이식 우산",
+        "unit_price": 12000,
+        "initial_stock": 8,
+        "current_stock": 8,
+        "created_at": "2026-10-06T08:07:42.289856Z",
+        "category": "etc",
+        "brand": "",
+        "description": "",
+        "list_price": 16000,
+        "image_url": null
+      },
+      {
+        "id": 3,
+        "name": "수납 바구니",
+        "unit_price": 12000,
+        "initial_stock": 8,
+        "current_stock": 8,
+        "created_at": "2026-10-06T08:07:42.300880Z",
+        "category": "etc",
+        "brand": "",
+        "description": "",
+        "list_price": 16000,
+        "image_url": null
+      }
+    ],
+    "accessibility_buttons": [
+      {
+        "product_id": 1,
+        "role": "button",
+        "accessible_name": "파란 머그 장바구니 담기",
+        "ignored": false,
+        "backend_node_id": 317
+      },
+      {
+        "product_id": 2,
+        "role": "button",
+        "accessible_name": "접이식 우산 장바구니 담기",
+        "ignored": false,
+        "backend_node_id": 350
+      },
+      {
+        "product_id": 3,
+        "role": "button",
+        "accessible_name": "수납 바구니 장바구니 담기",
+        "ignored": false,
+        "backend_node_id": 383
+      }
+    ],
+    "keyboard_target": {
+      "id": 2,
+      "name": "접이식 우산",
+      "unit_price": 12000,
+      "initial_stock": 8,
+      "current_stock": 8,
+      "created_at": "2026-10-06T08:07:42.289856Z",
+      "category": "etc",
+      "brand": "",
+      "description": "",
+      "list_price": 16000,
+      "image_url": null
+    },
+    "keyboard_tab_trace": [
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "본문으로 건너뛰기"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "주문내역"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "관제실"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "API 문서"
+      },
+      {
+        "tag": "BUTTON",
+        "quick_add": null,
+        "name": "카테고리"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "폴트마켓 홈"
+      },
+      {
+        "tag": "SELECT",
+        "quick_add": null,
+        "name": "전체\n        디지털·가전홈·리빙주방용품식품뷰티스포츠·레저"
+      },
+      {
+        "tag": "INPUT",
+        "quick_add": null,
+        "name": ""
+      },
+      {
+        "tag": "BUTTON",
+        "quick_add": null,
+        "name": "검색"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "주문내역"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "0\n          \n          장바구니"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "오늘의 할인"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "디지털·가전"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "홈·리빙"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "주방용품"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "식품"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "뷰티"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "스포츠·레저"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "신상품"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "홈"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "기타"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "전체 3"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "디지털·가전 0"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "홈·리빙 0"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "주방용품 0"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "식품 0"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "뷰티 0"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "스포츠·레저 0"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "기타 3"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "추천순"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "낮은가격순"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "높은가격순"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "할인율순"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "최신순"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "파란 머그\n            \n      정가16,000원\n      \n        25%\n        12,000원\n      \n            배송비 3,000원"
+      },
+      {
+        "tag": "BUTTON",
+        "quick_add": "1",
+        "name": "파란 머그 장바구니 담기"
+      },
+      {
+        "tag": "A",
+        "quick_add": null,
+        "name": "접이식 우산\n            \n      정가16,000원\n      \n        25%\n        12,000원\n      \n            배송비 3,000원"
+      },
+      {
+        "tag": "BUTTON",
+        "quick_add": "2",
+        "name": "접이식 우산 장바구니 담기"
+      }
+    ],
+    "cart_after_enter": [
+      {
+        "id": 2,
+        "qty": 1,
+        "selected": true,
+        "snap": {
+          "name": "접이식 우산",
+          "brand": "",
+          "unit_price": 12000,
+          "list_price": 16000,
+          "image_url": null,
+          "category": "etc",
+          "current_stock": 8
+        }
+      }
+    ],
+    "visible_cart_products": [
+      "접이식 우산"
+    ],
+    "verification_environment": "Chromium CDP accessibility tree and Playwright Tab/Enter inside Linux Docker",
+    "screen_reader_audio": {
+      "verified": false,
+      "reason": "NVDA or other screen-reader speech was not listened to"
+    },
+    "desktop_input": "No host desktop input, pointer capture, or Pointer Lock is used",
+    "browser_page_errors": [],
+    "browser_version": "140.0.7339.16",
+    "fixture_creation_method": "POST /products with GET readback; no direct DB writes"
+  },
+  "oracle": {
+    "passed": true,
+    "products": [
+      {
+        "product_id": 1,
+        "initial_stock": 8,
+        "confirmed_quantity": 0,
+        "current_stock": 8,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 2,
+        "initial_stock": 8,
+        "confirmed_quantity": 0,
+        "current_stock": 8,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 3,
+        "initial_stock": 8,
+        "confirmed_quantity": 0,
+        "current_stock": 8,
+        "non_negative": true,
+        "stock_equation": true
+      }
+    ],
+    "orders": {
+      "checked": 0,
+      "invalid_order_ids": [],
+      "amounts_valid": true
+    }
+  },
+  "passed": true,
+  "finished_at": "2026-10-06T08:07:44.627500+00:00"
+}
