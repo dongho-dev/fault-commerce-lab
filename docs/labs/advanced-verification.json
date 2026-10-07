@@ -1,0 +1,186 @@
+{
+  "recorded_at": "2026-10-07T01:04:51.704539+00:00",
+  "baseline": "l1-baseline-v2",
+  "cases": {
+    "11": {
+      "phases": {
+        "healthy": true,
+        "fault": true,
+        "restored": true
+      },
+      "baseline_protected": true,
+      "restored_source_identical": true,
+      "primary_triplet_run": "verification-advanced-data-v1",
+      "independent_complete_triplets": 3,
+      "repetitions": [
+        {
+          "run": "verification-advanced-data-v1",
+          "phases": {
+            "healthy": {
+              "passed": true,
+              "finished_at": "2026-10-07T00:45:22.717970+00:00",
+              "image_id": "sha256:3a2e4062e86d232c655017056cc984d32bb4e205981c9e6ecc6d345b50c571a9"
+            },
+            "fault": {
+              "passed": true,
+              "finished_at": "2026-10-07T00:45:43.909931+00:00",
+              "image_id": "sha256:427fdb3b59bd2fa93c72666363aa226a50d5b1d8acd893641fd9684c2fc49715"
+            },
+            "restored": {
+              "passed": true,
+              "finished_at": "2026-10-07T00:46:03.765820+00:00",
+              "image_id": "sha256:3bb9cfa96d2596a850cd5172c913890076e12be30be4a4839cb830ff1750ad84"
+            }
+          }
+        },
+        {
+          "run": "qualification-data-repeat2",
+          "phases": {
+            "healthy": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:03:44.465604+00:00",
+              "image_id": "sha256:bdbca9ed1a12eff44c01cc9854a790ba03a09eee32729ae211397da3f6f0e128"
+            },
+            "fault": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:04:04.345474+00:00",
+              "image_id": "sha256:404e5e8d8cd2e62d1ef6640409f5eb99ae1d97ceda00f0077128be5252014680"
+            },
+            "restored": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:04:24.197003+00:00",
+              "image_id": "sha256:bd1fe0324cf38088cd4a42dd845e88e6f43a3ee5564cca2cc5ebc737b31a2f26"
+            }
+          }
+        },
+        {
+          "run": "qualification-data-repeat3",
+          "phases": {
+            "healthy": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:05:54.745490+00:00",
+              "image_id": "sha256:37462fb24c0f5afdd34d2715560e8209b421d885ffeaac93f1fd68cfc5ec8a31"
+            },
+            "fault": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:06:17.183360+00:00",
+              "image_id": "sha256:1fa177791bd1b80a4a728ba2022197225580a065b0b4c77343f0684cc7180d4f"
+            },
+            "restored": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:06:39.775285+00:00",
+              "image_id": "sha256:3cf0b75178e6244917820083c695382dc4b3ba8f1ede5efebc17e0d8ef1030c8"
+            }
+          }
+        }
+      ]
+    },
+    "12": {
+      "phases": {
+        "healthy": true,
+        "fault": true,
+        "restored": true
+      },
+      "baseline_protected": true,
+      "restored_source_identical": true,
+      "primary_triplet_run": "verification-advanced-data-v1",
+      "independent_complete_triplets": 3,
+      "repetitions": [
+        {
+          "run": "verification-advanced-data-v1",
+          "phases": {
+            "healthy": {
+              "passed": true,
+              "finished_at": "2026-10-07T00:46:28.012249+00:00",
+              "image_id": "sha256:266922579e5b1f999e37b26046f3007f87a6f74fa4768e76c75dc81d775bc59e"
+            },
+            "fault": {
+              "passed": true,
+              "finished_at": "2026-10-07T00:46:52.454238+00:00",
+              "image_id": "sha256:e1cca76d8364f251a41cfc06953f128066f607c21573c0f49d2e56f3efee7270"
+            },
+            "restored": {
+              "passed": true,
+              "finished_at": "2026-10-07T00:47:17.238141+00:00",
+              "image_id": "sha256:0dd9d483a9536c62278000378f895b5cebad5ce585aa04829105e99586d2572b"
+            }
+          }
+        },
+        {
+          "run": "qualification-data-repeat2",
+          "phases": {
+            "healthy": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:04:47.233234+00:00",
+              "image_id": "sha256:f4cff5c0026c9fe615ec8749d27bdd3ea47a4e48388bfb5fcaf7cee950ede31f"
+            },
+            "fault": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:05:11.032988+00:00",
+              "image_id": "sha256:08687095542bdd1aa08e150864d393ae002301f961a3ac0c79aa2eb943c11b1a"
+            },
+            "restored": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:05:35.092577+00:00",
+              "image_id": "sha256:82fafebf107a12703fdde7820cb2721df8ccf8db1232efb19369e7e07fbfe4a5"
+            }
+          }
+        },
+        {
+          "run": "qualification-data-repeat3",
+          "phases": {
+            "healthy": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:07:04.167475+00:00",
+              "image_id": "sha256:ec0d088ad01bfe02af2ea4c725cd9ca56921696d14481dffd256cb5133cd20bc"
+            },
+            "fault": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:07:29.116553+00:00",
+              "image_id": "sha256:3b4c74fc300751d3ca73813188ba2ebbd0f2252e9193a79eeed71e4c6a0d175a"
+            },
+            "restored": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:07:53.413431+00:00",
+              "image_id": "sha256:0b64465d71036c76cbb530ec75f38ed9599bd33fe08314f08ccfa7f5f5f2ca75"
+            }
+          }
+        }
+      ]
+    },
+    "13": {
+      "phases": {
+        "healthy": true,
+        "fault": true,
+        "restored": true
+      },
+      "baseline_protected": true,
+      "restored_source_identical": true,
+      "independent_complete_triplets": 1,
+      "controlled_service_changes_per_phase": 2,
+      "scope": "HTTP API, database and isolated Linux browser",
+      "repetitions": [
+        {
+          "run": "qualification-network-v1",
+          "phases": {
+            "healthy": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:15:54.105497+00:00",
+              "image_id": "sha256:d34bfafd2d934f8a2f6e4871d3e6fa077d79aef76a8ae3a12931a139338f195c"
+            },
+            "fault": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:17:35.255370+00:00",
+              "image_id": "sha256:5c8b93c4a459aaa0c7583ee43d8b24368c38b2fdd26713125a8babe179b1dc7f"
+            },
+            "restored": {
+              "passed": true,
+              "finished_at": "2026-10-07T01:18:33.879271+00:00",
+              "image_id": "sha256:e952d20ebcf78eaa3705232087fca882bc65f8a9b638aefb246377cc9c0b91dc"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

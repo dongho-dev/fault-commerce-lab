@@ -1,0 +1,29 @@
+[
+  {
+    "status": "oom",
+    "id": "9803a3be0685a06cc26255b075f2f0533181f68f914e4b2e3442a834102f0ddf",
+    "from": "fcl-cs-04:fault",
+    "Type": "container",
+    "Action": "oom",
+    "Actor": {
+      "ID": "9803a3be0685a06cc26255b075f2f0533181f68f914e4b2e3442a834102f0ddf",
+      "Attributes": {
+        "com.docker.compose.config-hash": "8b58b3df66e25a8550afcb1659cedeea16dcc6b96a2bcb03d6febb81afbe4b36",
+        "com.docker.compose.container-number": "1",
+        "com.docker.compose.depends_on": "db:service_healthy:false",
+        "com.docker.compose.image": "sha256:400b66d4254197c75924f82cbec4577b18dba4ff86bd87c251260e2a428ebf57",
+        "com.docker.compose.oneoff": "False",
+        "com.docker.compose.project": "fcl-cs-04-fault",
+        "com.docker.compose.project.config_files": "C:\\Users\\hdhhd\\.codex\\worktrees\\cs-incident-labs\\shop1\\artifacts\\cs-labs\\verification-04-connections\\04\\fault\\compose.json",
+        "com.docker.compose.project.working_dir": "C:\\Users\\hdhhd\\.codex\\worktrees\\cs-incident-labs\\shop1\\artifacts\\cs-labs\\verification-04-connections\\04\\fault",
+        "com.docker.compose.service": "app",
+        "com.docker.compose.version": "2.35.1",
+        "image": "fcl-cs-04:fault",
+        "name": "fcl-cs-04-fault-app-1"
+      }
+    },
+    "scope": "local",
+    "time": 1791279655,
+    "timeNano": 1791279655821991544
+  }
+]
