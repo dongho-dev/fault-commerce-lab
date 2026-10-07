@@ -1,0 +1,1107 @@
+{
+  "issue": "https://github.com/dongho-dev/fault-commerce-lab/issues/25",
+  "incident_base": "88aff83354a90b4195d024181e59917fd28b8c9a",
+  "baseline": "a3b8ef9e20366d85b5d74e13ef3bd988f98b6353",
+  "changed_application_file": "app/repositories/inventory.py",
+  "fixed_source_sha256": "d4d8de59392250781be532857850fa4b662f444714886c107e42a1d27832d784",
+  "fix": "Subtract quantity from the database column in the guarded UPDATE, without a Python snapshot-based assignment.",
+  "before": {
+    "case": "12",
+    "expected": "fault",
+    "passed": true,
+    "healthy": false,
+    "symptom": true,
+    "finished_at": "2026-10-07T02:23:55.143387+00:00",
+    "image_id": "sha256:a164d01f59e602dee58d19209c41d8f4b1914bf1d564b973d7fa31e033402cde",
+    "application_sha256": {
+      "app/__init__.py": "d2b4f48104e28b0d6ff1fbb77a1d351dfc32aa8b67626173f637bc87c7c09ac2",
+      "app/api/__init__.py": "c5e79b75137811726e30acef2fa5cfc649514fce1c86da771535b368f43238c0",
+      "app/api/routes.py": "0899a1d5899fcff7d60a6923bfd37f1b1a6b6c9d1800f31dcb1cf919292eece6",
+      "app/catalog.py": "781bc17a344d954279e73beb76cdab3771608349fcce50342a3e5c5df11b87e5",
+      "app/config.py": "28c85a5bdc11913d023527ea9e9853427c8534735faaf8ffe17d779ae5e3f04d",
+      "app/database.py": "178492fc2b975cd2096d94f537bb54ef0ba156d0900a6fb16847eb6912566632",
+      "app/frontend/admin.css": "b443da25949daf254949390f3d8b1c4ea4cf1ec0e24d6c77a4e610316a8f1e14",
+      "app/frontend/admin.html": "a6e54f44ff84d44bbdc8171146914fb60a56184e03d36d117b3ae04267d97710",
+      "app/frontend/admin.js": "1c4bf53381b7c5502b1095c457bd51888d429bfc49002ccb238f66fd88b0e586",
+      "app/frontend/app.js": "83fd556bf49f233a71afe926466e3e284574e92990d42435fd2ba4d41cc87af6",
+      "app/frontend/assets/hero-workspace.jpg": "c96184c540963b31c9310c674e6c0a2f82d6eb18259c56ca1c865d206e17bcc4",
+      "app/frontend/assets/PHOTO_CREDITS.md": "071bbbf3960eedb45b511531ed0af1de39dfc93a973c50c6995db2ff41d11798",
+      "app/frontend/assets/products/blanket.jpg": "6106f7358028cf68eb2aa8903f725aaabe915e7e9b707babf01beccfb749a56d",
+      "app/frontend/assets/products/campchair.jpg": "69fc3b2c7fac3f0a69e61f8681450cda915c1807d1a55d636de67fe593325359",
+      "app/frontend/assets/products/coldbrew.jpg": "32d48b6f3c119e636bdafacb29489aa0fb49656232c175ac178ddb32ddea1857",
+      "app/frontend/assets/products/dripset.jpg": "fbdf3e7176a5595e99c85fc76e732d8a30049482e680e2bc3760b9c5c31c7c5d",
+      "app/frontend/assets/products/dumbbell.jpg": "3524db0ed653f7b4c68f979d43833d8febf9f78a2b2a3d22f606f9f60ceca747",
+      "app/frontend/assets/products/eggs.jpg": "d6b819dff63c9a5adec21577c8e240a9e5d538aade53e4b16e40518928bdcef2",
+      "app/frontend/assets/products/granola.jpg": "17340ddc5f179610dc68cdb201f996560b857ad22b04f4c8b13e8ca5b24eaeb9",
+      "app/frontend/assets/products/handcream.jpg": "36044b920ab1377c8d4afe345daccca952d6393f8256d487d2efed36cfa286ef",
+      "app/frontend/assets/products/headphones.jpg": "11cce56e17bcc74b5ee61178e4436cf60bfd18e4245aab4acc859d97c1c4c336",
+      "app/frontend/assets/products/kettle.jpg": "2063c1b4d85e93d5041182584a316b54783b69a548a859025c6958cfc1dc85a6",
+      "app/frontend/assets/products/keyboard.jpg": "80a76bc985a91109e49e3dc718f23655b743c3acce513508ec765992a597297d",
+      "app/frontend/assets/products/lamp.jpg": "30897c2f11e2b7ff4ea48bf9f61c3ef4166c1531c771c10d9c29c548e3531537",
+      "app/frontend/assets/products/monitor.jpg": "d15ff6e7b4d5d1a2d367adc2ccd70faef105502cc677d4204eafb1e6fc8d02c4",
+      "app/frontend/assets/products/mouse.jpg": "b6baa108aaab0c90cbc74508ceddbf9110449d5617624d431f491cafb07b6c9f",
+      "app/frontend/assets/products/pan.jpg": "9903afc41f2f2ae4f27fb826c9df8a9a3acc0f1981475a6261f8a2c21eee979b",
+      "app/frontend/assets/products/powerbank.jpg": "66912cce28771216e42b4b8a331bc0e03f1d63226654bd82282e495f3f79a454",
+      "app/frontend/assets/products/runningshoe.jpg": "4767d84a218f51e88a5cfa013f2004a36696b595fd80aa61fa5a3f4433db56ce",
+      "app/frontend/assets/products/storagebox.jpg": "f5dd27e7bb9c97b27e29160e75bbbbb7beca07496a12c2adf2bc8081e14a8856",
+      "app/frontend/assets/products/suncream.jpg": "996ecbdf248812adc3240cf876d084ca47e95f1790a8ece91df549cdf0d79fb9",
+      "app/frontend/assets/products/tangerine.jpg": "371afdc1b518fd8bd448d9250c487df0cfb8e05fb524e2e8ecdb203e30324d11",
+      "app/frontend/assets/products/toner.jpg": "7452317bb087773d63113f349b8206134a91ab8fa34df6eac42647abb1b62c75",
+      "app/frontend/assets/products/towel.jpg": "0dae89b650df2c889175fb509ea5a308ed7837a29e97a9ce8ce38376cbf2b0ec",
+      "app/frontend/assets/products/tumbler.jpg": "05a7aa814720335ae6b9900f28cb16d4ce4f14e4708d40c0827f6fe6188ee90c",
+      "app/frontend/assets/products/yogamat.jpg": "4b49813b0e5f0eace540ce6783c565b31435b611c8aa51ededfbdb6261715fa7",
+      "app/frontend/favicon.svg": "c0ced9427c8758d4fc76129f334fd13dc8cd5fe8b28d483f2a91b9d29e0eade4",
+      "app/frontend/index.html": "54cf4de6de01be8366f08cfeb02dad916e70899a580a69cd52613be7fc5c051f",
+      "app/frontend/styles.css": "2bb740de61f767dd67d90bcec4ae9a67649fc0ec4730122dd4f551179140f403",
+      "app/main.py": "7837eef160dd03856f913d83e08d769b8a2e506b3020a235184ef580127b8283",
+      "app/models/__init__.py": "aa3a2f62dedc7d03a9cbbcc1d8ecf3576e9bd411c45392abb3e561e5e4c0e748",
+      "app/models/base.py": "987edfd9dfe38b2c49492c7d1a4e774015d16b72e2281b018e4160be6b47d560",
+      "app/models/inventory.py": "e60d1e076faedd6f5412bacf7dad01d3bd578e2cc1001fa9ec245c3b796dcf20",
+      "app/models/order.py": "a8e4aaecfa91ac4695f339055fd89ae1cbc451dd1aa4db296b84ecd8e68361ca",
+      "app/models/product.py": "6d04b752d393ccd77fd3143a97fec62d2cd25984abb187a9638019236d7d1834",
+      "app/observability/__init__.py": "f97f7f355f78cd78601f59a24a74f48be672bc1708ca496403c559364a48921f",
+      "app/observability/context.py": "37a38d9413a0e1a66680f5f40daf4f338f934fe05acc19265eeee268a0264e61",
+      "app/observability/logging.py": "1b3468b7637201d40127df39eb1a4f92b129e8dcfff62e51b53415d1d05d3633",
+      "app/observability/metrics.py": "e47a2a132cf8f5ba9b6177da0b0d7bd0a6b8ae5ba1b932d020076d947d125962",
+      "app/observability/middleware.py": "1830990403bd8d8ac5671a9efa0fc23dd31d152718a38aed4485a13abad4e375",
+      "app/repositories/__init__.py": "671a7299badf2afd8b6fcdf04dcddbfdac48649719354a256f3219e19d2a895d",
+      "app/repositories/inventory.py": "a4eeda120aa53e7d0937b7c0d8827c824be94c72d1f0242dfb57cc7eff3ca087",
+      "app/repositories/order.py": "775dce570d94acb967f2d19dc7e324e0e5547511585ac20358d0cf1b8162bdd7",
+      "app/repositories/product.py": "88d9f0e1c7d1bc01b835309845893f201ff8f71168ff6426286bf1abf720cc1f",
+      "app/schemas/__init__.py": "19292800c82264b79028e010c1a0434af2f055a94453026a054ea03cb7dfc7fa",
+      "app/schemas/common.py": "083c65048b6d706070687d453f444a3623fe0e2de4eab34a7c9ae36b90f053c9",
+      "app/schemas/order.py": "ac3951280e285d902fdab9c9114c7aabe242dce3d6b2d0961d51aed7ee05470d",
+      "app/schemas/product.py": "f567abe5975233eddd86f0d66201945ec0ebdbfa585b8427ea6ec819828fa7bb",
+      "app/services/__init__.py": "4b3e6d32891fe52f7b1a3c9bede88fb2a4c95dfdb7cb245fb00ce131c5f73c0c",
+      "app/services/errors.py": "3ddb339d846694f73f4cb9005f2936995b7bc5cae301b869d95866bbd0cd2e9f",
+      "app/services/order.py": "000b8176ea11e70536c9c5ab4af81641c81349b05c5ce107c1f01f301e63341d",
+      "app/services/product.py": "10ba767c6482f8e8ecdf7a75441e28e47036212b3ad2aadc94cc6358d8900f93",
+      "app/services/shipping.py": "f570b813b28604b33afdb53fb7b62671cd923adce5f115df8ff2803f8d98d44c",
+      ".dockerignore": "db51ba37f35a144de4dd039465428f71d50325273c61450bc19ecc0fb198a2d7",
+      "lab_suite/network_proxy.py": "ffa29df57e626d288dbb66a2fafe098d98b9741fb574cc152121f27b969f3816"
+    },
+    "raw_result_path": "artifacts/cs-labs/learner-12/20261007T022337.533275Z-check/result.json",
+    "raw_result_sha256": "1a4e8fe9fed1b99d24f598d9337e0b50818301832a4c024fe36d6abe6f515f42",
+    "raw_evidence_retention": "Full local artifacts are ignored by Git; this file retains the verdicts, source hashes, counts and DB reconciliation.",
+    "request_count": 112,
+    "status_counts": {
+      "201": 106,
+      "409": 6
+    },
+    "checks": {
+      "response_contract_and_amounts": true,
+      "success_ids_equal_persisted_orders": true,
+      "nonnegative_stock": true,
+      "initial_stock_unchanged": true,
+      "stock_equation": false,
+      "api_views_match_database": true,
+      "serial_controls": true,
+      "uniform_allocation_counts": false,
+      "mixed_allocation_has_legal_order": false,
+      "both_nodes_received_concurrent_orders": true
+    },
+    "oracle_passed": false,
+    "oracle_orders": {
+      "checked": 106,
+      "invalid_order_ids": [],
+      "amounts_valid": true
+    },
+    "groups": {
+      "serial-0": {
+        "product_id": 1,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 5,
+        "confirmed_quantity": 5,
+        "current_stock": 0,
+        "stock_equation": true,
+        "nodes": [
+          "http://app:8000"
+        ]
+      },
+      "serial-1": {
+        "product_id": 2,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 5,
+        "confirmed_quantity": 5,
+        "current_stock": 0,
+        "stock_equation": true,
+        "nodes": [
+          "http://app-b:8000"
+        ]
+      },
+      "allocation-0": {
+        "product_id": 3,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "201": 8
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 8,
+        "confirmed_quantity": 8,
+        "current_stock": 2,
+        "stock_equation": false,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      },
+      "allocation-1": {
+        "product_id": 4,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "201": 8
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 8,
+        "confirmed_quantity": 8,
+        "current_stock": 3,
+        "stock_equation": false,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      },
+      "allocation-2": {
+        "product_id": 5,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "201": 8
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 8,
+        "confirmed_quantity": 8,
+        "current_stock": 3,
+        "stock_equation": false,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      },
+      "allocation-3": {
+        "product_id": 6,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "201": 8
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 8,
+        "confirmed_quantity": 8,
+        "current_stock": 4,
+        "stock_equation": false,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      },
+      "allocation-4": {
+        "product_id": 7,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "201": 8
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 8,
+        "confirmed_quantity": 8,
+        "current_stock": 4,
+        "stock_equation": false,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      },
+      "allocation-5": {
+        "product_id": 8,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "201": 8
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 8,
+        "confirmed_quantity": 8,
+        "current_stock": 4,
+        "stock_equation": false,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      },
+      "allocation-6": {
+        "product_id": 9,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "201": 8
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 8,
+        "confirmed_quantity": 8,
+        "current_stock": 3,
+        "stock_equation": false,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      },
+      "allocation-7": {
+        "product_id": 10,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "201": 8
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 8,
+        "confirmed_quantity": 8,
+        "current_stock": 3,
+        "stock_equation": false,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      },
+      "allocation-8": {
+        "product_id": 11,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "201": 8
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 8,
+        "confirmed_quantity": 8,
+        "current_stock": 3,
+        "stock_equation": false,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      },
+      "allocation-9": {
+        "product_id": 12,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "201": 8
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 8,
+        "confirmed_quantity": 8,
+        "current_stock": 4,
+        "stock_equation": false,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      },
+      "quantity-two": {
+        "product_id": 13,
+        "initial_stock": 10,
+        "request_count": 8,
+        "requested_quantities": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "status_counts": {
+          "201": 8
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 8,
+        "confirmed_quantity": 16,
+        "current_stock": 8,
+        "stock_equation": false,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      },
+      "mixed": {
+        "product_id": 14,
+        "initial_stock": 12,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          2,
+          3,
+          1,
+          2,
+          3,
+          1,
+          2
+        ],
+        "status_counts": {
+          "201": 8
+        },
+        "expected_status_counts": null,
+        "confirmed_orders": 8,
+        "confirmed_quantity": 15,
+        "current_stock": 10,
+        "stock_equation": false,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      }
+    }
+  },
+  "after": {
+    "case": "12",
+    "expected": "healthy",
+    "passed": true,
+    "healthy": true,
+    "symptom": false,
+    "finished_at": "2026-10-07T02:25:32.520647+00:00",
+    "image_id": "sha256:60e1e6b968b3a7e695aa8bd4b9af62c5cf0f93e218fb2c46db037ce484b66ee2",
+    "application_sha256": {
+      "app/__init__.py": "d2b4f48104e28b0d6ff1fbb77a1d351dfc32aa8b67626173f637bc87c7c09ac2",
+      "app/api/__init__.py": "c5e79b75137811726e30acef2fa5cfc649514fce1c86da771535b368f43238c0",
+      "app/api/routes.py": "0899a1d5899fcff7d60a6923bfd37f1b1a6b6c9d1800f31dcb1cf919292eece6",
+      "app/catalog.py": "781bc17a344d954279e73beb76cdab3771608349fcce50342a3e5c5df11b87e5",
+      "app/config.py": "28c85a5bdc11913d023527ea9e9853427c8534735faaf8ffe17d779ae5e3f04d",
+      "app/database.py": "178492fc2b975cd2096d94f537bb54ef0ba156d0900a6fb16847eb6912566632",
+      "app/frontend/admin.css": "b443da25949daf254949390f3d8b1c4ea4cf1ec0e24d6c77a4e610316a8f1e14",
+      "app/frontend/admin.html": "a6e54f44ff84d44bbdc8171146914fb60a56184e03d36d117b3ae04267d97710",
+      "app/frontend/admin.js": "1c4bf53381b7c5502b1095c457bd51888d429bfc49002ccb238f66fd88b0e586",
+      "app/frontend/app.js": "83fd556bf49f233a71afe926466e3e284574e92990d42435fd2ba4d41cc87af6",
+      "app/frontend/assets/hero-workspace.jpg": "c96184c540963b31c9310c674e6c0a2f82d6eb18259c56ca1c865d206e17bcc4",
+      "app/frontend/assets/PHOTO_CREDITS.md": "071bbbf3960eedb45b511531ed0af1de39dfc93a973c50c6995db2ff41d11798",
+      "app/frontend/assets/products/blanket.jpg": "6106f7358028cf68eb2aa8903f725aaabe915e7e9b707babf01beccfb749a56d",
+      "app/frontend/assets/products/campchair.jpg": "69fc3b2c7fac3f0a69e61f8681450cda915c1807d1a55d636de67fe593325359",
+      "app/frontend/assets/products/coldbrew.jpg": "32d48b6f3c119e636bdafacb29489aa0fb49656232c175ac178ddb32ddea1857",
+      "app/frontend/assets/products/dripset.jpg": "fbdf3e7176a5595e99c85fc76e732d8a30049482e680e2bc3760b9c5c31c7c5d",
+      "app/frontend/assets/products/dumbbell.jpg": "3524db0ed653f7b4c68f979d43833d8febf9f78a2b2a3d22f606f9f60ceca747",
+      "app/frontend/assets/products/eggs.jpg": "d6b819dff63c9a5adec21577c8e240a9e5d538aade53e4b16e40518928bdcef2",
+      "app/frontend/assets/products/granola.jpg": "17340ddc5f179610dc68cdb201f996560b857ad22b04f4c8b13e8ca5b24eaeb9",
+      "app/frontend/assets/products/handcream.jpg": "36044b920ab1377c8d4afe345daccca952d6393f8256d487d2efed36cfa286ef",
+      "app/frontend/assets/products/headphones.jpg": "11cce56e17bcc74b5ee61178e4436cf60bfd18e4245aab4acc859d97c1c4c336",
+      "app/frontend/assets/products/kettle.jpg": "2063c1b4d85e93d5041182584a316b54783b69a548a859025c6958cfc1dc85a6",
+      "app/frontend/assets/products/keyboard.jpg": "80a76bc985a91109e49e3dc718f23655b743c3acce513508ec765992a597297d",
+      "app/frontend/assets/products/lamp.jpg": "30897c2f11e2b7ff4ea48bf9f61c3ef4166c1531c771c10d9c29c548e3531537",
+      "app/frontend/assets/products/monitor.jpg": "d15ff6e7b4d5d1a2d367adc2ccd70faef105502cc677d4204eafb1e6fc8d02c4",
+      "app/frontend/assets/products/mouse.jpg": "b6baa108aaab0c90cbc74508ceddbf9110449d5617624d431f491cafb07b6c9f",
+      "app/frontend/assets/products/pan.jpg": "9903afc41f2f2ae4f27fb826c9df8a9a3acc0f1981475a6261f8a2c21eee979b",
+      "app/frontend/assets/products/powerbank.jpg": "66912cce28771216e42b4b8a331bc0e03f1d63226654bd82282e495f3f79a454",
+      "app/frontend/assets/products/runningshoe.jpg": "4767d84a218f51e88a5cfa013f2004a36696b595fd80aa61fa5a3f4433db56ce",
+      "app/frontend/assets/products/storagebox.jpg": "f5dd27e7bb9c97b27e29160e75bbbbb7beca07496a12c2adf2bc8081e14a8856",
+      "app/frontend/assets/products/suncream.jpg": "996ecbdf248812adc3240cf876d084ca47e95f1790a8ece91df549cdf0d79fb9",
+      "app/frontend/assets/products/tangerine.jpg": "371afdc1b518fd8bd448d9250c487df0cfb8e05fb524e2e8ecdb203e30324d11",
+      "app/frontend/assets/products/toner.jpg": "7452317bb087773d63113f349b8206134a91ab8fa34df6eac42647abb1b62c75",
+      "app/frontend/assets/products/towel.jpg": "0dae89b650df2c889175fb509ea5a308ed7837a29e97a9ce8ce38376cbf2b0ec",
+      "app/frontend/assets/products/tumbler.jpg": "05a7aa814720335ae6b9900f28cb16d4ce4f14e4708d40c0827f6fe6188ee90c",
+      "app/frontend/assets/products/yogamat.jpg": "4b49813b0e5f0eace540ce6783c565b31435b611c8aa51ededfbdb6261715fa7",
+      "app/frontend/favicon.svg": "c0ced9427c8758d4fc76129f334fd13dc8cd5fe8b28d483f2a91b9d29e0eade4",
+      "app/frontend/index.html": "54cf4de6de01be8366f08cfeb02dad916e70899a580a69cd52613be7fc5c051f",
+      "app/frontend/styles.css": "2bb740de61f767dd67d90bcec4ae9a67649fc0ec4730122dd4f551179140f403",
+      "app/main.py": "7837eef160dd03856f913d83e08d769b8a2e506b3020a235184ef580127b8283",
+      "app/models/__init__.py": "aa3a2f62dedc7d03a9cbbcc1d8ecf3576e9bd411c45392abb3e561e5e4c0e748",
+      "app/models/base.py": "987edfd9dfe38b2c49492c7d1a4e774015d16b72e2281b018e4160be6b47d560",
+      "app/models/inventory.py": "e60d1e076faedd6f5412bacf7dad01d3bd578e2cc1001fa9ec245c3b796dcf20",
+      "app/models/order.py": "a8e4aaecfa91ac4695f339055fd89ae1cbc451dd1aa4db296b84ecd8e68361ca",
+      "app/models/product.py": "6d04b752d393ccd77fd3143a97fec62d2cd25984abb187a9638019236d7d1834",
+      "app/observability/__init__.py": "f97f7f355f78cd78601f59a24a74f48be672bc1708ca496403c559364a48921f",
+      "app/observability/context.py": "37a38d9413a0e1a66680f5f40daf4f338f934fe05acc19265eeee268a0264e61",
+      "app/observability/logging.py": "1b3468b7637201d40127df39eb1a4f92b129e8dcfff62e51b53415d1d05d3633",
+      "app/observability/metrics.py": "e47a2a132cf8f5ba9b6177da0b0d7bd0a6b8ae5ba1b932d020076d947d125962",
+      "app/observability/middleware.py": "1830990403bd8d8ac5671a9efa0fc23dd31d152718a38aed4485a13abad4e375",
+      "app/repositories/__init__.py": "671a7299badf2afd8b6fcdf04dcddbfdac48649719354a256f3219e19d2a895d",
+      "app/repositories/inventory.py": "d4d8de59392250781be532857850fa4b662f444714886c107e42a1d27832d784",
+      "app/repositories/order.py": "775dce570d94acb967f2d19dc7e324e0e5547511585ac20358d0cf1b8162bdd7",
+      "app/repositories/product.py": "88d9f0e1c7d1bc01b835309845893f201ff8f71168ff6426286bf1abf720cc1f",
+      "app/schemas/__init__.py": "19292800c82264b79028e010c1a0434af2f055a94453026a054ea03cb7dfc7fa",
+      "app/schemas/common.py": "083c65048b6d706070687d453f444a3623fe0e2de4eab34a7c9ae36b90f053c9",
+      "app/schemas/order.py": "ac3951280e285d902fdab9c9114c7aabe242dce3d6b2d0961d51aed7ee05470d",
+      "app/schemas/product.py": "f567abe5975233eddd86f0d66201945ec0ebdbfa585b8427ea6ec819828fa7bb",
+      "app/services/__init__.py": "4b3e6d32891fe52f7b1a3c9bede88fb2a4c95dfdb7cb245fb00ce131c5f73c0c",
+      "app/services/errors.py": "3ddb339d846694f73f4cb9005f2936995b7bc5cae301b869d95866bbd0cd2e9f",
+      "app/services/order.py": "000b8176ea11e70536c9c5ab4af81641c81349b05c5ce107c1f01f301e63341d",
+      "app/services/product.py": "10ba767c6482f8e8ecdf7a75441e28e47036212b3ad2aadc94cc6358d8900f93",
+      "app/services/shipping.py": "f570b813b28604b33afdb53fb7b62671cd923adce5f115df8ff2803f8d98d44c",
+      ".dockerignore": "db51ba37f35a144de4dd039465428f71d50325273c61450bc19ecc0fb198a2d7",
+      "lab_suite/network_proxy.py": "ffa29df57e626d288dbb66a2fafe098d98b9741fb574cc152121f27b969f3816"
+    },
+    "raw_result_path": "artifacts/cs-labs/learner-12/20261007T022514.143260Z-check/result.json",
+    "raw_result_sha256": "1e3349b38d7c3ddd19f1e40c68c7926d98481305d65a7a7d3732fad1fffe6e0a",
+    "raw_evidence_retention": "Full local artifacts are ignored by Git; this file retains the verdicts, source hashes, counts and DB reconciliation.",
+    "request_count": 112,
+    "status_counts": {
+      "201": 71,
+      "409": 41
+    },
+    "checks": {
+      "response_contract_and_amounts": true,
+      "success_ids_equal_persisted_orders": true,
+      "nonnegative_stock": true,
+      "initial_stock_unchanged": true,
+      "stock_equation": true,
+      "api_views_match_database": true,
+      "serial_controls": true,
+      "uniform_allocation_counts": true,
+      "mixed_allocation_has_legal_order": true,
+      "both_nodes_received_concurrent_orders": true
+    },
+    "oracle_passed": true,
+    "oracle_orders": {
+      "checked": 71,
+      "invalid_order_ids": [],
+      "amounts_valid": true
+    },
+    "groups": {
+      "serial-0": {
+        "product_id": 1,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 5,
+        "confirmed_quantity": 5,
+        "current_stock": 0,
+        "stock_equation": true,
+        "nodes": [
+          "http://app:8000"
+        ]
+      },
+      "serial-1": {
+        "product_id": 2,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 5,
+        "confirmed_quantity": 5,
+        "current_stock": 0,
+        "stock_equation": true,
+        "nodes": [
+          "http://app-b:8000"
+        ]
+      },
+      "allocation-0": {
+        "product_id": 3,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 5,
+        "confirmed_quantity": 5,
+        "current_stock": 0,
+        "stock_equation": true,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      },
+      "allocation-1": {
+        "product_id": 4,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "409": 3,
+          "201": 5
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 5,
+        "confirmed_quantity": 5,
+        "current_stock": 0,
+        "stock_equation": true,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      },
+      "allocation-2": {
+        "product_id": 5,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 5,
+        "confirmed_quantity": 5,
+        "current_stock": 0,
+        "stock_equation": true,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      },
+      "allocation-3": {
+        "product_id": 6,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 5,
+        "confirmed_quantity": 5,
+        "current_stock": 0,
+        "stock_equation": true,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      },
+      "allocation-4": {
+        "product_id": 7,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 5,
+        "confirmed_quantity": 5,
+        "current_stock": 0,
+        "stock_equation": true,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      },
+      "allocation-5": {
+        "product_id": 8,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 5,
+        "confirmed_quantity": 5,
+        "current_stock": 0,
+        "stock_equation": true,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      },
+      "allocation-6": {
+        "product_id": 9,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 5,
+        "confirmed_quantity": 5,
+        "current_stock": 0,
+        "stock_equation": true,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      },
+      "allocation-7": {
+        "product_id": 10,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 5,
+        "confirmed_quantity": 5,
+        "current_stock": 0,
+        "stock_equation": true,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      },
+      "allocation-8": {
+        "product_id": 11,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 5,
+        "confirmed_quantity": 5,
+        "current_stock": 0,
+        "stock_equation": true,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      },
+      "allocation-9": {
+        "product_id": 12,
+        "initial_stock": 5,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "status_counts": {
+          "409": 3,
+          "201": 5
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 5,
+        "confirmed_quantity": 5,
+        "current_stock": 0,
+        "stock_equation": true,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      },
+      "quantity-two": {
+        "product_id": 13,
+        "initial_stock": 10,
+        "request_count": 8,
+        "requested_quantities": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "expected_status_counts": {
+          "201": 5,
+          "409": 3
+        },
+        "confirmed_orders": 5,
+        "confirmed_quantity": 10,
+        "current_stock": 0,
+        "stock_equation": true,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      },
+      "mixed": {
+        "product_id": 14,
+        "initial_stock": 12,
+        "request_count": 8,
+        "requested_quantities": [
+          1,
+          2,
+          3,
+          1,
+          2,
+          3,
+          1,
+          2
+        ],
+        "status_counts": {
+          "201": 6,
+          "409": 2
+        },
+        "expected_status_counts": null,
+        "confirmed_orders": 6,
+        "confirmed_quantity": 11,
+        "current_stock": 1,
+        "stock_equation": true,
+        "nodes": [
+          "http://app-b:8000",
+          "http://app:8000"
+        ]
+      }
+    }
+  },
+  "runtime": [
+    {
+      "node": "fcl-exercise-12-app-1",
+      "settings": {
+        "isolation_level": "READ COMMITTED",
+        "default_transaction_isolation": "read committed",
+        "server_version": "16.15 (Debian 16.15-1.pgdg13+2)",
+        "inventory_source_sha256": "d4d8de59392250781be532857850fa4b662f444714886c107e42a1d27832d784"
+      }
+    },
+    {
+      "node": "fcl-exercise-12-app-b-1",
+      "settings": {
+        "isolation_level": "READ COMMITTED",
+        "default_transaction_isolation": "read committed",
+        "server_version": "16.15 (Debian 16.15-1.pgdg13+2)",
+        "inventory_source_sha256": "d4d8de59392250781be532857850fa4b662f444714886c107e42a1d27832d784"
+      }
+    }
+  ],
+  "regression": {
+    "database": "Separate cs12_regression database inside the task-owned temporary PostgreSQL container",
+    "test_nodeids": [
+      "tests/integration/test_api.py::test_normal_order_decrements_stock_and_snapshots_price",
+      "tests/integration/test_api.py::test_insufficient_stock_is_atomic",
+      "tests/integration/test_api.py::test_unexpected_exception_rolls_back_inventory",
+      "tests/integration/test_live_http.py::test_exact_concurrent_success_and_rejection_counts",
+      "tests/integration/test_live_http.py::test_two_products_remain_independently_consistent"
+    ],
+    "passed": 5,
+    "failed": 0,
+    "output": ".....                                                                    [100%]\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/starlette/testclient.py:51\n  /usr/local/lib/python3.12/site-packages/starlette/testclient.py:51: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n5 passed, 1 warning in 6.06s\n"
+  },
+  "static_checks": {
+    "ruff_check": "All checks passed!\n",
+    "ruff_format_check": "1 file already formatted\n"
+  },
+  "scope": {
+    "application_nodes": 2,
+    "full_suite_run": false,
+    "historical_data_repaired": false,
+    "strict_http_arrival_fifo_guaranteed": false,
+    "schema_api_oracle_tests_changed": false,
+    "deployment_performed": false
+  }
+}
