@@ -87,7 +87,7 @@ docker compose --profile test run --rm test sh -c "alembic upgrade head && pytes
 
 | 문서 | 내용 |
 | --- | --- |
-| [실습 유형별 기록](https://github.com/dongho-dev/fault-commerce-lab/blob/codex/cs-incident-labs/docs/labs/catalog.md) | 과거 문제 유형과 개선 기록 카탈로그 |
+| [종류별 문제 카탈로그](https://github.com/dongho-dev/fault-commerce-lab/blob/codex/cs-incident-labs/docs/labs/catalog.md) | 현재 공개 문제, CS 심화 실습 5개와 준비 검증 기록 |
 | [개발·운영 참고](docs/development.md) | 환경 변수, 테스트, 로그, 부하 도구, DB 검증 |
 | [Vercel 배포](docs/vercel-deployment.md) | 외부 PostgreSQL 연결과 배포·확인 절차 |
 | [배송비 수정 기록](docs/incidents/cs-03-resolution.md) | 원인, 검증 결과, 과거 주문 확인 기준 |
