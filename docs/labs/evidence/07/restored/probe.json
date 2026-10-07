@@ -1,0 +1,490 @@
+{
+  "case": "07",
+  "expected": "healthy",
+  "started_at": "2026-10-06T08:05:28.188571+00:00",
+  "healthy": true,
+  "symptom": false,
+  "checks": {
+    "each_query_alone_shows_matching_product": true,
+    "all_nine_first_query_requests_held": true,
+    "all_nine_late_responses_completed": true,
+    "second_product_visible_before_first_released": true,
+    "all_held_responses_successful": true,
+    "search_input_and_title_keep_second_query": true,
+    "category_etc_kept_in_both_routes": true,
+    "last_query_results_kept": true,
+    "older_query_overwrote_results": false,
+    "no_browser_page_errors": true
+  },
+  "observations": {
+    "fixtures": [
+      {
+        "id": 1,
+        "name": "여행 파우치",
+        "unit_price": 12000,
+        "initial_stock": 8,
+        "current_stock": 8,
+        "created_at": "2026-10-06T08:05:29.494921Z",
+        "category": "etc",
+        "brand": "",
+        "description": "",
+        "list_price": 16000,
+        "image_url": null
+      },
+      {
+        "id": 2,
+        "name": "케이블 정리함",
+        "unit_price": 12000,
+        "initial_stock": 8,
+        "current_stock": 8,
+        "created_at": "2026-10-06T08:05:29.512858Z",
+        "category": "etc",
+        "brand": "",
+        "description": "",
+        "list_price": 16000,
+        "image_url": null
+      }
+    ],
+    "single_query_results": [
+      {
+        "url": "http://app:8000/#/search?q=%EC%97%AC%ED%96%89+%ED%8C%8C%EC%9A%B0%EC%B9%98&category=etc",
+        "search_input": "여행 파우치",
+        "title": "'여행 파우치'에 대한 검색결과1개",
+        "product_names": [
+          "여행 파우치"
+        ]
+      },
+      {
+        "url": "http://app:8000/#/search?q=%EC%BC%80%EC%9D%B4%EB%B8%94+%EC%A0%95%EB%A6%AC%ED%95%A8&category=etc",
+        "search_input": "케이블 정리함",
+        "title": "'케이블 정리함'에 대한 검색결과1개",
+        "product_names": [
+          "케이블 정리함"
+        ]
+      }
+    ],
+    "first_query_pending": {
+      "url": "http://app:8000/#/search?q=%EC%97%AC%ED%96%89+%ED%8C%8C%EC%9A%B0%EC%B9%98&category=etc",
+      "search_input": "여행 파우치",
+      "title": "'여행 파우치'에 대한 검색결과",
+      "product_names": []
+    },
+    "second_query_visible": {
+      "url": "http://app:8000/#/search?q=%EC%BC%80%EC%9D%B4%EB%B8%94+%EC%A0%95%EB%A6%AC%ED%95%A8&category=etc",
+      "search_input": "케이블 정리함",
+      "title": "'케이블 정리함'에 대한 검색결과1개",
+      "product_names": [
+        "케이블 정리함"
+      ]
+    },
+    "second_visible_after_ms": 889.9,
+    "after_first_query_released": {
+      "url": "http://app:8000/#/search?q=%EC%BC%80%EC%9D%B4%EB%B8%94+%EC%A0%95%EB%A6%AC%ED%95%A8&category=etc",
+      "search_input": "케이블 정리함",
+      "title": "'케이블 정리함'에 대한 검색결과1개",
+      "product_names": [
+        "케이블 정리함"
+      ]
+    },
+    "request_schedule": [
+      {
+        "url": "http://app:8000/products?q=%EC%97%AC%ED%96%89+%ED%8C%8C%EC%9A%B0%EC%B9%98&category=etc&sort=recommended&limit=20&offset=0",
+        "query": {
+          "q": [
+            "여행 파우치"
+          ],
+          "category": [
+            "etc"
+          ],
+          "sort": [
+            "recommended"
+          ],
+          "limit": [
+            "20"
+          ],
+          "offset": [
+            "0"
+          ]
+        },
+        "requested_after_ms": 55.8,
+        "action": "held_until_second_results_visible",
+        "upstream_status": 200,
+        "upstream_item_names": [
+          "여행 파우치"
+        ],
+        "released_after_ms": 955.5
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%97%AC%ED%96%89+%ED%8C%8C%EC%9A%B0%EC%B9%98&limit=1",
+        "query": {
+          "q": [
+            "여행 파우치"
+          ],
+          "limit": [
+            "1"
+          ]
+        },
+        "requested_after_ms": 56.8,
+        "action": "held_until_second_results_visible",
+        "upstream_status": 200,
+        "upstream_item_names": [
+          "여행 파우치"
+        ],
+        "released_after_ms": 992.6
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%97%AC%ED%96%89+%ED%8C%8C%EC%9A%B0%EC%B9%98&category=digital&limit=1",
+        "query": {
+          "q": [
+            "여행 파우치"
+          ],
+          "category": [
+            "digital"
+          ],
+          "limit": [
+            "1"
+          ]
+        },
+        "requested_after_ms": 57.5,
+        "action": "held_until_second_results_visible",
+        "upstream_status": 200,
+        "upstream_item_names": [],
+        "released_after_ms": 1028.0
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%97%AC%ED%96%89+%ED%8C%8C%EC%9A%B0%EC%B9%98&category=home&limit=1",
+        "query": {
+          "q": [
+            "여행 파우치"
+          ],
+          "category": [
+            "home"
+          ],
+          "limit": [
+            "1"
+          ]
+        },
+        "requested_after_ms": 58.4,
+        "action": "held_until_second_results_visible",
+        "upstream_status": 200,
+        "upstream_item_names": [],
+        "released_after_ms": 1067.2
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%97%AC%ED%96%89+%ED%8C%8C%EC%9A%B0%EC%B9%98&category=kitchen&limit=1",
+        "query": {
+          "q": [
+            "여행 파우치"
+          ],
+          "category": [
+            "kitchen"
+          ],
+          "limit": [
+            "1"
+          ]
+        },
+        "requested_after_ms": 59.1,
+        "action": "held_until_second_results_visible",
+        "upstream_status": 200,
+        "upstream_item_names": [],
+        "released_after_ms": 1103.7
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%97%AC%ED%96%89+%ED%8C%8C%EC%9A%B0%EC%B9%98&category=food&limit=1",
+        "query": {
+          "q": [
+            "여행 파우치"
+          ],
+          "category": [
+            "food"
+          ],
+          "limit": [
+            "1"
+          ]
+        },
+        "requested_after_ms": 59.9,
+        "action": "held_until_second_results_visible",
+        "upstream_status": 200,
+        "upstream_item_names": [],
+        "released_after_ms": 1132.6
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%97%AC%ED%96%89+%ED%8C%8C%EC%9A%B0%EC%B9%98&category=beauty&limit=1",
+        "query": {
+          "q": [
+            "여행 파우치"
+          ],
+          "category": [
+            "beauty"
+          ],
+          "limit": [
+            "1"
+          ]
+        },
+        "requested_after_ms": 60.6,
+        "action": "held_until_second_results_visible",
+        "upstream_status": 200,
+        "upstream_item_names": [],
+        "released_after_ms": 1159.1
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%97%AC%ED%96%89+%ED%8C%8C%EC%9A%B0%EC%B9%98&category=sports&limit=1",
+        "query": {
+          "q": [
+            "여행 파우치"
+          ],
+          "category": [
+            "sports"
+          ],
+          "limit": [
+            "1"
+          ]
+        },
+        "requested_after_ms": 61.4,
+        "action": "held_until_second_results_visible",
+        "upstream_status": 200,
+        "upstream_item_names": [],
+        "released_after_ms": 1187.6
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%97%AC%ED%96%89+%ED%8C%8C%EC%9A%B0%EC%B9%98&category=etc&limit=1",
+        "query": {
+          "q": [
+            "여행 파우치"
+          ],
+          "category": [
+            "etc"
+          ],
+          "limit": [
+            "1"
+          ]
+        },
+        "requested_after_ms": 62.3,
+        "action": "held_until_second_results_visible",
+        "upstream_status": 200,
+        "upstream_item_names": [
+          "여행 파우치"
+        ],
+        "released_after_ms": 1217.3
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%BC%80%EC%9D%B4%EB%B8%94+%EC%A0%95%EB%A6%AC%ED%95%A8&category=etc&sort=recommended&limit=20&offset=0",
+        "query": {
+          "q": [
+            "케이블 정리함"
+          ],
+          "category": [
+            "etc"
+          ],
+          "sort": [
+            "recommended"
+          ],
+          "limit": [
+            "20"
+          ],
+          "offset": [
+            "0"
+          ]
+        },
+        "requested_after_ms": 275.3,
+        "action": "continued"
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%BC%80%EC%9D%B4%EB%B8%94+%EC%A0%95%EB%A6%AC%ED%95%A8&limit=1",
+        "query": {
+          "q": [
+            "케이블 정리함"
+          ],
+          "limit": [
+            "1"
+          ]
+        },
+        "requested_after_ms": 282.4,
+        "action": "continued"
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%BC%80%EC%9D%B4%EB%B8%94+%EC%A0%95%EB%A6%AC%ED%95%A8&category=digital&limit=1",
+        "query": {
+          "q": [
+            "케이블 정리함"
+          ],
+          "category": [
+            "digital"
+          ],
+          "limit": [
+            "1"
+          ]
+        },
+        "requested_after_ms": 362.8,
+        "action": "continued"
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%BC%80%EC%9D%B4%EB%B8%94+%EC%A0%95%EB%A6%AC%ED%95%A8&category=home&limit=1",
+        "query": {
+          "q": [
+            "케이블 정리함"
+          ],
+          "category": [
+            "home"
+          ],
+          "limit": [
+            "1"
+          ]
+        },
+        "requested_after_ms": 446.2,
+        "action": "continued"
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%BC%80%EC%9D%B4%EB%B8%94+%EC%A0%95%EB%A6%AC%ED%95%A8&category=kitchen&limit=1",
+        "query": {
+          "q": [
+            "케이블 정리함"
+          ],
+          "category": [
+            "kitchen"
+          ],
+          "limit": [
+            "1"
+          ]
+        },
+        "requested_after_ms": 467.6,
+        "action": "continued"
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%BC%80%EC%9D%B4%EB%B8%94+%EC%A0%95%EB%A6%AC%ED%95%A8&category=food&limit=1",
+        "query": {
+          "q": [
+            "케이블 정리함"
+          ],
+          "category": [
+            "food"
+          ],
+          "limit": [
+            "1"
+          ]
+        },
+        "requested_after_ms": 474.0,
+        "action": "continued"
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%BC%80%EC%9D%B4%EB%B8%94+%EC%A0%95%EB%A6%AC%ED%95%A8&category=beauty&limit=1",
+        "query": {
+          "q": [
+            "케이블 정리함"
+          ],
+          "category": [
+            "beauty"
+          ],
+          "limit": [
+            "1"
+          ]
+        },
+        "requested_after_ms": 552.8,
+        "action": "continued"
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%BC%80%EC%9D%B4%EB%B8%94+%EC%A0%95%EB%A6%AC%ED%95%A8&category=sports&limit=1",
+        "query": {
+          "q": [
+            "케이블 정리함"
+          ],
+          "category": [
+            "sports"
+          ],
+          "limit": [
+            "1"
+          ]
+        },
+        "requested_after_ms": 559.2,
+        "action": "continued"
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%BC%80%EC%9D%B4%EB%B8%94+%EC%A0%95%EB%A6%AC%ED%95%A8&category=etc&limit=1",
+        "query": {
+          "q": [
+            "케이블 정리함"
+          ],
+          "category": [
+            "etc"
+          ],
+          "limit": [
+            "1"
+          ]
+        },
+        "requested_after_ms": 651.5,
+        "action": "continued"
+      }
+    ],
+    "late_response_completion": [
+      {
+        "url": "http://app:8000/products?q=%EC%97%AC%ED%96%89+%ED%8C%8C%EC%9A%B0%EC%B9%98&category=etc&sort=recommended&limit=20&offset=0",
+        "finished_after_ms": 971.9
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%97%AC%ED%96%89+%ED%8C%8C%EC%9A%B0%EC%B9%98&limit=1",
+        "finished_after_ms": 1010.5
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%97%AC%ED%96%89+%ED%8C%8C%EC%9A%B0%EC%B9%98&category=digital&limit=1",
+        "finished_after_ms": 1047.4
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%97%AC%ED%96%89+%ED%8C%8C%EC%9A%B0%EC%B9%98&category=home&limit=1",
+        "finished_after_ms": 1084.2
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%97%AC%ED%96%89+%ED%8C%8C%EC%9A%B0%EC%B9%98&category=kitchen&limit=1",
+        "finished_after_ms": 1117.3
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%97%AC%ED%96%89+%ED%8C%8C%EC%9A%B0%EC%B9%98&category=food&limit=1",
+        "finished_after_ms": 1145.3
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%97%AC%ED%96%89+%ED%8C%8C%EC%9A%B0%EC%B9%98&category=beauty&limit=1",
+        "finished_after_ms": 1172.9
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%97%AC%ED%96%89+%ED%8C%8C%EC%9A%B0%EC%B9%98&category=sports&limit=1",
+        "finished_after_ms": 1202.5
+      },
+      {
+        "url": "http://app:8000/products?q=%EC%97%AC%ED%96%89+%ED%8C%8C%EC%9A%B0%EC%B9%98&category=etc&limit=1",
+        "finished_after_ms": 1231.7
+      }
+    ],
+    "schedule_method": "Actual HTTP responses held by Playwright routes; no mocked product payloads",
+    "navigation_method": "Real hash routes with category=etc fixed for both queries",
+    "browser_page_errors": [],
+    "browser_version": "140.0.7339.16",
+    "fixture_creation_method": "POST /products with GET readback; no direct DB writes"
+  },
+  "oracle": {
+    "passed": true,
+    "products": [
+      {
+        "product_id": 1,
+        "initial_stock": 8,
+        "confirmed_quantity": 0,
+        "current_stock": 8,
+        "non_negative": true,
+        "stock_equation": true
+      },
+      {
+        "product_id": 2,
+        "initial_stock": 8,
+        "confirmed_quantity": 0,
+        "current_stock": 8,
+        "non_negative": true,
+        "stock_equation": true
+      }
+    ],
+    "orders": {
+      "checked": 0,
+      "invalid_order_ids": [],
+      "amounts_valid": true
+    }
+  },
+  "passed": true,
+  "finished_at": "2026-10-06T08:05:32.442908+00:00"
+}
